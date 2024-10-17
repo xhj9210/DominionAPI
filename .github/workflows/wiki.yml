@@ -26,8 +26,10 @@ jobs:
           distribution: 'zulu'
           cache: gradle
       - name: "Build with Gradle"
-        run: ./gradlew javadoc
-      - name: Move Docs
+        run: |
+          chmod +x gradlew
+          ./gradlew javadoc
+      - name: "Move Docs"
         run: |
           mv build/docs/javadoc _site
       - name: Upload artifact
