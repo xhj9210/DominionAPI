@@ -21,6 +21,13 @@ tasks.withType<Javadoc> {
     options.encoding = "UTF-8"
 }
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven("https://oss.sonatype.org/content/groups/public")
+    maven("https://repo.papermc.io/repository/maven-public/")
+}
+
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
 }
