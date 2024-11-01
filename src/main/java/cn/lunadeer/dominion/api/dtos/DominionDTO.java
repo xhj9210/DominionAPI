@@ -236,6 +236,14 @@ public interface DominionDTO {
     @Nullable Location getTpLocation();
 
     /**
+     * 设置领地传送点坐标，设置成功后返回领地对象，设置失败返回null
+     *
+     * @param tpLocation 领地传送点坐标
+     * @return 领地对象
+     */
+    @Nullable DominionDTO setTpLocation(Location tpLocation);
+
+    /**
      * 领地角点坐标1，小角点（小角点的xyz小于大角点的xyz）
      *
      * @return 领地角点坐标1

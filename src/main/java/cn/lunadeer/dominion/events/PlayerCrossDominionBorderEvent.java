@@ -59,7 +59,7 @@ public class PlayerCrossDominionBorderEvent extends Event {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return HANDLER_LIST;
     }
 
