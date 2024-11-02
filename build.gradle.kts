@@ -10,7 +10,7 @@ java {
 }
 
 group = "cn.lunadeer"
-version = "2.3-SNAPSHOT"
+version = "3.0-ALPHA"
 
 // utf-8
 tasks.withType<JavaCompile> {
@@ -30,6 +30,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+    compileOnly("cn.lunadeer:MinecraftPluginUtils:2.0.7")
 }
 
 publishing {
