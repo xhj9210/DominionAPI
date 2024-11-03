@@ -1,6 +1,7 @@
 package cn.lunadeer.dominion.events;
 
 import cn.lunadeer.dominion.api.AbstractOperator;
+import cn.lunadeer.minecraftpluginutils.i18n.i18n;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -22,7 +23,6 @@ public class ResultEvent extends Event implements Cancellable {
         return operator;
     }
 
-
     public static HandlerList getHandlerList() {
         return HANDLER_LIST;
     }
@@ -41,4 +41,10 @@ public class ResultEvent extends Event implements Cancellable {
     public void setCancelled(boolean b) {
         this.cancelled = b;
     }
+
+    public void setCancelled(boolean b, AbstractOperator.ResultType type, i18n reason, Object... args) {
+        this.cancelled = b;
+        this.operator.addResult(type, reason, args);
+    }
+
 }
