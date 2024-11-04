@@ -1,9 +1,6 @@
 package cn.lunadeer.dominion.api;
 
-import cn.lunadeer.dominion.api.dtos.DominionDTO;
-import cn.lunadeer.dominion.api.dtos.Flag;
-import cn.lunadeer.dominion.api.dtos.GroupDTO;
-import cn.lunadeer.dominion.api.dtos.MemberDTO;
+import cn.lunadeer.dominion.api.dtos.*;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -100,4 +97,27 @@ public interface DominionAPI {
      * @return 权限对象   如果权限不存在，则返回null
      */
     @Nullable Flag getFlagByName(@NotNull String flagName);
+
+    /**
+     * 获取一个基于玩家的操作者对象，以用于创建领地事件。该操作者对象会模拟玩家的操作以及权限等信息。
+     *
+     * @param player 玩家
+     * @return 操作者对象
+     */
+    @NotNull AbstractOperator getPlayerOperator(@NotNull Player player);
+
+    /**
+     * 获取一个基于插件的操作者对象，以用于创建领地事件。该操作者对象具备OP权限。
+     *
+     * @return 操作者对象
+     */
+    @NotNull AbstractOperator getPluginOperator();
+
+    /**
+     * 获取一个基于玩家的操作者对象。
+     *
+     * @param uuid 玩家 UUID
+     * @return 操作者对象
+     */
+    @Nullable PlayerDTO getPlayerDTO(UUID uuid);
 }

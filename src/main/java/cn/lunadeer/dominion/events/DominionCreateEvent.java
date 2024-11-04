@@ -31,9 +31,9 @@ public class DominionCreateEvent extends DominionEvent {
      * @param name     领地名称
      * @param loc1     领地位置1
      * @param loc2     领地位置2
-     * @param parent   父领地
+     * @param parent   父领地 如果没有父领地则传入 null
      */
-    public DominionCreateEvent(AbstractOperator operator,
+    public DominionCreateEvent(@NotNull AbstractOperator operator,
                                @NotNull String name, @NotNull UUID owner,
                                @NotNull Location loc1, @NotNull Location loc2,
                                @Nullable DominionDTO parent) {

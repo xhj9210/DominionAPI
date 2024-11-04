@@ -21,23 +21,26 @@ public class DominionSizeChangeEvent extends DominionEvent {
     }
 
     private boolean skipEconomy;
-    private BlockFace face;
+    private BlockFace direction;
     private int size;
     private final SizeChangeType type;
 
     /**
      * 领地大小变更事件
      *
-     * @param operator 操作者
-     * @param dominion 领地
-     * @param type     变更类型
-     * @param face     方向
-     * @param size     大小
+     * @param operator  操作者
+     * @param dominion  领地
+     * @param type      变更类型
+     * @param direction 方向
+     * @param size      大小
      */
-    public DominionSizeChangeEvent(AbstractOperator operator, @NotNull DominionDTO dominion, SizeChangeType type, BlockFace face, int size) {
+    public DominionSizeChangeEvent(@NotNull AbstractOperator operator,
+                                   @NotNull DominionDTO dominion,
+                                   @NotNull SizeChangeType type,
+                                   @NotNull BlockFace direction, int size) {
         super(operator, dominion);
         this.skipEconomy = false;
-        this.face = face;
+        this.direction = direction;
         this.size = size;
         this.type = type;
     }
@@ -47,18 +50,18 @@ public class DominionSizeChangeEvent extends DominionEvent {
      *
      * @return 方向
      */
-    public BlockFace getFace() {
-        return face;
+    public BlockFace getDirection() {
+        return direction;
     }
 
     /**
      * 设置操作的方向。
      * 只应当在 EventPriority 为 {@link org.bukkit.event.EventPriority#LOWEST} 的 handler 中修改，否则无法生效。
      *
-     * @param face 方向
+     * @param direction 方向
      */
-    public void setFace(BlockFace face) {
-        this.face = face;
+    public void setDirection(BlockFace direction) {
+        this.direction = direction;
     }
 
     /**

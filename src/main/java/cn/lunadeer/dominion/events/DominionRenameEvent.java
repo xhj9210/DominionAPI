@@ -21,7 +21,7 @@ public class DominionRenameEvent extends DominionEvent {
      * @param dominion 领地
      * @param newName  新名称
      */
-    public DominionRenameEvent(AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull String newName) {
+    public DominionRenameEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull String newName) {
         super(operator, dominion);
         this.newName = newName;
         this.oldName = dominion.getName();
