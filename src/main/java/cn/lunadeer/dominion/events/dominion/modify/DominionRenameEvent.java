@@ -1,4 +1,4 @@
-package cn.lunadeer.dominion.events;
+package cn.lunadeer.dominion.events.dominion.modify;
 
 import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  * 领地重命名事件，当一个领地被重命名时触发。
  */
 @ApiStatus.Experimental
-public class DominionRenameEvent extends DominionEvent {
+public class DominionRenameEvent extends DominionModifyEvent {
 
     private String newName;
     private final String oldName;
@@ -47,9 +47,10 @@ public class DominionRenameEvent extends DominionEvent {
 
     /**
      * 设置新名称。
-     * 只应当在 EventPriority 为 {@link org.bukkit.event.EventPriority#LOWEST} 的 handler 中修改，否则可能会导致不可预知的问题。
      *
      * @param newName 新名称
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setNewName(@NotNull String newName) {
         this.newName = newName;

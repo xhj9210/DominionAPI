@@ -1,4 +1,4 @@
-package cn.lunadeer.dominion.events;
+package cn.lunadeer.dominion.events.dominion.modify;
 
 import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
  * 领地大小变更事件，当一个领地的大小被变更时触发。
  */
 @ApiStatus.Experimental
-public class DominionSizeChangeEvent extends DominionEvent {
+public class DominionSizeChangeEvent extends DominionModifyEvent {
 
     /**
      * 领地大小变更类型
@@ -56,9 +56,10 @@ public class DominionSizeChangeEvent extends DominionEvent {
 
     /**
      * 设置操作的方向。
-     * 只应当在 EventPriority 为 {@link org.bukkit.event.EventPriority#LOWEST} 的 handler 中修改，否则无法生效。
      *
      * @param direction 方向
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setDirection(BlockFace direction) {
         this.direction = direction;
@@ -75,9 +76,10 @@ public class DominionSizeChangeEvent extends DominionEvent {
 
     /**
      * 设置变更大小。
-     * 只应当在 EventPriority 为 {@link org.bukkit.event.EventPriority#LOWEST} 的 handler 中修改，否则无法生效。
      *
      * @param size 变更大小
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setSize(int size) {
         this.size = size;
@@ -85,13 +87,10 @@ public class DominionSizeChangeEvent extends DominionEvent {
 
     /**
      * 设置是否跳过经济系统的处理，如果设置为 true，则不会检查、扣除经济。
-     * 只在 EventPriority 为
-     * {@link org.bukkit.event.EventPriority#LOWEST} 或
-     * {@link org.bukkit.event.EventPriority#LOW} 或
-     * {@link org.bukkit.event.EventPriority#NORMAL}
-     * 的 EventHandler 中设置时才生效。
      *
      * @param skipEconomy 是否跳过经济系统的处理
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setSkipEconomy(boolean skipEconomy) {
         this.skipEconomy = skipEconomy;

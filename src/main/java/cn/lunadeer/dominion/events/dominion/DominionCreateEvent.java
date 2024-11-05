@@ -1,7 +1,8 @@
-package cn.lunadeer.dominion.events;
+package cn.lunadeer.dominion.events.dominion;
 
 import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
+import cn.lunadeer.dominion.events.ResultEvent;
 import org.bukkit.Location;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +16,7 @@ import java.util.UUID;
  * 在这之后修改领地创建信息将不会生效。
  */
 @ApiStatus.Experimental
-public class DominionCreateEvent extends DominionEvent {
+public class DominionCreateEvent extends ResultEvent {
 
     private boolean skipEconomy;
     private String name;
@@ -23,6 +24,7 @@ public class DominionCreateEvent extends DominionEvent {
     private Location loc2;
     private DominionDTO parent;
     private UUID owner;
+    private DominionDTO dominion = null;
 
     /**
      * 领地创建事件
@@ -37,7 +39,7 @@ public class DominionCreateEvent extends DominionEvent {
                                @NotNull String name, @NotNull UUID owner,
                                @NotNull Location loc1, @NotNull Location loc2,
                                @Nullable DominionDTO parent) {
-        super(operator, null);
+        super(operator);
         this.skipEconomy = false;
         this.name = name;
         this.loc1 = loc1;
@@ -48,13 +50,10 @@ public class DominionCreateEvent extends DominionEvent {
 
     /**
      * 设置是否跳过经济系统的处理，如果设置为 true，则不会检查、扣除经济。
-     * 只在 EventPriority 为
-     * {@link org.bukkit.event.EventPriority#LOWEST} 或
-     * {@link org.bukkit.event.EventPriority#LOW} 或
-     * {@link org.bukkit.event.EventPriority#NORMAL}
-     * 的 EventHandler 中设置时才生效。
      *
      * @param skipEconomy 是否跳过
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setSkipEconomy(boolean skipEconomy) {
         this.skipEconomy = skipEconomy;
@@ -80,9 +79,10 @@ public class DominionCreateEvent extends DominionEvent {
 
     /**
      * 设置领地名称。
-     * 只应当在 EventPriority 为 {@link org.bukkit.event.EventPriority#LOWEST} 的 handler 中修改，否则可能会导致不可预知的问题。
      *
      * @param name 领地名称
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setName(@NotNull String name) {
         this.name = name;
@@ -99,9 +99,10 @@ public class DominionCreateEvent extends DominionEvent {
 
     /**
      * 设置领地位置1。
-     * 只应当在 EventPriority 为 {@link org.bukkit.event.EventPriority#LOWEST} 的 handler 中修改，否则可能会导致不可预知的问题。
      *
      * @param loc1 领地位置1
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setLoc1(@NotNull Location loc1) {
         this.loc1 = loc1;
@@ -118,9 +119,10 @@ public class DominionCreateEvent extends DominionEvent {
 
     /**
      * 设置领地位置2。
-     * 只应当在 EventPriority 为 {@link org.bukkit.event.EventPriority#LOWEST} 的 handler 中修改，否则可能会导致不可预知的问题。
      *
      * @param loc2 领地位置2
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setLoc2(@NotNull Location loc2) {
         this.loc2 = loc2;
@@ -137,9 +139,10 @@ public class DominionCreateEvent extends DominionEvent {
 
     /**
      * 设置父领地。
-     * 只应当在 EventPriority 为 {@link org.bukkit.event.EventPriority#LOWEST} 的 handler 中修改，否则可能会导致不可预知的问题。
      *
      * @param parent 父领地
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setParent(@Nullable DominionDTO parent) {
         this.parent = parent;
@@ -156,11 +159,29 @@ public class DominionCreateEvent extends DominionEvent {
 
     /**
      * 设置领地所有者。
-     * 只应当在 EventPriority 为 {@link org.bukkit.event.EventPriority#LOWEST} 的 handler 中修改，否则可能会导致不可预知的问题。
      *
      * @param owner 领地所有者
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setOwner(@NotNull UUID owner) {
         this.owner = owner;
+    }
+
+    /**
+     * 获取领地。
+     *
+     * @return 领地
+     * @apiNote 如果在 {@link org.bukkit.event.EventPriority}
+     * 为 {@link org.bukkit.event.EventPriority#LOW} 或 {@link org.bukkit.event.EventPriority#LOWEST}
+     * 或 {@link org.bukkit.event.EventPriority#NORMAL} 的 {@link org.bukkit.event.EventHandler} 中获取则为 null，
+     * 因为此时领地还没有创建。
+     */
+    public @Nullable DominionDTO getDominion() {
+        return dominion;
+    }
+
+    public void setDominion(@NotNull DominionDTO dominion) {
+        this.dominion = dominion;
     }
 }

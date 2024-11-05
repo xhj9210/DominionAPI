@@ -25,6 +25,13 @@ public interface DominionDTO {
     @NotNull UUID getOwner();
 
     /**
+     * 获取领地所有者 DTO
+     *
+     * @return 领地所有者 DTO
+     */
+    @NotNull PlayerDTO getOwnerDTO();
+
+    /**
      * 设置领地所有者，设置成功后返回领地对象，设置失败返回null
      *
      * @param owner 领地所有者 UUID

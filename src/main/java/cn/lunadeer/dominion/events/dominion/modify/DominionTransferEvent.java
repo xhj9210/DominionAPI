@@ -1,4 +1,4 @@
-package cn.lunadeer.dominion.events;
+package cn.lunadeer.dominion.events.dominion.modify;
 
 import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
@@ -8,11 +8,11 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 领地转让事件
  */
-public class DominionTransferEvent extends DominionEvent {
+public class DominionTransferEvent extends DominionModifyEvent {
 
     private PlayerDTO newOwner;
-    private boolean force;
     private final PlayerDTO oldOwner;
+    private boolean force;
 
     /**
      * 领地转让事件
@@ -21,10 +21,10 @@ public class DominionTransferEvent extends DominionEvent {
      * @param dominion 领地
      * @param newOwner 新的领地所有者 UUID
      */
-    public DominionTransferEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull PlayerDTO oldOwner, @NotNull PlayerDTO newOwner) {
+    public DominionTransferEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull PlayerDTO newOwner) {
         super(operator, dominion);
         this.newOwner = newOwner;
-        this.oldOwner = oldOwner;
+        this.oldOwner = dominion.getOwnerDTO();
         this.force = true;
     }
 
@@ -37,28 +37,29 @@ public class DominionTransferEvent extends DominionEvent {
     }
 
     /**
-     * 获取新的领地所有者 UUID
+     * 获取新的领地所有者。
      *
      * @return UUID
      */
-    public PlayerDTO getNewOwner() {
+    public @NotNull PlayerDTO getNewOwner() {
         return newOwner;
     }
 
     /**
-     * 获取旧的领地所有者 UUID
+     * 获取旧的领地所有者。
      *
      * @return UUID
      */
-    public PlayerDTO getOldOwner() {
+    public @NotNull PlayerDTO getOldOwner() {
         return oldOwner;
     }
 
     /**
-     * 设置新的领地所有者 UUID
-     * 只应当在 EventPriority 为 {@link org.bukkit.event.EventPriority#LOWEST} 的 handler 中修改，否则无法生效。
+     * 设置新的领地所有者。
      *
      * @param newOwner UUID
+     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setNewOwner(PlayerDTO newOwner) {
         this.newOwner = newOwner;

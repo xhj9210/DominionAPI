@@ -45,6 +45,7 @@ public class ResultEvent extends Event implements Cancellable {
     public void setCancelled(boolean b, AbstractOperator.ResultType type, i18n reason, Object... args) {
         this.cancelled = b;
         this.operator.addResult(type, reason, args);
+        this.operator.completeResult(true);
     }
 
 }

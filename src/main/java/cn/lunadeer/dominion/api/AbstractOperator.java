@@ -6,18 +6,19 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class AbstractOperator {
+
+    private boolean onceFlag = false;
 
     public enum ResultType {
         SUCCESS,
         WARNING,
         FAILURE
     }
+
+    private final Map<ResultType, String> header = new HashMap<>();
 
     private final Map<ResultType, List<String>> results = Map.of(
             ResultType.SUCCESS, new ArrayList<>(),
@@ -36,6 +37,19 @@ public abstract class AbstractOperator {
 
     public AbstractOperator addResult(ResultType type, i18n message, Object... args) {
         return addResult(type, message.trans(), args);
+    }
+
+    public AbstractOperator addResultHeader(ResultType type, String message) {
+        header.put(type, message);
+        return this;
+    }
+
+    public AbstractOperator addResultHeader(ResultType type, String message, Object... args) {
+        return addResultHeader(type, String.format(message, args));
+    }
+
+    public AbstractOperator addResultHeader(ResultType type, i18n message, Object... args) {
+        return addResultHeader(type, message.trans(), args);
     }
 
     public UUID getUniqueId() {
@@ -64,7 +78,18 @@ public abstract class AbstractOperator {
     public void completeResult() {
     }
 
+    public void completeResult(boolean once) {
+        if (once && !onceFlag) {
+            onceFlag = true;
+            completeResult();
+        }
+    }
+
     protected Map<ResultType, List<String>> getResults() {
         return results;
+    }
+
+    protected Map<ResultType, String> getHeader() {
+        return header;
     }
 }
