@@ -69,6 +69,14 @@ public interface DominionAPI {
     @Nullable DominionDTO getDominion(@NotNull Integer id);
 
     /**
+     * 从数据库获取指定名称的领地信息
+     *
+     * @param name 领地名称
+     * @return 领地信息   如果领地不存在，则返回null
+     */
+    @Nullable DominionDTO getDominion(@NotNull String name);
+
+    /**
      * 从缓存获取玩家当前正在使用的权限组称号
      *
      * @param uuid 玩家 UUID
@@ -120,4 +128,12 @@ public interface DominionAPI {
      * @return 操作者对象
      */
     @Nullable PlayerDTO getPlayerDTO(UUID uuid);
+
+    /**
+     * 获取一个基于玩家的操作者对象。
+     *
+     * @param name 玩家名称
+     * @return 操作者对象
+     */
+    @Nullable PlayerDTO getPlayerDTO(String name);
 }

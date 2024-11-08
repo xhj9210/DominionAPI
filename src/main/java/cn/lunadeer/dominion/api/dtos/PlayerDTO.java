@@ -10,4 +10,6 @@ public interface PlayerDTO {
     String getLastKnownName();
 
     PlayerDTO updateLastKnownName(String name);
+
+    Integer getUsingGroupTitleID();
 }

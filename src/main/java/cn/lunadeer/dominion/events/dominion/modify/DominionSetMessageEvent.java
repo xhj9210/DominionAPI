@@ -5,7 +5,7 @@ import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 领地消息变更事件，当一个领地的消息被变更时触发。
+ * 领地消息变更事件，当一个领地的消息被变更时触发。包含进入领地的提示消息和离开领地的提示消息。
  */
 public class DominionSetMessageEvent extends DominionModifyEvent {
 
@@ -13,7 +13,7 @@ public class DominionSetMessageEvent extends DominionModifyEvent {
      * 领地消息变更类型
      */
     public enum MessageChangeType {
-        JOIN,   // 进入领地的提示消息
+        ENTER,   // 进入领地的提示消息
         LEAVE,  // 离开领地的提示消息
     }
 
@@ -34,7 +34,7 @@ public class DominionSetMessageEvent extends DominionModifyEvent {
                                    @NotNull MessageChangeType type,
                                    @NotNull String newMessage) {
         super(operator, dominion);
-        this.oldMessage = type == MessageChangeType.JOIN ? dominion.getJoinMessage() : dominion.getLeaveMessage();
+        this.oldMessage = type == MessageChangeType.ENTER ? dominion.getJoinMessage() : dominion.getLeaveMessage();
         this.type = type;
         this.newMessage = newMessage;
     }
