@@ -136,4 +136,12 @@ public interface DominionAPI {
      * @return 操作者对象
      */
     @Nullable PlayerDTO getPlayerDTO(String name);
+
+    /**
+     * 从数据库获取玩家拥有的领地列表
+     *
+     * @param playerUid 玩家 UUID
+     * @return 领地列表
+     */
+    List<DominionDTO> getPlayerDominions(@NotNull UUID playerUid);
 }

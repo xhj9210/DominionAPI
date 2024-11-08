@@ -1,11 +1,13 @@
 package cn.lunadeer.dominion.api.dtos;
 
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -273,4 +275,26 @@ public interface DominionDTO {
     @NotNull String getColor();
 
     int getColorHex();
+
+    /**
+     * 设置领地颜色，设置成功后返回领地对象，设置失败返回null
+     *
+     * @param color 颜色
+     * @return 领地对象
+     */
+    @Nullable DominionDTO setColor(@NotNull Color color);
+
+    /**
+     * 获取领地的所有权限组
+     *
+     * @return 权限组列表
+     */
+    List<GroupDTO> getGroups();
+
+    /**
+     * 获取领地的所有成员
+     *
+     * @return 成员列表
+     */
+    List<MemberDTO> getMembers();
 }

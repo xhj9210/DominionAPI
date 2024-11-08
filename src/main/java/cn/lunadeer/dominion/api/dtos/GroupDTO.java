@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Map;
 
 public interface GroupDTO {
@@ -96,4 +97,11 @@ public interface GroupDTO {
      * @return 权限组对象
      */
     @Nullable GroupDTO setFlagValue(@NotNull Flag flag, @NotNull Boolean value);
+
+    /**
+     * 获取权限组所有成员
+     *
+     * @return 成员列表
+     */
+    List<MemberDTO> getMembers();
 }
