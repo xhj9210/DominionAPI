@@ -2,6 +2,7 @@ package cn.lunadeer.dominion.events;
 
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
@@ -61,6 +62,20 @@ public class PlayerCrossDominionBorderEvent extends Event {
     @Override
     public HandlerList getHandlers() {
         return HANDLER_LIST;
+    }
+
+    /**
+     * 调用事件，等价于 paper 的 callEvent 方法，此处定义是为了兼容 Spigot。
+     *
+     * @return 事件是否被取消
+     */
+    public boolean call() {
+        org.bukkit.Bukkit.getPluginManager().callEvent(this);
+        if (this instanceof Cancellable) {
+            return !((Cancellable) this).isCancelled();
+        } else {
+            return true;
+        }
     }
 
 }
