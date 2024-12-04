@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 
 public class Dominion {
 
-    private final static int[] requiredDominionVersion = new int[]{2, 14, 5};
+    private final static int[] requiredDominionVersion = new int[]{3, 0, 0};
 
     public static DominionAPI getInstance() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
         if (!isDominionEnabled()) {
