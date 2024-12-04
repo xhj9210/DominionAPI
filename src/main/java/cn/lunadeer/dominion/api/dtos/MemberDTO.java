@@ -73,4 +73,11 @@ public interface MemberDTO {
      * @return 成员对象
      */
     @Nullable MemberDTO setFlagValue(@NotNull Flag flag, @NotNull Boolean value);
+
+    /**
+     * 获取成员对象
+     *
+     * @return 成员对象
+     */
+    @NotNull PlayerDTO getPlayer();
 }

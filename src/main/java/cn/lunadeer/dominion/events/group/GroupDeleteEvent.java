@@ -1,31 +1,32 @@
-package cn.lunadeer.dominion.events.member;
+package cn.lunadeer.dominion.events.group;
 
 import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
-import cn.lunadeer.dominion.api.dtos.MemberDTO;
+import cn.lunadeer.dominion.api.dtos.GroupDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 成员移除事件
+ * 权限组移除事件
  * <p>
- * 当玩家移除成员时触发
+ * 当权限组移除时触发
  */
-public class MemberRemovedEvent extends ResultEvent {
+public class GroupDeleteEvent extends ResultEvent {
+
     private DominionDTO dominion;
-    private MemberDTO member;
+    private GroupDTO group;
 
     /**
-     * 构造成员移除事件
+     * 构造权限组移除事件
      *
      * @param operator 操作者
      * @param dominion 领地
-     * @param member   成员
+     * @param group    权限组
      */
-    public MemberRemovedEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull MemberDTO member) {
+    public GroupDeleteEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull GroupDTO group) {
         super(operator);
         this.dominion = dominion;
-        this.member = member;
+        this.group = group;
     }
 
     /**
@@ -47,20 +48,20 @@ public class MemberRemovedEvent extends ResultEvent {
     }
 
     /**
-     * 设置成员
+     * 设置权限组
      *
-     * @param member 成员
+     * @param group 权限组
      */
-    public void setMember(@NotNull MemberDTO member) {
-        this.member = member;
+    public void setGroup(@NotNull GroupDTO group) {
+        this.group = group;
     }
 
     /**
-     * 获取成员
+     * 获取权限组
      *
-     * @return 成员
+     * @return 权限组
      */
-    public @NotNull MemberDTO getMember() {
-        return member;
+    public @NotNull GroupDTO getGroup() {
+        return group;
     }
 }

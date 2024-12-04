@@ -2,9 +2,6 @@ package cn.lunadeer.dominion.events;
 
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,9 +12,8 @@ import org.jetbrains.annotations.Nullable;
  * 如果仅希望监听玩家进入领地的事件请参考 {@link PlayerMoveInDominionEvent}，
  * 如果仅希望监听玩家离开领地的事件请参考 {@link PlayerMoveOutDominionEvent}。
  */
-public class PlayerCrossDominionBorderEvent extends Event {
+public class PlayerCrossDominionBorderEvent extends CallableEvent {
 
-    private static final HandlerList HANDLER_LIST = new HandlerList();
     private final Player player;
     private final DominionDTO from;
     private final DominionDTO to;
@@ -53,29 +49,6 @@ public class PlayerCrossDominionBorderEvent extends Event {
      */
     public @Nullable DominionDTO getTo() {
         return to;
-    }
-
-    public static HandlerList getHandlerList() {
-        return HANDLER_LIST;
-    }
-
-    @Override
-    public @NotNull HandlerList getHandlers() {
-        return HANDLER_LIST;
-    }
-
-    /**
-     * 调用事件，等价于 paper 的 callEvent 方法，此处定义是为了兼容 Spigot。
-     *
-     * @return 事件是否被取消
-     */
-    public boolean call() {
-        org.bukkit.Bukkit.getPluginManager().callEvent(this);
-        if (this instanceof Cancellable) {
-            return !((Cancellable) this).isCancelled();
-        } else {
-            return true;
-        }
     }
 
 }
