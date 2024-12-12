@@ -1,5 +1,6 @@
 package cn.lunadeer.dominion.api.dtos;
 
+import cn.lunadeer.dominion.api.dtos.flag.PreFlag;
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -80,14 +81,14 @@ public interface GroupDTO {
      * @param flag 权限
      * @return 权限配置值，如果权限不存在则返回默认值
      */
-    @NotNull Boolean getFlagValue(@NotNull Flag flag);
+    @NotNull Boolean getFlagValue(@NotNull PreFlag flag);
 
     /**
      * 获取权限组所有权限配置
      *
      * @return 权限配置
      */
-    @NotNull Map<Flag, Boolean> getFlagsValue();
+    @NotNull Map<PreFlag, Boolean> getFlagsValue();
 
     /**
      * 设置权限组某个权限配置，设置成功后返回权限组对象，设置失败返回null
@@ -96,7 +97,7 @@ public interface GroupDTO {
      * @param value 权限值
      * @return 权限组对象
      */
-    @Nullable GroupDTO setFlagValue(@NotNull Flag flag, @NotNull Boolean value);
+    @Nullable GroupDTO setFlagValue(@NotNull PreFlag flag, @NotNull Boolean value);
 
     /**
      * 获取权限组所有成员

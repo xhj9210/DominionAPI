@@ -1,5 +1,7 @@
 package cn.lunadeer.dominion.api.dtos;
 
+import cn.lunadeer.dominion.api.dtos.flag.EnvFlag;
+import cn.lunadeer.dominion.api.dtos.flag.PreFlag;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -219,14 +221,30 @@ public interface DominionDTO {
      *
      * @return 领地环境权限配置
      */
-    @NotNull Map<Flag, Boolean> getEnvironmentFlagValue();
+    @NotNull Map<EnvFlag, Boolean> getEnvironmentFlagValue();
+
+    /**
+     * 获取领地某个环境配置的值
+     *
+     * @param flag 权限
+     * @return 权限值
+     */
+    boolean getEnvFlagValue(@NotNull EnvFlag flag);
 
     /**
      * 获取领地访客所有权限配置
      *
      * @return 领地访客权限配置
      */
-    @NotNull Map<Flag, Boolean> getGuestPrivilegeFlagValue();
+    @NotNull Map<PreFlag, Boolean> getGuestPrivilegeFlagValue();
+
+    /**
+     * 获取领地某个访客权限的值
+     *
+     * @param flag 权限
+     * @return 权限值
+     */
+    boolean getGuestFlagValue(@NotNull PreFlag flag);
 
     /**
      * 设置领地某个环境配置或访客权限的值，设置成功后返回领地对象，设置失败返回null
@@ -235,7 +253,16 @@ public interface DominionDTO {
      * @param value 权限值
      * @return 领地对象
      */
-    @Nullable DominionDTO setFlagValue(@NotNull Flag flag, @NotNull Boolean value);
+    @Nullable DominionDTO setEnvFlagValue(@NotNull EnvFlag flag, @NotNull Boolean value);
+
+    /**
+     * 设置领地某个环境配置或访客权限的值，设置成功后返回领地对象，设置失败返回null
+     *
+     * @param flag  权限
+     * @param value 权限值
+     * @return 领地对象
+     */
+    @Nullable DominionDTO setGuestFlagValue(@NotNull PreFlag flag, @NotNull Boolean value);
 
     /**
      * 获取领地传送点坐标
