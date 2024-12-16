@@ -68,10 +68,11 @@ public class DominionSetMessageEvent extends DominionModifyEvent {
 
     /**
      * 设置新消息内容。
+     * <p>
+     * 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      *
      * @param newMessage 新消息内容
-     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
-     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setNewMessage(@NotNull String newMessage) {
         this.newMessage = newMessage;

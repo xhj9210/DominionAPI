@@ -56,10 +56,11 @@ public class DominionTransferEvent extends DominionModifyEvent {
 
     /**
      * 设置新的领地所有者。
+     * <p>
+     * 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      *
      * @param newOwner UUID
-     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
-     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setNewOwner(PlayerDTO newOwner) {
         this.newOwner = newOwner;

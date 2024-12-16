@@ -30,11 +30,12 @@ public class DominionModifyEvent extends ResultEvent {
 
     /**
      * 获取修改后的领地。
+     * <p>
+     * 如果修改失败或者在 {@link org.bukkit.event.EventPriority}
+     * 为 {@link org.bukkit.event.EventPriority#LOW} 或 {@link org.bukkit.event.EventPriority#LOWEST}
+     * 或 {@link org.bukkit.event.EventPriority#NORMAL} 的 {@link org.bukkit.event.EventHandler} 中获取则为 null。
      *
      * @return 修改后的领地
-     * @apiNote 如果修改失败或者在 {@link org.bukkit.event.EventPriority}
-     * 为 {@link org.bukkit.event.EventPriority#LOW} 或 {@link org.bukkit.event.EventPriority#LOWEST}
-     * 或 {@link org.bukkit.event.EventPriority#NORMAL} 的 {@link org.bukkit.event.EventHandler} 中获取则为 null，
      */
     public @Nullable DominionDTO getDominionAfter() {
         return after;

@@ -56,10 +56,11 @@ public class DominionSizeChangeEvent extends DominionModifyEvent {
 
     /**
      * 设置操作的方向。
+     * <p>
+     * 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      *
      * @param direction 方向
-     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
-     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setDirection(BlockFace direction) {
         this.direction = direction;
@@ -76,10 +77,11 @@ public class DominionSizeChangeEvent extends DominionModifyEvent {
 
     /**
      * 设置变更大小。
+     * <p>
+     * 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      *
      * @param size 变更大小
-     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
-     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setSize(int size) {
         this.size = size;
@@ -87,17 +89,18 @@ public class DominionSizeChangeEvent extends DominionModifyEvent {
 
     /**
      * 设置是否跳过经济系统的处理，如果设置为 true，则不会检查、扣除经济。
+     * <p>
+     * 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
+     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      *
      * @param skipEconomy 是否跳过经济系统的处理
-     * @apiNote 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
-     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
      */
     public void setSkipEconomy(boolean skipEconomy) {
         this.skipEconomy = skipEconomy;
     }
 
     /**
-     * 是否跳过经济系统的处理
+     * 是否跳过经济系统的处理`
      *
      * @return 是否跳过经济系统的处理
      */
