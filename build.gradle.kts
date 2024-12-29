@@ -10,7 +10,7 @@ java {
 }
 
 group = "cn.lunadeer"
-version = "3.0-ALPHA"
+version = "3.2-SNAPSHOT"
 
 // utf-8
 tasks.withType<JavaCompile> {

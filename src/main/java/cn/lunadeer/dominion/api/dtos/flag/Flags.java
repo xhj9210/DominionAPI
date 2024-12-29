@@ -55,6 +55,8 @@ public class Flags {
             = new EnvFlag("wither_spawn", "凋零生成", "凋零生成以及凋零生成时产生的爆炸", false, true);
 
     // ================================== PRE
+    public static final PreFlag ADMIN
+            = new PreFlag("admin", "管理员", "管理领地内的其他成员权限", false, true);
     public static final PreFlag ANCHOR
             = new PreFlag("anchor", "重生锚", "是否允许设置/使用重生锚", false, true);
     public static final PreFlag ANIMAL_KILLING
