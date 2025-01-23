@@ -35,8 +35,12 @@ public class Flags {
             = new EnvFlag("monster_spawn", "怪物生成", "是否可以生成怪物", false, false);
     public static final EnvFlag MONSTER_MOVE
             = new EnvFlag("monster_move", "怪物移动", "是否可以在（向）领地内移动", true, false);
+    public static final EnvFlag MONSTER_DAMAGE
+            = new EnvFlag("monster_damage", "怪物对玩家造成伤害", "是否可以对玩家造成伤害", true, false);
     public static final EnvFlag PISTON_OUTSIDE =
             new EnvFlag("piston_outside", "活塞是否可以跨领地推动方块", "活塞是否可以往领地内推东西或推东西到领地外", false, true);
+    public static final EnvFlag PLAYER_DAMAGE
+            = new EnvFlag("player_damage", "玩家对玩家造成伤害", "玩家之间是否可以造成伤害（仅能控制直接伤害不等同于禁止PVP）", true, false);
     public static final EnvFlag SHOW_BORDER
             = new EnvFlag("show_border", "显示领地边界", "是否显示领地边界", true, true);
     public static final EnvFlag TNT_EXPLODE
