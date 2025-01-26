@@ -14,11 +14,11 @@ For gradle, you can add the following code to your `build.gradle` file:
 ```groovy
 // build.gradle
 repositories {
-    maven { url = "https://ssl.lunadeer.cn:14454/repository/maven-snapshots/" }
+    mavenCentral()
 }
 
 dependencies {
-    compileOnly("cn.lunadeer:DominionAPI:3.2-SNAPSHOT")
+    compileOnly("cn.lunadeer:DominionAPI:3.5")
 }
 ```
 
@@ -37,7 +37,6 @@ depend: [ Dominion ]
 Get the DominionAPI instance directly as follows:
 
 ```java
-import cn.lunadeer.dominion.api.Dominion;
 import cn.lunadeer.dominion.api.DominionAPI;
 
 DominionAPI dominionAPI = Dominion.getInstance();
@@ -51,7 +50,7 @@ Then you can use the API, for example, to get the dominion information at a cert
 public void onEnable() {
     // Plugin startup logic
     try {
-        DominionAPI dominionAPI = Dominion.getInstance();
+        DominionAPI dominionAPI = DominionAPI.getInstance();
         DominionDTO d = dominionAPI.getDominionByLoc(some_location);
         if (d == null) {
             this.getLogger().info("no dominion found");
