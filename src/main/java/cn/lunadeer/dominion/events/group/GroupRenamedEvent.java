@@ -1,9 +1,9 @@
 package cn.lunadeer.dominion.events.group;
 
-import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.GroupDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
 import cn.lunadeer.minecraftpluginutils.ColorParser;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 public class GroupRenamedEvent extends ResultEvent {
@@ -13,7 +13,7 @@ public class GroupRenamedEvent extends ResultEvent {
     private GroupDTO groupAfter = null;
 
 
-    public GroupRenamedEvent(@NotNull AbstractOperator operator, @NotNull GroupDTO group, @NotNull String newName) {
+    public GroupRenamedEvent(@NotNull CommandSender operator, @NotNull GroupDTO group, @NotNull String newName) {
         super(operator);
         this.groupBefore = group;
         this.newName = newName;

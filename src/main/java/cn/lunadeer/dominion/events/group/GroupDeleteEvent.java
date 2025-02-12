@@ -1,9 +1,9 @@
 package cn.lunadeer.dominion.events.group;
 
-import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.GroupDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -23,7 +23,7 @@ public class GroupDeleteEvent extends ResultEvent {
      * @param dominion 领地
      * @param group    权限组
      */
-    public GroupDeleteEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull GroupDTO group) {
+    public GroupDeleteEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull GroupDTO group) {
         super(operator);
         this.dominion = dominion;
         this.group = group;

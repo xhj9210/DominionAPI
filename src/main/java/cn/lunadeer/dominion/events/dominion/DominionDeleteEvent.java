@@ -1,13 +1,14 @@
 package cn.lunadeer.dominion.events.dominion;
 
-import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 领地删除事件，当一个领地被删除时触发。设置 setSkipEconomy(true) 可以跳过经济系统的处理。
+ * Event triggered when a dominion is deleted.
+ * This event is experimental and may change in future versions.
  */
 @ApiStatus.Experimental
 public class DominionDeleteEvent extends ResultEvent {
@@ -17,51 +18,58 @@ public class DominionDeleteEvent extends ResultEvent {
     private final DominionDTO dominion;
 
     /**
-     * 领地删除事件
+     * Constructs a new DominionDeleteEvent.
      *
-     * @param operator 操作者
-     * @param dominion 领地
+     * @param operator the command sender who initiated the event
+     * @param dominion the dominion to be deleted
      */
-    public DominionDeleteEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion) {
+    public DominionDeleteEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion) {
         super(operator);
         this.dominion = dominion;
         this.skipEconomy = false;
         this.force = true;
     }
 
+    /**
+     * Checks if the deletion is forced.
+     *
+     * @return true if the deletion is forced, false otherwise
+     */
     public boolean isForce() {
         return force;
     }
 
+    /**
+     * Sets whether the deletion is forced.
+     *
+     * @param force true to force the deletion, false otherwise
+     */
     public void setForce(boolean force) {
         this.force = force;
     }
 
     /**
-     * 设置是否跳过经济系统的处理，如果设置为 true，则不会检查、扣除经济。
-     * <p>
-     * 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
-     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
+     * Sets whether to skip the economy check during deletion.
      *
-     * @param skipEconomy 是否跳过
+     * @param skipEconomy true to skip the economy check, false otherwise
      */
     public void setSkipEconomy(boolean skipEconomy) {
         this.skipEconomy = skipEconomy;
     }
 
     /**
-     * 是否跳过经济系统的处理
+     * Checks if the economy check is skipped during deletion.
      *
-     * @return 是否跳过
+     * @return true if the economy check is skipped, false otherwise
      */
     public boolean isSkipEconomy() {
         return skipEconomy;
     }
 
     /**
-     * 获取领地
+     * Gets the dominion to be deleted.
      *
-     * @return 领地
+     * @return the dominion to be deleted
      */
     public @NotNull DominionDTO getDominion() {
         return dominion;

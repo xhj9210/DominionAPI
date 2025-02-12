@@ -59,102 +59,100 @@ public class Flags {
             = new EnvFlag("wither_spawn", "凋零生成", "凋零生成以及凋零生成时产生的爆炸", false, true);
 
     // ================================== PRE
-    public static final PreFlag ADMIN
-            = new PreFlag("admin", "管理员", "管理领地内的其他成员权限", false, true);
-    public static final PreFlag ANCHOR
-            = new PreFlag("anchor", "重生锚", "是否允许设置/使用重生锚", false, true);
-    public static final PreFlag ANIMAL_KILLING
-            = new PreFlag("animal_killing", "对动物造成伤害", "是否允许对动物造成伤害", false, true);
-    public static final PreFlag ANVIL
-            = new PreFlag("anvil", "使用铁砧", "是否允许使用铁砧", false, true);
-    public static final PreFlag BEACON =
-            new PreFlag("beacon", "信标交互", "是否允许与信标交互", false, true);
-    public static final PreFlag BED =
-            new PreFlag("bed", "床交互", "是否允许使用床睡觉或设置重生点", false, true);
-    public static final PreFlag BREW =
-            new PreFlag("brew", "使用酿造台", "是否可以使用酿造台", false, true);
-    public static final PreFlag BREAK_BLOCK =
-            new PreFlag("break", "破坏方块", "是否可以破坏方块（包括：一般方块、展示框、盔甲架）", false, true);
-    public static final PreFlag BUTTON =
-            new PreFlag("button", "使用按钮", "是否可以使用各种材质的按钮", false, true);
-    public static final PreFlag CAKE =
-            new PreFlag("cake", "吃蛋糕", "是否可以吃蛋糕", false, true);
-    public static final PreFlag CONTAINER =
-            new PreFlag("container", "一般容器", "包含：箱子/木桶/潜影盒/盔甲架/展示框", false, true);
-    public static final PreFlag CRAFT =
-            new PreFlag("craft", "使用工作台", "是否可以使用工作台", false, true);
-    public static final PreFlag CRAFTER =
-            new PreFlag("crafter", "合成器", "是否可以修改自动合成器", false, true);
-    public static final PreFlag COMPARER =
-            new PreFlag("comparer", "比较器交互", "是否可以修改比较器状态", false, true);
-    public static final PreFlag DOOR =
-            new PreFlag("door", "门交互", "是否可以使用各种材质的门（包括活板门）", false, true);
-    public static final PreFlag DRAGON_EGG =
-            new PreFlag("dragon_egg", "触碰龙蛋", "是否可以触碰龙蛋", false, true);
-    public static final PreFlag DYE =
-            new PreFlag("dye", "染色", "是否可以使用染料（对羊、狗项圈、猫项圈）染色", false, true);
-    public static final PreFlag EDIT_SIGN =
-            new PreFlag("edit_sign", "编辑告示牌", "是否可以编辑告示牌", false, true);
-    public static final PreFlag EGG =
-            new PreFlag("egg", "扔鸡蛋", "是否可以扔鸡蛋", false, true);
-    public static final PreFlag ENCHANT =
-            new PreFlag("enchant", "使用附魔台", "是否可以使用附魔台", false, true);
-    public static final PreFlag ENDER_PEARL =
-            new PreFlag("ender_pearl", "投掷末影珍珠", "是否可以使用末影珍珠", false, true);
-    public static final PreFlag FEED =
-            new PreFlag("feed", "喂养动物", "是否可以喂养动物", false, true);
-    public static final PreFlag FLY =
-            new PreFlag("fly", "飞行", "不是翅鞘飞行，是类似于创造模式的飞行", false, false);
-    public static final PreFlag GLOW =
-            new PreFlag("glow", "玩家发光", "类似光灵箭的高亮效果", false, true);
-    public static final PreFlag HARVEST =
-            new PreFlag("harvest", "收获", "收获庄稼、作物", false, true);
-    public static final PreFlag HONEY =
-            new PreFlag("honey", "蜂巢交互", "是否可以采蜂蜜", false, true);
-    public static final PreFlag HOOK =
-            new PreFlag("hook", "使用钓钩", "是否可以使用钓钩", false, true);
-    public static final PreFlag HOPPER =
-            new PreFlag("hopper", "特殊容器", "包含：漏斗/熔炉/发射器/投掷器/高炉/烟熏炉", false, true);
-    public static final PreFlag IGNITE =
-            new PreFlag("ignite", "点燃", "是否可以使用打火石点火", false, true);
-    public static final PreFlag ITEM_FRAME_INTERACTIVE =
-            new PreFlag("item_frame_interactive", "展示框交互", "是否可以与物品展示框交互（旋转展示框的东西）", false, true);
-    public static final PreFlag LEVER =
-            new PreFlag("lever", "使用拉杆", "是否可以使用拉杆", false, true);
-    public static final PreFlag MONSTER_KILLING =
-            new PreFlag("monster_killing", "对怪物造成伤害", "玩家是否可以对怪物造成伤害", false, true);
-    public static final PreFlag MOVE =
-            new PreFlag("move", "移动", "是否可以移动", true, true);
-    public static final PreFlag NOTE_BLOCK =
-            new PreFlag("note_block", "点击音符盒", "红石音乐或者某些红石机器会用到...", false, true);
-    public static final PreFlag PLACE =
-            new PreFlag("place", "放置方块", "是否可以放置方块（包括：一般方块、展示框、岩浆、水）", false, true);
-    public static final PreFlag PRESSURE =
-            new PreFlag("pressure", "压力板交互", "是否可以触发各种材质的压力板", false, true);
-    public static final PreFlag RIDING =
-            new PreFlag("riding", "骑乘载具", "是否可以骑乘各种载具", false, true);
-    public static final PreFlag REPEATER =
-            new PreFlag("repeater", "中继器交互", "是否可以与中继器交互", false, true);
-    public static final PreFlag SHEAR =
-            new PreFlag("shear", "剪羊毛", "是否可以剪羊毛", false, true);
-    public static final PreFlag SHOOT =
-            new PreFlag("shoot", "投掷型武器", "包括：射箭/雪球/三叉戟/风弹", false, true);
-    public static final PreFlag TELEPORT =
-            new PreFlag("teleport", "领地传送", "是否开启领地传送", false, true);
-    public static final PreFlag TRADE =
-            new PreFlag("trade", "村民交易", "是否可以与村民交易", false, true);
-    public static final PreFlag VEHICLE_DESTROY =
-            new PreFlag("vehicle_destroy", "破坏载具", "是否可以破坏载具（主要是矿车）", false, true);
-    public static final PreFlag VEHICLE_SPAWN =
-            new PreFlag("vehicle_spawn", "生成载具", "是否可以生成载具（主要是矿车）", false, true);
-    public static final PreFlag VILLAGER_KILLING =
-            new PreFlag("villager_killing", "对村民造成伤害", "是否可以对村民造成伤害", false, true);
-
+    public static final PriFlag ADMIN
+            = new PriFlag("admin", "管理员", "管理领地内的其他成员权限", false, true);
+    public static final PriFlag ANCHOR
+            = new PriFlag("anchor", "重生锚", "是否允许设置/使用重生锚", false, true);
+    public static final PriFlag ANIMAL_KILLING
+            = new PriFlag("animal_killing", "对动物造成伤害", "是否允许对动物造成伤害", false, true);
+    public static final PriFlag ANVIL
+            = new PriFlag("anvil", "使用铁砧", "是否允许使用铁砧", false, true);
+    public static final PriFlag BEACON =
+            new PriFlag("beacon", "信标交互", "是否允许与信标交互", false, true);
+    public static final PriFlag BED =
+            new PriFlag("bed", "床交互", "是否允许使用床睡觉或设置重生点", false, true);
+    public static final PriFlag BREW =
+            new PriFlag("brew", "使用酿造台", "是否可以使用酿造台", false, true);
+    public static final PriFlag BREAK_BLOCK =
+            new PriFlag("break", "破坏方块", "是否可以破坏方块（包括：一般方块、展示框、盔甲架）", false, true);
+    public static final PriFlag BUTTON =
+            new PriFlag("button", "使用按钮", "是否可以使用各种材质的按钮", false, true);
+    public static final PriFlag CAKE =
+            new PriFlag("cake", "吃蛋糕", "是否可以吃蛋糕", false, true);
+    public static final PriFlag CONTAINER =
+            new PriFlag("container", "一般容器", "包含：箱子/木桶/潜影盒/盔甲架/展示框", false, true);
+    public static final PriFlag CRAFT =
+            new PriFlag("craft", "使用工作台", "是否可以使用工作台", false, true);
+    public static final PriFlag CRAFTER =
+            new PriFlag("crafter", "合成器", "是否可以修改自动合成器", false, true);
+    public static final PriFlag COMPARER =
+            new PriFlag("comparer", "比较器交互", "是否可以修改比较器状态", false, true);
+    public static final PriFlag DOOR =
+            new PriFlag("door", "门交互", "是否可以使用各种材质的门（包括活板门）", false, true);
+    public static final PriFlag DRAGON_EGG =
+            new PriFlag("dragon_egg", "触碰龙蛋", "是否可以触碰龙蛋", false, true);
+    public static final PriFlag DYE =
+            new PriFlag("dye", "染色", "是否可以使用染料（对羊、狗项圈、猫项圈）染色", false, true);
+    public static final PriFlag EDIT_SIGN =
+            new PriFlag("edit_sign", "编辑告示牌", "是否可以编辑告示牌", false, true);
+    public static final PriFlag EGG =
+            new PriFlag("egg", "扔鸡蛋", "是否可以扔鸡蛋", false, true);
+    public static final PriFlag ENCHANT =
+            new PriFlag("enchant", "使用附魔台", "是否可以使用附魔台", false, true);
+    public static final PriFlag ENDER_PEARL =
+            new PriFlag("ender_pearl", "投掷末影珍珠", "是否可以使用末影珍珠", false, true);
+    public static final PriFlag FEED =
+            new PriFlag("feed", "喂养动物", "是否可以喂养动物", false, true);
+    public static final PriFlag FLY =
+            new PriFlag("fly", "飞行", "不是翅鞘飞行，是类似于创造模式的飞行", false, false);
+    public static final PriFlag GLOW =
+            new PriFlag("glow", "玩家发光", "类似光灵箭的高亮效果", false, true);
+    public static final PriFlag HARVEST =
+            new PriFlag("harvest", "收获", "收获庄稼、作物", false, true);
+    public static final PriFlag HONEY =
+            new PriFlag("honey", "蜂巢交互", "是否可以采蜂蜜", false, true);
+    public static final PriFlag HOOK =
+            new PriFlag("hook", "使用钓钩", "是否可以使用钓钩", false, true);
+    public static final PriFlag HOPPER =
+            new PriFlag("hopper", "特殊容器", "包含：漏斗/熔炉/发射器/投掷器/高炉/烟熏炉", false, true);
+    public static final PriFlag IGNITE =
+            new PriFlag("ignite", "点燃", "是否可以使用打火石点火", false, true);
+    public static final PriFlag ITEM_FRAME_INTERACTIVE =
+            new PriFlag("item_frame_interactive", "展示框交互", "是否可以与物品展示框交互（旋转展示框的东西）", false, true);
+    public static final PriFlag LEVER =
+            new PriFlag("lever", "使用拉杆", "是否可以使用拉杆", false, true);
+    public static final PriFlag MONSTER_KILLING =
+            new PriFlag("monster_killing", "对怪物造成伤害", "玩家是否可以对怪物造成伤害", false, true);
+    public static final PriFlag MOVE =
+            new PriFlag("move", "移动", "是否可以移动", true, true);
+    public static final PriFlag NOTE_BLOCK =
+            new PriFlag("note_block", "点击音符盒", "红石音乐或者某些红石机器会用到...", false, true);
+    public static final PriFlag PLACE =
+            new PriFlag("place", "放置方块", "是否可以放置方块（包括：一般方块、展示框、岩浆、水）", false, true);
+    public static final PriFlag PRESSURE =
+            new PriFlag("pressure", "压力板交互", "是否可以触发各种材质的压力板", false, true);
+    public static final PriFlag RIDING =
+            new PriFlag("riding", "骑乘载具", "是否可以骑乘各种载具", false, true);
+    public static final PriFlag REPEATER =
+            new PriFlag("repeater", "中继器交互", "是否可以与中继器交互", false, true);
+    public static final PriFlag SHEAR =
+            new PriFlag("shear", "剪羊毛", "是否可以剪羊毛", false, true);
+    public static final PriFlag SHOOT =
+            new PriFlag("shoot", "投掷型武器", "包括：射箭/雪球/三叉戟/风弹", false, true);
+    public static final PriFlag TELEPORT =
+            new PriFlag("teleport", "领地传送", "是否开启领地传送", false, true);
+    public static final PriFlag TRADE =
+            new PriFlag("trade", "村民交易", "是否可以与村民交易", false, true);
+    public static final PriFlag VEHICLE_DESTROY =
+            new PriFlag("vehicle_destroy", "破坏载具", "是否可以破坏载具（主要是矿车）", false, true);
+    public static final PriFlag VEHICLE_SPAWN =
+            new PriFlag("vehicle_spawn", "生成载具", "是否可以生成载具（主要是矿车）", false, true);
+    public static final PriFlag VILLAGER_KILLING =
+            new PriFlag("villager_killing", "对村民造成伤害", "是否可以对村民造成伤害", false, true);
 
     private static final List<EnvFlag> env_flags = new ArrayList<>();
-    private static final List<PreFlag> pre_flags = new ArrayList<>();
+    private static final List<PriFlag> pri_flags = new ArrayList<>();
     private static final List<Flag> all_flags = new ArrayList<>();
-
 
     static {
         for (java.lang.reflect.Field field : Flags.class.getDeclaredFields()) {
@@ -164,8 +162,8 @@ public class Flags {
                     all_flags.add(flag);
                     if (flag instanceof EnvFlag envFlag) {
                         env_flags.add(envFlag);
-                    } else if (flag instanceof PreFlag preFlag) {
-                        pre_flags.add(preFlag);
+                    } else if (flag instanceof PriFlag priFlag) {
+                        pri_flags.add(priFlag);
                     }
                 }
             } catch (IllegalAccessException e) {
@@ -174,7 +172,7 @@ public class Flags {
         }
         Comparator<Object> comparator = Collator.getInstance(java.util.Locale.CHINA);
         env_flags.sort((o1, o2) -> comparator.compare(o1.getDisplayName(), o2.getDisplayName()));
-        pre_flags.sort((o1, o2) -> comparator.compare(o1.getDisplayName(), o2.getDisplayName()));
+        pri_flags.sort((o1, o2) -> comparator.compare(o1.getDisplayName(), o2.getDisplayName()));
         all_flags.sort((o1, o2) -> comparator.compare(o1.getDisplayName(), o2.getDisplayName()));
     }
 
@@ -201,8 +199,8 @@ public class Flags {
      *
      * @return PreFlag 对象列表
      */
-    public static List<PreFlag> getAllPreFlags() {
-        return pre_flags;
+    public static List<PriFlag> getAllPriFlags() {
+        return pri_flags;
     }
 
     /**
@@ -232,12 +230,12 @@ public class Flags {
     }
 
     /**
-     * 获取所有启用的 PreFlag 对象
+     * 获取所有启用的 PriFlag 对象
      *
-     * @return 启用的 PreFlag 对象列表
+     * @return 启用的 PriFlag 对象列表
      */
-    public static List<PreFlag> getAllPreFlagsEnable() {
-        return getEnabledFlags(pre_flags);
+    public static List<PriFlag> getAllPriFlagsEnable() {
+        return getEnabledFlags(pri_flags);
     }
 
     /**
@@ -292,7 +290,7 @@ public class Flags {
      * @param name Flag 名称
      * @return PreFlag 对象
      */
-    public static PreFlag getPreFlag(String name) {
-        return getFlagByName(pre_flags, name);
+    public static PriFlag getPreFlag(String name) {
+        return getFlagByName(pri_flags, name);
     }
 }

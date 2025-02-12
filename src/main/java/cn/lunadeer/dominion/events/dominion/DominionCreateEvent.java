@@ -1,9 +1,10 @@
 package cn.lunadeer.dominion.events.dominion;
 
-import cn.lunadeer.dominion.api.AbstractOperator;
+import cn.lunadeer.dominion.api.dtos.CuboidDTO;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
-import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -20,8 +21,8 @@ public class DominionCreateEvent extends ResultEvent {
 
     private boolean skipEconomy;
     private String name;
-    private Location loc1;
-    private Location loc2;
+    public World world;
+    private CuboidDTO cuboid;
     private DominionDTO parent;
     private UUID owner;
     private DominionDTO dominion = null;
@@ -31,19 +32,20 @@ public class DominionCreateEvent extends ResultEvent {
      *
      * @param operator 操作者
      * @param name     领地名称
-     * @param loc1     领地位置1
-     * @param loc2     领地位置2
+     * @param owner    领地所有者
+     * @param world    领地所在世界
+     * @param cuboid   领地范围
      * @param parent   父领地 如果没有父领地则传入 null
      */
-    public DominionCreateEvent(@NotNull AbstractOperator operator,
+    public DominionCreateEvent(@NotNull CommandSender operator,
                                @NotNull String name, @NotNull UUID owner,
-                               @NotNull Location loc1, @NotNull Location loc2,
+                               @NotNull World world, @NotNull CuboidDTO cuboid,
                                @Nullable DominionDTO parent) {
         super(operator);
         this.skipEconomy = false;
         this.name = name;
-        this.loc1 = loc1;
-        this.loc2 = loc2;
+        this.world = world;
+        this.cuboid = cuboid;
         this.parent = parent;
         this.owner = owner;
     }
@@ -91,45 +93,37 @@ public class DominionCreateEvent extends ResultEvent {
     }
 
     /**
-     * 获取领地位置1
+     * 获取领地范围
      *
-     * @return 领地位置1
+     * @return 领地范围
      */
-    public @NotNull Location getLoc1() {
-        return loc1;
+    public @NotNull CuboidDTO getCuboid() {
+        return cuboid;
     }
 
     /**
-     * 设置领地位置1。
-     * <p>
-     * 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
-     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
+     * 设置领地范围
      *
-     * @param loc1 领地位置1
+     * @param cuboid 领地范围
      */
-    public void setLoc1(@NotNull Location loc1) {
-        this.loc1 = loc1;
+    public void setCuboid(@NotNull CuboidDTO cuboid) {
+        this.cuboid = cuboid;
     }
 
     /**
-     * 获取领地位置2
-     *
-     * @return 领地位置2
+     * 获取领地所在世界
+     * @return 领地所在世界
      */
-    public @NotNull Location getLoc2() {
-        return loc2;
+    public @NotNull World getWorld() {
+        return world;
     }
 
     /**
-     * 设置领地位置2。
-     * <p>
-     * 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
-     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
-     *
-     * @param loc2 领地位置2
+     * 设置领地所在世界
+     * @param world 领地所在世界
      */
-    public void setLoc2(@NotNull Location loc2) {
-        this.loc2 = loc2;
+    public void setWorld(@NotNull World world) {
+        this.world = world;
     }
 
     /**

@@ -1,9 +1,9 @@
 package cn.lunadeer.dominion.events.member;
 
-import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.MemberDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -22,7 +22,7 @@ public class MemberRemovedEvent extends ResultEvent {
      * @param dominion 领地
      * @param member   成员
      */
-    public MemberRemovedEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull MemberDTO member) {
+    public MemberRemovedEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull MemberDTO member) {
         super(operator);
         this.dominion = dominion;
         this.member = member;

@@ -1,6 +1,6 @@
 package cn.lunadeer.dominion.api.dtos;
 
-import cn.lunadeer.dominion.api.dtos.flag.PreFlag;
+import cn.lunadeer.dominion.api.dtos.flag.PriFlag;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -57,14 +57,14 @@ public interface MemberDTO {
      * @param flag 权限
      * @return 权限配置值，如果权限不存在则返回默认值
      */
-    @NotNull Boolean getFlagValue(PreFlag flag);
+    @NotNull Boolean getFlagValue(PriFlag flag);
 
     /**
      * 获取成员所有权限配置
      *
      * @return 权限配置值
      */
-    @NotNull Map<PreFlag, Boolean> getFlagsValue();
+    @NotNull Map<PriFlag, Boolean> getFlagsValue();
 
     /**
      * 设置成员某个权限配置，设置成功后返回成员对象，设置失败返回null
@@ -73,7 +73,7 @@ public interface MemberDTO {
      * @param value 权限配置值
      * @return 成员对象
      */
-    @Nullable MemberDTO setFlagValue(@NotNull PreFlag flag, @NotNull Boolean value);
+    @Nullable MemberDTO setFlagValue(@NotNull PriFlag flag, @NotNull Boolean value);
 
     /**
      * 获取成员对象

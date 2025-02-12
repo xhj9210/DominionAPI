@@ -2,9 +2,9 @@ package cn.lunadeer.dominion.api.dtos.flag;
 
 import org.jetbrains.annotations.NotNull;
 
-public class PreFlag extends Flag {
+public class PriFlag extends Flag {
 
-    public PreFlag(@NotNull String flag_name, @NotNull String display_name, @NotNull String description, @NotNull Boolean default_value, @NotNull Boolean enable) {
+    public PriFlag(@NotNull String flag_name, @NotNull String display_name, @NotNull String description, @NotNull Boolean default_value, @NotNull Boolean enable) {
         super(flag_name, display_name, description, default_value, enable);
     }
 

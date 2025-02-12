@@ -1,8 +1,8 @@
 package cn.lunadeer.dominion.events.dominion.modify;
 
-import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,7 +21,7 @@ public class DominionSetTpLocationEvent extends DominionModifyEvent {
      * @param dominion      领地
      * @param newTpLocation 新的传送点位置
      */
-    public DominionSetTpLocationEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull Location newTpLocation) {
+    public DominionSetTpLocationEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull Location newTpLocation) {
         super(operator, dominion);
         this.oldTpLocation = dominion.getTpLocation();
         this.newTpLocation = newTpLocation;

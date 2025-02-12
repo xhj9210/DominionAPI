@@ -1,10 +1,10 @@
 package cn.lunadeer.dominion.events.group;
 
-import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.GroupDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
 import cn.lunadeer.minecraftpluginutils.ColorParser;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,7 +21,7 @@ public class GroupCreateEvent extends ResultEvent {
     private String groupName;
     private GroupDTO group = null;
 
-    public GroupCreateEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull String groupName) {
+    public GroupCreateEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull String groupName) {
         super(operator);
         this.dominion = dominion;
         this.groupName = groupName;

@@ -1,7 +1,7 @@
 package cn.lunadeer.dominion.api.dtos;
 
 import cn.lunadeer.dominion.api.dtos.flag.EnvFlag;
-import cn.lunadeer.dominion.api.dtos.flag.PreFlag;
+import cn.lunadeer.dominion.api.dtos.flag.PriFlag;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -41,7 +42,7 @@ public interface DominionDTO {
      * @param owner 领地所有者 UUID
      * @return 领地对象
      */
-    @Nullable DominionDTO setOwner(UUID owner);
+    @NotNull DominionDTO setOwner(UUID owner) throws SQLException;
 
     /**
      * 设置领地所有者，设置成功后返回领地对象，设置失败返回null
@@ -49,7 +50,7 @@ public interface DominionDTO {
      * @param owner 领地所有者
      * @return 领地对象
      */
-    @Nullable DominionDTO setOwner(Player owner);
+    @NotNull DominionDTO setOwner(Player owner) throws SQLException;
 
     /**
      * 获取领地名称
@@ -64,7 +65,7 @@ public interface DominionDTO {
      * @param name 领地名称
      * @return 领地对象
      */
-    @Nullable DominionDTO setName(String name);
+    @NotNull DominionDTO setName(String name) throws SQLException;
 
     /**
      * 获取领地所在世界，如果世界不存在，则返回null
@@ -82,102 +83,16 @@ public interface DominionDTO {
     @NotNull UUID getWorldUid();
 
     /**
-     * 获取领地角点坐标1（小角点）的X坐标，X1 &lt; X2
-     *
-     * @return 领地角点坐标1（小角点）的X坐标
+     * 获取领地范围
+     * @return 领地范围
      */
-    @NotNull Integer getX1();
+    @NotNull CuboidDTO getCuboid();
 
     /**
-     * 获取领地角点坐标1（小角点）的Y坐标，Y1 &lt; Y2
-     *
-     * @return 领地角点坐标1（小角点）的Y坐标
-     */
-    @NotNull Integer getY1();
-
-    /**
-     * 获取领地角点坐标1（小角点）的Z坐标，Z1 &lt; Z2
-     *
-     * @return 领地角点坐标1（小角点）的Z坐标
-     */
-    @NotNull Integer getZ1();
-
-    /**
-     * 获取领地角点坐标2（大角点）的X坐标，X2 &gt; X1
-     *
-     * @return 领地角点坐标2（大角点）的X坐标
-     */
-    @NotNull Integer getX2();
-
-    /**
-     * 获取领地角点坐标2（大角点）的Y坐标，Y2 &gt; Y1
-     *
-     * @return 领地角点坐标2（大角点）的Y坐标
-     */
-    @NotNull Integer getY2();
-
-    /**
-     * 获取领地角点坐标2（大角点）的Z坐标，Z2 &gt; Z1
-     *
-     * @return 领地角点坐标2（大角点）的Z坐标
-     */
-    @NotNull Integer getZ2();
-
-    /**
-     * 设置领地角点坐标，设置成功后返回领地对象，设置失败返回null
-     *
-     * @param x1 小角点X坐标
-     * @param y1 小角点Y坐标
-     * @param z1 小角点Z坐标
-     * @param x2 大角点X坐标
-     * @param y2 大角点Y坐标
-     * @param z2 大角点Z坐标
+     * 设置领地范围，设置成功后返回领地对象，设置失败返回null
      * @return 领地对象
      */
-    @Nullable DominionDTO setXYZ(Integer x1, Integer y1, Integer z1, Integer x2, Integer y2, Integer z2);
-
-    /**
-     * 设置领地角点坐标，设置成功后返回领地对象，设置失败返回null
-     *
-     * @param cords 领地角点坐标数组，长度为6，依次为 x1, y1, z1, x2, y2, z2
-     * @return 领地对象
-     */
-    @Nullable DominionDTO setXYZ(int[] cords);
-
-    /**
-     * 获取领地面积
-     *
-     * @return 领地面积
-     */
-    @NotNull Integer getSquare();
-
-    /**
-     * 获取领地体积
-     *
-     * @return 领地体积
-     */
-    @NotNull Integer getVolume();
-
-    /**
-     * 获取领地X轴向（东西向）宽度
-     *
-     * @return 领地X轴向（东西向）宽度
-     */
-    @NotNull Integer getWidthX();
-
-    /**
-     * 获取领地Y轴向（上下向）高度
-     *
-     * @return 领地Y轴向（上下向）高度
-     */
-    @NotNull Integer getHeight();
-
-    /**
-     * 获取领地Z轴向（南北向）宽度
-     *
-     * @return 领地Z轴向（南北向）宽度
-     */
-    @NotNull Integer getWidthZ();
+    @NotNull DominionDTO setCuboid(@NotNull CuboidDTO cuboid) throws SQLException;
 
     /**
      * 获取父领地 ID
@@ -199,7 +114,7 @@ public interface DominionDTO {
      * @param joinMessage 领地欢迎提示语
      * @return 领地对象
      */
-    @Nullable DominionDTO setJoinMessage(String joinMessage);
+    @NotNull DominionDTO setJoinMessage(String joinMessage) throws SQLException;
 
     /**
      * 获取领地离开提示语
@@ -214,7 +129,7 @@ public interface DominionDTO {
      * @param leaveMessage 领地离开提示语
      * @return 领地对象
      */
-    @Nullable DominionDTO setLeaveMessage(String leaveMessage);
+    @NotNull DominionDTO setLeaveMessage(String leaveMessage) throws SQLException;
 
     /**
      * 获取领地所有环境配置
@@ -236,7 +151,7 @@ public interface DominionDTO {
      *
      * @return 领地访客权限配置
      */
-    @NotNull Map<PreFlag, Boolean> getGuestPrivilegeFlagValue();
+    @NotNull Map<PriFlag, Boolean> getGuestPrivilegeFlagValue();
 
     /**
      * 获取领地某个访客权限的值
@@ -244,7 +159,7 @@ public interface DominionDTO {
      * @param flag 权限
      * @return 权限值
      */
-    boolean getGuestFlagValue(@NotNull PreFlag flag);
+    boolean getGuestFlagValue(@NotNull PriFlag flag);
 
     /**
      * 设置领地某个环境配置或访客权限的值，设置成功后返回领地对象，设置失败返回null
@@ -253,7 +168,7 @@ public interface DominionDTO {
      * @param value 权限值
      * @return 领地对象
      */
-    @Nullable DominionDTO setEnvFlagValue(@NotNull EnvFlag flag, @NotNull Boolean value);
+    @NotNull DominionDTO setEnvFlagValue(@NotNull EnvFlag flag, @NotNull Boolean value) throws SQLException;
 
     /**
      * 设置领地某个环境配置或访客权限的值，设置成功后返回领地对象，设置失败返回null
@@ -262,7 +177,7 @@ public interface DominionDTO {
      * @param value 权限值
      * @return 领地对象
      */
-    @Nullable DominionDTO setGuestFlagValue(@NotNull PreFlag flag, @NotNull Boolean value);
+    @NotNull DominionDTO setGuestFlagValue(@NotNull PriFlag flag, @NotNull Boolean value) throws SQLException;
 
     /**
      * 获取领地传送点坐标
@@ -277,21 +192,7 @@ public interface DominionDTO {
      * @param tpLocation 领地传送点坐标
      * @return 领地对象
      */
-    @Nullable DominionDTO setTpLocation(Location tpLocation);
-
-    /**
-     * 领地角点坐标1，小角点（小角点的xyz小于大角点的xyz）
-     *
-     * @return 领地角点坐标1
-     */
-    @NotNull Location getLocation1();
-
-    /**
-     * 领地角点坐标2，大角点（大角点的xyz大于小角点的xyz）
-     *
-     * @return 领地角点坐标2
-     */
-    @NotNull Location getLocation2();
+    @NotNull DominionDTO setTpLocation(Location tpLocation) throws SQLException;
 
     int getColorR();
 
@@ -309,7 +210,7 @@ public interface DominionDTO {
      * @param color 颜色
      * @return 领地对象
      */
-    @Nullable DominionDTO setColor(@NotNull Color color);
+    @NotNull DominionDTO setColor(@NotNull Color color) throws SQLException;
 
     /**
      * 获取领地的所有权限组

@@ -1,8 +1,8 @@
 package cn.lunadeer.dominion.events.dominion.modify;
 
-import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.PlayerDTO;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -21,7 +21,7 @@ public class DominionTransferEvent extends DominionModifyEvent {
      * @param dominion 领地
      * @param newOwner 新的领地所有者 UUID
      */
-    public DominionTransferEvent(@NotNull AbstractOperator operator, @NotNull DominionDTO dominion, @NotNull PlayerDTO newOwner) {
+    public DominionTransferEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull PlayerDTO newOwner) {
         super(operator, dominion);
         this.newOwner = newOwner;
         this.oldOwner = dominion.getOwnerDTO();

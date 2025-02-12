@@ -6,11 +6,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 玩家穿过领地边界事件，包含了（进入、离开、从一个领地移动到另一个领地）三种情况。
- * 当玩家从没有领地的位置移动到领地内部时 from 为 null，当玩家从领地内部移动到没有领地的位置时 to 为 null。
- * 从理论上来说，通常情况下：from 与 to 均可能为 null 但不会同时为 null，在均不为 null 的情况下 from 与 to 不会相同。
- * 如果仅希望监听玩家进入领地的事件请参考 {@link PlayerMoveInDominionEvent}，
- * 如果仅希望监听玩家离开领地的事件请参考 {@link PlayerMoveOutDominionEvent}。
+ * Event triggered when a player crosses a dominion border, which includes entering, leaving, or moving from one dominion to another.
+ * When a player moves from a location without a dominion to inside a dominion, `from` is null.
+ * When a player moves from inside a dominion to a location without a dominion, `to` is null.
+ * Typically, `from` and `to` can both be null but not at the same time, and if both are not null, they will not be the same.
+ * For listening to player entering dominion events, refer to {@link PlayerMoveInDominionEvent}.
+ * For listening to player leaving dominion events, refer to {@link PlayerMoveOutDominionEvent}.
  */
 public class PlayerCrossDominionBorderEvent extends CallableEvent {
 
@@ -18,6 +19,13 @@ public class PlayerCrossDominionBorderEvent extends CallableEvent {
     private final DominionDTO from;
     private final DominionDTO to;
 
+    /**
+     * Constructs a new PlayerCrossDominionBorderEvent.
+     *
+     * @param player the player who crossed the border
+     * @param from   the dominion the player moved from, null if the player entered a dominion
+     * @param to     the dominion the player moved to, null if the player left a dominion
+     */
     public PlayerCrossDominionBorderEvent(@NotNull Player player, @Nullable DominionDTO from, @Nullable DominionDTO to) {
         this.player = player;
         this.from = from;
@@ -25,27 +33,27 @@ public class PlayerCrossDominionBorderEvent extends CallableEvent {
     }
 
     /**
-     * 获取玩家
+     * Gets the player who crossed the border.
      *
-     * @return 玩家
+     * @return the player
      */
     public @NotNull Player getPlayer() {
         return player;
     }
 
     /**
-     * 获取玩家离开的领地
+     * Gets the dominion the player moved from.
      *
-     * @return 领地，如果玩家进入一个领地则此返回值为null
+     * @return the dominion, or null if the player entered a dominion
      */
     public @Nullable DominionDTO getFrom() {
         return from;
     }
 
     /**
-     * 获取玩家进入的领地
+     * Gets the dominion the player moved to.
      *
-     * @return 领地，如果玩家离开一个领地则此返回值为null
+     * @return the dominion, or null if the player left a dominion
      */
     public @Nullable DominionDTO getTo() {
         return to;

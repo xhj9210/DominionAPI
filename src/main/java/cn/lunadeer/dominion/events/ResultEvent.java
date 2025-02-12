@@ -1,43 +1,53 @@
 package cn.lunadeer.dominion.events;
 
-import cn.lunadeer.dominion.api.AbstractOperator;
-import cn.lunadeer.minecraftpluginutils.i18n.i18n;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.Cancellable;
 
+/**
+ * Represents an event that can be cancelled and involves a command sender.
+ */
 public class ResultEvent extends CallableEvent implements Cancellable {
 
     private boolean cancelled;
 
-    private final AbstractOperator operator;
+    private final CommandSender operator;
 
-    public ResultEvent(AbstractOperator operator) {
+    /**
+     * Constructs a new ResultEvent.
+     *
+     * @param operator the command sender who initiated the event
+     */
+    public ResultEvent(CommandSender operator) {
         this.operator = operator;
         this.cancelled = false;
     }
 
-    public AbstractOperator getOperator() {
+    /**
+     * Gets the command sender who initiated the event.
+     *
+     * @return the command sender
+     */
+    public CommandSender getOperator() {
         return operator;
     }
 
+    /**
+     * Checks if the event is cancelled.
+     *
+     * @return true if the event is cancelled, false otherwise
+     */
     @Override
     public boolean isCancelled() {
         return this.cancelled;
     }
 
+    /**
+     * Sets the cancellation state of the event.
+     *
+     * @param b true to cancel the event, false to uncancel
+     */
     @Override
     public void setCancelled(boolean b) {
         this.cancelled = b;
     }
-
-    public void setCancelledAdnComplete(boolean b) {
-        this.cancelled = b;
-        this.operator.completeResult(true);
-    }
-
-    public void setCancelled(boolean b, AbstractOperator.ResultType type, i18n reason, Object... args) {
-        this.cancelled = b;
-        this.operator.addResult(type, reason, args);
-        this.operator.completeResult(true);
-    }
-
 }

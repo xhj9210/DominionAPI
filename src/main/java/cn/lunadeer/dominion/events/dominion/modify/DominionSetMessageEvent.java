@@ -1,7 +1,7 @@
 package cn.lunadeer.dominion.events.dominion.modify;
 
-import cn.lunadeer.dominion.api.AbstractOperator;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -12,13 +12,13 @@ public class DominionSetMessageEvent extends DominionModifyEvent {
     /**
      * 领地消息变更类型
      */
-    public enum MessageChangeType {
+    public enum TYPE {
         ENTER,   // 进入领地的提示消息
         LEAVE,  // 离开领地的提示消息
     }
 
     private final String oldMessage;
-    private final MessageChangeType type;
+    private final TYPE type;
     private String newMessage;
 
     /**
@@ -29,12 +29,12 @@ public class DominionSetMessageEvent extends DominionModifyEvent {
      * @param type       变更类型
      * @param newMessage 新消息
      */
-    public DominionSetMessageEvent(@NotNull AbstractOperator operator,
+    public DominionSetMessageEvent(@NotNull CommandSender operator,
                                    @NotNull DominionDTO dominion,
-                                   @NotNull MessageChangeType type,
+                                   @NotNull DominionSetMessageEvent.TYPE type,
                                    @NotNull String newMessage) {
         super(operator, dominion);
-        this.oldMessage = type == MessageChangeType.ENTER ? dominion.getJoinMessage() : dominion.getLeaveMessage();
+        this.oldMessage = type == TYPE.ENTER ? dominion.getJoinMessage() : dominion.getLeaveMessage();
         this.type = type;
         this.newMessage = newMessage;
     }
@@ -53,7 +53,7 @@ public class DominionSetMessageEvent extends DominionModifyEvent {
      *
      * @return 消息变更类型
      */
-    public @NotNull MessageChangeType getType() {
+    public @NotNull DominionSetMessageEvent.TYPE getType() {
         return type;
     }
 

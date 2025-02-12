@@ -5,30 +5,36 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 玩家离开领地事件，当玩家离开一个领地时触发。
+ * Event triggered when a player moves out of a dominion.
  */
 public class PlayerMoveOutDominionEvent extends CallableEvent {
     private final Player player;
     private final DominionDTO dominion;
 
+    /**
+     * Constructs a new PlayerMoveOutDominionEvent.
+     *
+     * @param player   the player who moved out
+     * @param dominion the dominion the player moved out of
+     */
     public PlayerMoveOutDominionEvent(Player player, DominionDTO dominion) {
         this.player = player;
         this.dominion = dominion;
     }
 
     /**
-     * 获取玩家
+     * Gets the player who moved out.
      *
-     * @return 玩家
+     * @return the player
      */
     public @NotNull Player getPlayer() {
         return player;
     }
 
     /**
-     * 获取玩家离开的领地
+     * Gets the dominion the player moved out of.
      *
-     * @return 领地
+     * @return the dominion
      */
     public @NotNull DominionDTO getDominion() {
         return dominion;

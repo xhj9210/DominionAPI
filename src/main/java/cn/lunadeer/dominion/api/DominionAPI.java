@@ -5,7 +5,7 @@ import cn.lunadeer.dominion.api.dtos.GroupDTO;
 import cn.lunadeer.dominion.api.dtos.MemberDTO;
 import cn.lunadeer.dominion.api.dtos.PlayerDTO;
 import cn.lunadeer.dominion.api.dtos.flag.EnvFlag;
-import cn.lunadeer.dominion.api.dtos.flag.PreFlag;
+import cn.lunadeer.dominion.api.dtos.flag.PriFlag;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -17,8 +17,19 @@ import java.util.UUID;
 
 public abstract class DominionAPI {
 
-    private final static int[] requiredDominionVersion = new int[]{3, 4, 0};
+    private final static int[] requiredDominionVersion = new int[]{4, 0, 0};
 
+    /**
+     * Retrieves the singleton instance of the DominionAPI.
+     * This method checks if the Dominion plugin is enabled and if the version is compatible.
+     * If these checks pass, it retrieves the instance of the DominionAPI from the DominionInterface class.
+     *
+     * @return the singleton instance of the DominionAPI
+     * @throws ClassNotFoundException if the DominionInterface class cannot be found
+     * @throws NoSuchFieldException   if the instance field cannot be found in the DominionInterface class
+     * @throws IllegalAccessException if the instance field is not accessible
+     * @throws IllegalStateException  if the Dominion plugin is not installed or the version is not compatible
+     */
     public static DominionAPI getInstance() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
         if (!isDominionEnabled()) {
             throw new IllegalStateException("Dominion is not installed.");
@@ -27,18 +38,26 @@ public abstract class DominionAPI {
             throw new IllegalStateException("DominionAPI is not compatible with the current version of Dominion."
                     + " Required Dominion version: " + requiredDominionVersion[0] + "." + requiredDominionVersion[1] + "." + requiredDominionVersion[2]);
         }
-        // 通过反射获取 Cache 类中的 instance 字段
         var instanceField = Class.forName("cn.lunadeer.dominion.DominionInterface").getDeclaredField("instance");
-        // 设置可访问
         instanceField.setAccessible(true);
-        // 返回 Cache 的实例
         return (DominionAPI) instanceField.get(null);
     }
 
+    /**
+     * Checks if the Dominion plugin is enabled.
+     *
+     * @return true if the Dominion plugin is enabled, false otherwise
+     */
     public static boolean isDominionEnabled() {
         return Bukkit.getPluginManager().isPluginEnabled("Dominion");
     }
 
+    /**
+     * Retrieves the version of the Dominion plugin.
+     * If the plugin is not found, returns an array representing version 0.0.0.
+     *
+     * @return an array of integers representing the version of the Dominion plugin
+     */
     private static int[] getDominionVersion() {
         var plugin = Bukkit.getPluginManager().getPlugin("Dominion");
         if (plugin == null) {
@@ -53,6 +72,12 @@ public abstract class DominionAPI {
         return versionInt;
     }
 
+    /**
+     * Checks if the current version of the Dominion plugin is compatible with the required version.
+     *
+     * @param requiredVersion an array of integers representing the required version
+     * @return true if the current version is compatible, false otherwise
+     */
     private static boolean isVersionCompatible(int[] requiredVersion) {
         var version = getDominionVersion();
         for (int i = 0; i < requiredVersion.length; i++) {
@@ -64,133 +89,126 @@ public abstract class DominionAPI {
     }
 
     /**
-     * 从缓存获取所有领地信息
+     * Retrieves all dominions.
      *
-     * @return 所有领地信息
+     * @return a list of all dominions
      */
     public abstract @NotNull List<DominionDTO> getAllDominions();
 
     /**
-     * 从缓存获取玩家当前所在领地
+     * Retrieves the current dominion of the specified player.
      *
-     * @param player 玩家
-     * @return 玩家当前所在领地   如果玩家不在任何领地内，则返回null
+     * @param player the player whose current dominion is to be retrieved
+     * @return the current dominion of the player, or null if the player has no current dominion
      */
     public abstract @Nullable DominionDTO getPlayerCurrentDominion(@NotNull Player player);
 
     /**
-     * 从缓存获取指定位置的领地信息
+     * Retrieves the dominion at the specified location.
      *
-     * @param loc 位置
-     * @return 领地信息    如果位置不在任何领地内，则返回null
+     * @param loc the location to check for a dominion
+     * @return the dominion at the specified location, or null if no dominion exists at that location
      */
     public abstract @Nullable DominionDTO getDominionByLoc(@NotNull Location loc);
 
     /**
-     * 从缓存根据 ID 获取权限组对象
+     * Retrieves the group with the specified ID.
      *
-     * @param id 权限组 ID
-     * @return 权限组对象    如果权限组不存在，则返回null
+     * @param id the ID of the group to retrieve
+     * @return the group with the specified ID, or null if no such group exists
      */
     public abstract @Nullable GroupDTO getGroup(@NotNull Integer id);
 
     /**
-     * 从缓存获取玩家在指定领地的成员信息
+     * Retrieves the member information for the specified player and dominion.
      *
-     * @param player   玩家
-     * @param dominion 领地
-     * @return 玩家在指定领地的成员信息   如果玩家不属于领地成员，则返回null
+     * @param player   the player whose member information is to be retrieved
+     * @param dominion the dominion to check for the player's membership
+     * @return the member information for the player in the specified dominion, or null if the player is not a member
      */
     public abstract @Nullable MemberDTO getMember(@NotNull Player player, @NotNull DominionDTO dominion);
 
     /**
-     * 从缓存获取玩家在指定领地的成员信息
+     * Retrieves the member information for the specified player UUID and dominion.
      *
-     * @param player_uuid 玩家 UUID
-     * @param dominion    领地
-     * @return 玩家在指定领地的成员信息  如果玩家不属于领地成员，则返回null
+     * @param player_uuid the UUID of the player whose member information is to be retrieved
+     * @param dominion    the dominion to check for the player's membership
+     * @return the member information for the player in the specified dominion, or null if the player is not a member
      */
     public abstract @Nullable MemberDTO getMember(@NotNull UUID player_uuid, @NotNull DominionDTO dominion);
 
     /**
-     * 从缓存获取指定 ID 的领地信息
+     * Retrieves the dominion with the specified ID.
      *
-     * @param id 领地 ID
-     * @return 领地信息   如果领地不存在，则返回null
+     * @param id the ID of the dominion to retrieve
+     * @return the dominion with the specified ID, or null if no such dominion exists
      */
     public abstract @Nullable DominionDTO getDominion(@NotNull Integer id);
 
     /**
-     * 从数据库获取指定名称的领地信息
+     * Retrieves the dominion with the specified name.
      *
-     * @param name 领地名称
-     * @return 领地信息   如果领地不存在，则返回null
+     * @param name the name of the dominion to retrieve
+     * @return the dominion with the specified name, or null if no such dominion exists
      */
     public abstract @Nullable DominionDTO getDominion(@NotNull String name);
 
     /**
-     * 从缓存获取玩家当前正在使用的权限组称号
+     * Retrieves the group title used by the player with the specified UUID.
      *
-     * @param uuid 玩家 UUID
-     * @return 权限组对象    如果玩家没有使用任何权限组，则返回null
+     * @param uuid the UUID of the player
+     * @return the group title used by the player, or null if the player is not using any group title
      */
     public abstract @Nullable GroupDTO getPlayerUsingGroupTitle(@NotNull UUID uuid);
 
     /**
-     * 获取一个基于玩家的操作者对象，以用于创建领地事件。该操作者对象会模拟玩家的操作以及权限等信息。
+     * Retrieves the player data transfer object (DTO) for the player with the specified UUID.
      *
-     * @param player 玩家
-     * @return 操作者对象
-     */
-    public abstract @NotNull AbstractOperator getPlayerOperator(@NotNull Player player);
-
-    /**
-     * 获取一个基于插件的操作者对象，以用于创建领地事件。该操作者对象具备OP权限。
-     *
-     * @return 操作者对象
-     */
-    public abstract @NotNull AbstractOperator getPluginOperator();
-
-    /**
-     * 获取一个基于玩家的操作者对象。
-     *
-     * @param uuid 玩家 UUID
-     * @return 操作者对象
+     * @param uuid the UUID of the player
+     * @return the player DTO for the player, or null if no such player exists
      */
     public abstract @Nullable PlayerDTO getPlayerDTO(UUID uuid);
 
     /**
-     * 获取一个基于玩家的操作者对象。
+     * Retrieves the player data transfer object (DTO) for the player with the specified name.
      *
-     * @param name 玩家名称
-     * @return 操作者对象
+     * @param name the name of the player
+     * @return the player DTO for the player, or null if no such player exists
      */
     public abstract @Nullable PlayerDTO getPlayerDTO(String name);
 
     /**
-     * 从数据库获取玩家拥有的领地列表
+     * Retrieves all dominions owned by the player with the specified UUID.
      *
-     * @param playerUid 玩家 UUID
-     * @return 领地列表
+     * @param playerUid the UUID of the player
+     * @return a list of all dominions owned by the player
      */
-    public abstract List<DominionDTO> getPlayerDominions(@NotNull UUID playerUid);
+    public abstract List<DominionDTO> getDominionsOf(@NotNull UUID playerUid);
 
     /**
-     * 检查玩家是否拥有指定领地的指定权限
+     * Retrieves all child dominions of the specified parent dominion.
      *
-     * @param dom    领地
-     * @param flag   权限
-     * @param player 玩家
-     * @return 是否拥有权限
+     * @param parent the parent dominion
+     * @return a list of all child dominions of the parent dominion
      */
-    public abstract boolean checkPrivilegeFlag(DominionDTO dom, PreFlag flag, Player player);
+    public abstract List<DominionDTO> getChildrenDominionsOf(@NotNull DominionDTO parent);
 
     /**
-     * 检查领地是否开启了指定环境权限
+     * Checks if the specified player has the specified privilege flag in the given dominion.
      *
-     * @param dom  领地
-     * @param flag 环境权限
-     * @return 是否开启
+     * @param dom    the dominion to check
+     * @param flag   the privilege flag to check
+     * @param player the player to check
+     * @return true if the player has the specified privilege flag, false otherwise
+     */
+    public abstract boolean checkPrivilegeFlag(DominionDTO dom, PriFlag flag, Player player);
+
+    /**
+     * Checks if the specified environment flag is set in the given dominion.
+     *
+     * @param dom  the dominion to check, or null to check the global environment
+     * @param flag the environment flag to check
+     * @return true if the environment flag is set, false otherwise
      */
     public abstract boolean checkEnvironmentFlag(@Nullable DominionDTO dom, @NotNull EnvFlag flag);
 }

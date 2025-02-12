@@ -5,23 +5,38 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Represents a callable event in the Dominion plugin.
+ * This class is designed to be compatible with both Spigot and Paper.
+ */
 public class CallableEvent extends Event {
 
     private static final HandlerList HANDLER_LIST = new HandlerList();
 
+    /**
+     * Gets the static handler list for this event.
+     *
+     * @return the handler list
+     */
     public static HandlerList getHandlerList() {
         return HANDLER_LIST;
     }
 
+    /**
+     * Gets the handlers for this event.
+     *
+     * @return the handler list
+     */
     @Override
     public @NotNull HandlerList getHandlers() {
         return HANDLER_LIST;
     }
 
     /**
-     * 调用事件，等价于 paper 的 callEvent 方法，此处定义是为了兼容 Spigot。
+     * Calls the event, equivalent to Paper's callEvent method.
+     * This method is defined here for Spigot compatibility.
      *
-     * @return 事件是否成功执行，如果事件被取消则返回 false
+     * @return true if the event was successfully executed, false if the event was cancelled
      */
     public boolean call() {
         org.bukkit.Bukkit.getPluginManager().callEvent(this);
