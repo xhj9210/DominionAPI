@@ -119,6 +119,8 @@ public abstract class DominionAPI {
      */
     public abstract @Nullable GroupDTO getGroup(@NotNull Integer id);
 
+    public abstract @Nullable List<GroupDTO> getGroups(@NotNull DominionDTO dominion);
+
     /**
      * Retrieves the member information for the specified player and dominion.
      *
@@ -136,6 +138,8 @@ public abstract class DominionAPI {
      * @return the member information for the player in the specified dominion, or null if the player is not a member
      */
     public abstract @Nullable MemberDTO getMember(@NotNull UUID player_uuid, @NotNull DominionDTO dominion);
+
+    public abstract @Nullable List<MemberDTO> getMembers(@NotNull DominionDTO dominion);
 
     /**
      * Retrieves the dominion with the specified ID.
