@@ -1,5 +1,6 @@
 package cn.lunadeer.dominion.events.group;
 
+import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.GroupDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
 import cn.lunadeer.minecraftpluginutils.ColorParser;
@@ -8,19 +9,34 @@ import org.jetbrains.annotations.NotNull;
 
 public class GroupRenamedEvent extends ResultEvent {
 
-    private GroupDTO groupBefore;
+    private final DominionDTO dominion;
+    private GroupDTO group;
+    private final String oldName;
     private String newName;
-    private GroupDTO groupAfter = null;
 
 
-    public GroupRenamedEvent(@NotNull CommandSender operator, @NotNull GroupDTO group, @NotNull String newName) {
+    public GroupRenamedEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull GroupDTO group, @NotNull String newName) {
         super(operator);
-        this.groupBefore = group;
+        this.dominion = dominion;
+        this.group = group;
+        this.oldName = group.getNameRaw();
         this.newName = newName;
     }
 
-    public @NotNull GroupDTO getGroupBefore() {
-        return groupBefore;
+    public @NotNull DominionDTO getDominion() {
+        return dominion;
+    }
+
+    public @NotNull GroupDTO getGroup() {
+        return group;
+    }
+
+    public void setGroup(@NotNull GroupDTO group) {
+        this.group = group;
+    }
+
+    public void setNewName(@NotNull String newName) {
+        this.newName = newName;
     }
 
     public String getNewNameColored() {
@@ -31,19 +47,11 @@ public class GroupRenamedEvent extends ResultEvent {
         return ColorParser.getPlainText(newName);
     }
 
-    public @NotNull GroupDTO getGroupAfter() {
-        return groupAfter;
+    public String getOldNameColored() {
+        return oldName;
     }
 
-    public void setGroupAfter(@NotNull GroupDTO groupAfter) {
-        this.groupAfter = groupAfter;
-    }
-
-    public void setNewNameColored(String newName) {
-        this.newName = newName;
-    }
-
-    public void setGroupBefore(@NotNull GroupDTO groupBefore) {
-        this.groupBefore = groupBefore;
+    public String getOldNamePlain() {
+        return ColorParser.getPlainText(oldName);
     }
 }

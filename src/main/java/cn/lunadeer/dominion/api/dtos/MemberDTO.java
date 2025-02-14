@@ -4,6 +4,7 @@ import cn.lunadeer.dominion.api.dtos.flag.PriFlag;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -21,21 +22,6 @@ public interface MemberDTO {
      * @return 成员 UUID
      */
     UUID getPlayerUUID();
-
-    /**
-     * 设置成员是否为管理员，设置成功后返回权限组对象，设置失败返回null
-     *
-     * @param admin 是否为管理员
-     * @return 成员对象
-     */
-    @Nullable MemberDTO setAdmin(@NotNull Boolean admin);
-
-    /**
-     * 成员是否为管理员
-     *
-     * @return 是否为管理员
-     */
-    Boolean getAdmin();
 
     /**
      * 获取成员所属领地 ID
@@ -73,7 +59,7 @@ public interface MemberDTO {
      * @param value 权限配置值
      * @return 成员对象
      */
-    @Nullable MemberDTO setFlagValue(@NotNull PriFlag flag, @NotNull Boolean value);
+    @Nullable MemberDTO setFlagValue(@NotNull PriFlag flag, @NotNull Boolean value) throws SQLException;
 
     /**
      * 获取成员对象

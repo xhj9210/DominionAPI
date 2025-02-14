@@ -1,5 +1,6 @@
 package cn.lunadeer.dominion.events.group;
 
+import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.GroupDTO;
 import cn.lunadeer.dominion.api.dtos.MemberDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
@@ -8,12 +9,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class GroupRemoveMemberEvent extends ResultEvent {
 
-    private GroupDTO group;
+    private final DominionDTO dominion;
+    private final GroupDTO group;
     private MemberDTO member;
 
-    public GroupRemoveMemberEvent(@NotNull CommandSender operator, @NotNull GroupDTO group, @NotNull MemberDTO member) {
+    public GroupRemoveMemberEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull GroupDTO group, @NotNull MemberDTO member) {
         super(operator);
         this.group = group;
+        this.dominion = dominion;
         this.member = member;
     }
 
@@ -25,8 +28,8 @@ public class GroupRemoveMemberEvent extends ResultEvent {
         return member;
     }
 
-    public void setGroup(@NotNull GroupDTO group) {
-        this.group = group;
+    public @NotNull DominionDTO getDominion() {
+        return dominion;
     }
 
     public void setMember(@NotNull MemberDTO member) {

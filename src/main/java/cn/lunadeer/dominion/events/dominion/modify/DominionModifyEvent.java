@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DominionModifyEvent extends ResultEvent {
 
-    private final DominionDTO dominion;
+    private DominionDTO dominion;
 
     public DominionModifyEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion) {
         super(operator);
@@ -16,6 +16,10 @@ public class DominionModifyEvent extends ResultEvent {
 
     public @NotNull DominionDTO getDominion() {
         return dominion;
+    }
+
+    public void setDominion(@NotNull DominionDTO dominion) {
+        this.dominion = dominion;
     }
 
 }
