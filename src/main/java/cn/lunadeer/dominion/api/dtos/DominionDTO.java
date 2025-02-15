@@ -225,4 +225,6 @@ public interface DominionDTO {
      * @return 成员列表
      */
     List<MemberDTO> getMembers();
+
+    Integer getServerId();
 }
