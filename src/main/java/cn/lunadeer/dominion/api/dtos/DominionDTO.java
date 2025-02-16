@@ -182,9 +182,9 @@ public interface DominionDTO {
     /**
      * 获取领地传送点坐标
      *
-     * @return 领地传送点坐标  如果没有设置传送点，则返回null
+     * @return 领地传送点坐标  如果没有设置传送点，则返回领地中心坐标
      */
-    @Nullable Location getTpLocation();
+    @NotNull Location getTpLocation();
 
     /**
      * 设置领地传送点坐标，设置成功后返回领地对象，设置失败返回null
