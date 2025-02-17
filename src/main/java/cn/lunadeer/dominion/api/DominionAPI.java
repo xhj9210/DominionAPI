@@ -183,6 +183,8 @@ public abstract class DominionAPI {
 
     /**
      * Retrieves all dominions owned by the player with the specified UUID.
+     * <p>
+     * Includes dominions on all servers.
      *
      * @param playerUid the UUID of the player
      * @return a list of all dominions owned by the player
