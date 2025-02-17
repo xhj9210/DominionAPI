@@ -1,7 +1,5 @@
 package cn.lunadeer.dominion.api.dtos.flag;
 
-import cn.lunadeer.minecraftpluginutils.XLogger;
-
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -166,8 +164,7 @@ public class Flags {
                         pri_flags.add(priFlag);
                     }
                 }
-            } catch (IllegalAccessException e) {
-                XLogger.err(e.getMessage());
+            } catch (IllegalAccessException ignored) {
             }
         }
         Comparator<Object> comparator = Collator.getInstance(java.util.Locale.CHINA);

@@ -35,7 +35,6 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
-    compileOnly("cn.lunadeer:MinecraftPluginUtils:2.0.7")
 }
 
 publishing {

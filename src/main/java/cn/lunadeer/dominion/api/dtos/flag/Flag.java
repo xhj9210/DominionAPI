@@ -83,11 +83,11 @@ public abstract class Flag {
     }
 
     public String getDisplayNameKey() {
-        return "Flags." + flag_name + ".DisplayName";
+        return "flags." + flag_name + ".display-name";
     }
 
     public String getDescriptionKey() {
-        return "Flags." + flag_name + ".Description";
+        return "flags." + flag_name + ".description";
     }
 
     public abstract String getConfigurationDescKey();

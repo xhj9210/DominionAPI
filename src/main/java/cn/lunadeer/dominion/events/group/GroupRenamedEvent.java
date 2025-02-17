@@ -3,7 +3,7 @@ package cn.lunadeer.dominion.events.group;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.GroupDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
-import cn.lunadeer.minecraftpluginutils.ColorParser;
+import cn.lunadeer.dominion.utils.ColorParser;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
