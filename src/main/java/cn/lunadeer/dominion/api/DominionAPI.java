@@ -16,6 +16,13 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Interface representing the Dominion API.
+ * <p>
+ * This interface provides methods to interact with the Dominion plugin.
+ * <p>
+ * Use the {@link #getInstance()} method to retrieve the singleton instance of the DominionAPI.
+ */
 @ApiStatus.Experimental
 public abstract class DominionAPI {
 
@@ -121,6 +128,12 @@ public abstract class DominionAPI {
      */
     public abstract @Nullable GroupDTO getGroup(@NotNull Integer id);
 
+    /**
+     * Retrieves all groups within the specified dominion.
+     *
+     * @param dominion the dominion to retrieve groups from
+     * @return a list of groups within the specified dominion, or null if no groups exist
+     */
     public abstract @Nullable List<GroupDTO> getGroups(@NotNull DominionDTO dominion);
 
     /**
@@ -141,6 +154,12 @@ public abstract class DominionAPI {
      */
     public abstract @Nullable MemberDTO getMember(@NotNull UUID player_uuid, @NotNull DominionDTO dominion);
 
+    /**
+     * Retrieves all members within the specified dominion.
+     *
+     * @param dominion the dominion to retrieve members from
+     * @return a list of members within the specified dominion, or null if no members exist
+     */
     public abstract @Nullable List<MemberDTO> getMembers(@NotNull DominionDTO dominion);
 
     /**

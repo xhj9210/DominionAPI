@@ -32,6 +32,11 @@ public class CuboidDTO {
         sortPos();
     }
 
+    /**
+     * Constructs a CuboidDTO with the same positions as the specified cuboid.
+     *
+     * @param cuboid the cuboid to copy positions from
+     */
     public CuboidDTO(CuboidDTO cuboid) {
         this.pos1 = cuboid.getPos1();
         this.pos2 = cuboid.getPos2();
@@ -278,6 +283,14 @@ public class CuboidDTO {
         return x1() <= cuboid.x1() && x2() >= cuboid.x2() && y1() <= cuboid.y1() && y2() >= cuboid.y2() && z1() <= cuboid.z1() && z2() >= cuboid.z2();
     }
 
+    /**
+     * Checks if this cuboid contains the specified coordinates.
+     *
+     * @param x the x-coordinate to check
+     * @param y the y-coordinate to check
+     * @param z the z-coordinate to check
+     * @return true if this cuboid contains the specified coordinates, false otherwise
+     */
     public boolean contain(int x, int y, int z) {
         return x1() <= x && x2() >= x && y1() <= y && y2() >= y && z1() <= z && z2() >= z;
     }

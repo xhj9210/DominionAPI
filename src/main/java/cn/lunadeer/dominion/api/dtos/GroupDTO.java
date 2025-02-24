@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Interface representing a Group Data Transfer Object (DTO).
+ */
 public interface GroupDTO {
     /**
      * Gets the ID of the group.

@@ -16,14 +16,20 @@ public class DominionReSizeEvent extends DominionModifyEvent {
      * Enum representing the type of size change.
      */
     public enum TYPE {
-        EXPAND, CONTRACT
+        EXPAND,     // Expand
+        CONTRACT    // Contract
     }
 
     /**
      * Enum representing the direction of size change.
      */
     public enum DIRECTION {
-        NORTH, EAST, SOUTH, WEST, UP, DOWN
+        NORTH,  // North
+        EAST,   // East
+        SOUTH,  // South
+        WEST,   // West
+        UP,     // Up
+        DOWN    // Down
     }
 
     private boolean skipEconomy;

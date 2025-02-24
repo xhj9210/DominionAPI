@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Interface representing a Member Data Transfer Object (DTO).
+ */
 public interface MemberDTO {
     /**
      * Gets the member ID.
