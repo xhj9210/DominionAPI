@@ -10,61 +10,63 @@ import java.util.UUID;
 
 public interface MemberDTO {
     /**
-     * 获取成员 ID
+     * Gets the member ID.
      *
-     * @return 成员 ID
+     * @return the member ID
      */
     Integer getId();
 
     /**
-     * 获取成员 UUID
+     * Gets the member UUID.
      *
-     * @return 成员 UUID
+     * @return the member UUID
      */
     UUID getPlayerUUID();
 
     /**
-     * 获取成员所属领地 ID
+     * Gets the ID of the dominion to which the member belongs.
      *
-     * @return 领地 ID
+     * @return the dominion ID
      */
     Integer getDomID();
 
     /**
-     * 获取成员所属权限组 ID
+     * Gets the ID of the group to which the member belongs.
      *
-     * @return 权限组 ID 如果成员不属于任何权限组，则返回-1
+     * @return the group ID, or -1 if the member does not belong to any group
      */
     Integer getGroupId();
 
     /**
-     * 获取成员某个权限配置
+     * Gets the value of a specific flag for the member.
      *
-     * @param flag 权限
-     * @return 权限配置值，如果权限不存在则返回默认值
+     * @param flag the flag
+     * @return the value of the flag, or the default value if the flag does not exist
      */
     @NotNull Boolean getFlagValue(PriFlag flag);
 
     /**
-     * 获取成员所有权限配置
+     * Gets all flag values for the member.
      *
-     * @return 权限配置值
+     * @return a map of flag values
      */
     @NotNull Map<PriFlag, Boolean> getFlagsValue();
 
     /**
-     * 设置成员某个权限配置，设置成功后返回成员对象，设置失败返回null
+     * Sets the value of a specific flag for the member.
+     * Returns the member object if successful, otherwise returns null.
      *
-     * @param flag  权限
-     * @param value 权限配置值
-     * @return 成员对象
+     * @param flag  the flag
+     * @param value the value of the flag
+     * @return the member object, or null if the operation fails
+     * @throws SQLException if a database access error occurs
      */
     @Nullable MemberDTO setFlagValue(@NotNull PriFlag flag, @NotNull Boolean value) throws SQLException;
 
     /**
-     * 获取成员对象
+     * Gets the player object associated with the member.
      *
-     * @return 成员对象
+     * @return the player object
      */
     @NotNull PlayerDTO getPlayer();
 }

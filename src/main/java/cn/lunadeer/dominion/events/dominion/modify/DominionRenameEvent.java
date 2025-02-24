@@ -5,6 +5,9 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Event triggered when a Dominion is renamed in the Dominion system.
+ */
 @ApiStatus.Experimental
 public class DominionRenameEvent extends DominionModifyEvent {
 

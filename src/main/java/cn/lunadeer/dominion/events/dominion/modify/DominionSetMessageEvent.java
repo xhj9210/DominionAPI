@@ -2,19 +2,21 @@ package cn.lunadeer.dominion.events.dominion.modify;
 
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 领地消息变更事件，当一个领地的消息被变更时触发。包含进入领地的提示消息和离开领地的提示消息。
+ * Event triggered when a message is set for a Dominion in the Dominion system.
  */
+@ApiStatus.Experimental
 public class DominionSetMessageEvent extends DominionModifyEvent {
 
     /**
-     * 领地消息变更类型
+     * Enum representing the type of message being set.
      */
     public enum TYPE {
-        ENTER,   // 进入领地的提示消息
-        LEAVE,  // 离开领地的提示消息
+        ENTER,  // Message when entering the dominion
+        LEAVE,  // Message when leaving the dominion
     }
 
     private final String oldMessage;
@@ -22,12 +24,12 @@ public class DominionSetMessageEvent extends DominionModifyEvent {
     private String newMessage;
 
     /**
-     * 领地消息变更事件
+     * Constructs a new DominionSetMessageEvent.
      *
-     * @param operator   操作者
-     * @param dominion   领地
-     * @param type       变更类型
-     * @param newMessage 新消息
+     * @param operator   the command sender who initiated the event
+     * @param dominion   the dominion for which the message is being set
+     * @param type       the type of the message being set
+     * @param newMessage the new message content
      */
     public DominionSetMessageEvent(@NotNull CommandSender operator,
                                    @NotNull DominionDTO dominion,
@@ -40,39 +42,39 @@ public class DominionSetMessageEvent extends DominionModifyEvent {
     }
 
     /**
-     * 获取旧消息内容。
+     * Gets the old message content.
      *
-     * @return 旧消息内容
+     * @return the old message content
      */
     public @NotNull String getOldMessage() {
         return oldMessage;
     }
 
     /**
-     * 获取消息变更类型。
+     * Gets the type of the message being set.
      *
-     * @return 消息变更类型
+     * @return the type of the message
      */
     public @NotNull DominionSetMessageEvent.TYPE getType() {
         return type;
     }
 
     /**
-     * 获取新消息内容。
+     * Gets the new message content.
      *
-     * @return 新消息内容
+     * @return the new message content
      */
     public @NotNull String getNewMessage() {
         return newMessage;
     }
 
     /**
-     * 设置新消息内容。
+     * Sets the new message content.
      * <p>
-     * 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
-     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
+     * Changes made in {@link org.bukkit.event.EventPriority} HIGH or higher {@link org.bukkit.event.EventHandler} will not take effect.
+     * (Default is {@link org.bukkit.event.EventPriority#NORMAL})
      *
-     * @param newMessage 新消息内容
+     * @param newMessage the new message content
      */
     public void setNewMessage(@NotNull String newMessage) {
         this.newMessage = newMessage;

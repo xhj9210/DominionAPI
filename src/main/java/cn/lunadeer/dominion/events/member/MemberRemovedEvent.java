@@ -4,23 +4,25 @@ import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.MemberDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 成员移除事件
+ * Event triggered when a member is removed from a Dominion.
  * <p>
- * 当玩家移除成员时触发
+ * This event is triggered when a player removes a member.
  */
+@ApiStatus.Experimental
 public class MemberRemovedEvent extends ResultEvent {
     private DominionDTO dominion;
     private MemberDTO member;
 
     /**
-     * 构造成员移除事件
+     * Constructs a new MemberRemovedEvent.
      *
-     * @param operator 操作者
-     * @param dominion 领地
-     * @param member   成员
+     * @param operator the command sender who initiated the event
+     * @param dominion the dominion from which the member is removed
+     * @param member   the member being removed
      */
     public MemberRemovedEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull MemberDTO member) {
         super(operator);
@@ -29,36 +31,36 @@ public class MemberRemovedEvent extends ResultEvent {
     }
 
     /**
-     * 设置领地
+     * Sets the dominion.
      *
-     * @param dominion 领地
+     * @param dominion the dominion to set
      */
     public void setDominion(@NotNull DominionDTO dominion) {
         this.dominion = dominion;
     }
 
     /**
-     * 获取领地
+     * Gets the dominion.
      *
-     * @return 领地
+     * @return the dominion
      */
     public @NotNull DominionDTO getDominion() {
         return dominion;
     }
 
     /**
-     * 设置成员
+     * Sets the member.
      *
-     * @param member 成员
+     * @param member the member to set
      */
     public void setMember(@NotNull MemberDTO member) {
         this.member = member;
     }
 
     /**
-     * 获取成员
+     * Gets the member.
      *
-     * @return 成员
+     * @return the member
      */
     public @NotNull MemberDTO getMember() {
         return member;

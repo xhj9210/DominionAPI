@@ -13,6 +13,12 @@ import java.util.regex.Pattern;
 
 public class ColorParser {
 
+    /**
+     * Converts a string with color codes into a TextComponent.
+     *
+     * @param text the string with color codes
+     * @return the TextComponent with the parsed colors
+     */
     public static TextComponent getComponentType(String text) {
         text = parseGradient(text);
         String[] parts = text.split("&#");
@@ -40,11 +46,10 @@ public class ColorParser {
     }
 
     /**
-     * 获取称号的颜色化字符串
-     * 需要使用 ChatColor.translateAlternateColorCodes 方法对返回字符串进行处理
-     * &amp;#FFFFFF -&gt; &amp;x&amp;f&amp;f&amp;f&amp;f&amp;f
+     * Converts a string with color codes into a Bukkit-compatible color string.
      *
-     * @return String
+     * @param text the string with color codes
+     * @return the Bukkit-compatible color string
      */
     public static String getBukkitType(String text) {
         text = parseGradient(text);
@@ -63,6 +68,12 @@ public class ColorParser {
         return ChatColor.translateAlternateColorCodes('&', title);
     }
 
+    /**
+     * Removes color codes from a string, returning plain text.
+     *
+     * @param text the string with color codes
+     * @return the plain text string
+     */
     public static String getPlainText(String text) {
         text = parseGradient(text);
         String[] parts = text.split("&#");
@@ -83,12 +94,11 @@ public class ColorParser {
     }
 
     /**
-     * 解析渐变色语法
-     * <gradient:#2D8CF0:#19BE6B:#FF9900>这个是渐变色效果</gradient>
-     * 转换为 &#2d8cf0这&#279aca个&#22a9a4是&#1cb77e渐&#3ab95c变&#7cae3d色&#bda41f效&#ff9900果
+     * Parses gradient color syntax in a string.
+     * <gradient:#2D8CF0:#19BE6B:#FF9900>text</gradient> is converted to &#2d8cf0t&#279acae&#22a9a4x&#1cb77et&#3ab95ct&#7cae3dt&#bda41fn&#ff9900t.
      *
-     * @param text 渐变色语法
-     * @return String
+     * @param text the string with gradient color syntax
+     * @return the string with parsed gradient colors
      */
     private static String parseGradient(String text) {
         if (!text.contains("<gradient:")) {
@@ -101,12 +111,10 @@ public class ColorParser {
         while (startIndex < text.length()) {
             int openTagIndex = text.indexOf("<gradient:", startIndex);
             if (openTagIndex == -1) {
-                // 如果没有找到<gradient>标签，直接追加剩余部分
                 result.append(text.substring(startIndex));
                 break;
             }
 
-            // 追加标签前的普通文本
             result.append(text, startIndex, openTagIndex);
 
             int closeTagIndex = text.indexOf("</gradient>", openTagIndex);
@@ -115,7 +123,6 @@ public class ColorParser {
                 text += "</gradient>";
             }
 
-            // 提取颜色代码和内容
             String gradientPart = text.substring(openTagIndex + 10, text.indexOf(">", openTagIndex));
             String[] colors = gradientPart.split(":");
             String content = text.substring(text.indexOf(">", openTagIndex) + 1, closeTagIndex);
@@ -127,6 +134,13 @@ public class ColorParser {
         return result.toString();
     }
 
+    /**
+     * Applies gradient colors to a string.
+     *
+     * @param content the string content
+     * @param colors  the array of color codes
+     * @return the string with applied gradient colors
+     */
     private static String applyGradient(String content, String[] colors) {
         StringBuilder gradientText = new StringBuilder();
         int length = content.length();
@@ -141,10 +155,16 @@ public class ColorParser {
         return gradientText.toString();
     }
 
+    /**
+     * Interpolates between colors based on a ratio.
+     *
+     * @param colors the array of color codes
+     * @param ratio  the ratio for interpolation
+     * @return the interpolated color
+     */
     private static Color interpolateColor(String[] colors, float ratio) {
         int segment = (int) (ratio * (colors.length - 1));
 
-        // 防止越界，如果计算出的 segment 索引等于 colors.length - 1，确保下一个颜色仍然在数组范围内
         if (segment >= colors.length - 1) {
             return Color.decode(colors[colors.length - 1]);
         }

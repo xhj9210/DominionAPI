@@ -14,217 +14,263 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * Interface representing a Dominion Data Transfer Object (DTO).
+ */
 public interface DominionDTO {
     /**
-     * 获取领地 ID
+     * Gets the ID of the dominion.
      *
-     * @return 领地 ID
+     * @return the ID of the dominion
      */
     @NotNull Integer getId();
 
     /**
-     * 获取领地所有者 UUID
+     * Gets the UUID of the dominion owner.
      *
-     * @return 领地所有者 UUID
+     * @return the UUID of the dominion owner
      */
     @NotNull UUID getOwner();
 
     /**
-     * 获取领地所有者 DTO
+     * Gets the DTO of the dominion owner.
      *
-     * @return 领地所有者 DTO
+     * @return the DTO of the dominion owner
      */
     @NotNull PlayerDTO getOwnerDTO();
 
     /**
-     * 设置领地所有者，设置成功后返回领地对象，设置失败返回null
+     * Sets the owner of the dominion. Returns the dominion object if successful, otherwise returns null.
      *
-     * @param owner 领地所有者 UUID
-     * @return 领地对象
+     * @param owner the UUID of the dominion owner
+     * @return the dominion object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull DominionDTO setOwner(UUID owner) throws SQLException;
 
     /**
-     * 设置领地所有者，设置成功后返回领地对象，设置失败返回null
+     * Sets the owner of the dominion. Returns the dominion object if successful, otherwise returns null.
      *
-     * @param owner 领地所有者
-     * @return 领地对象
+     * @param owner the dominion owner
+     * @return the dominion object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull DominionDTO setOwner(Player owner) throws SQLException;
 
     /**
-     * 获取领地名称
+     * Gets the name of the dominion.
      *
-     * @return 领地名称
+     * @return the name of the dominion
      */
     @NotNull String getName();
 
     /**
-     * 设置领地名称，设置成功后返回领地对象，设置失败返回null
+     * Sets the name of the dominion. Returns the dominion object if successful, otherwise returns null.
      *
-     * @param name 领地名称
-     * @return 领地对象
+     * @param name the name of the dominion
+     * @return the dominion object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull DominionDTO setName(String name) throws SQLException;
 
     /**
-     * 获取领地所在世界，如果世界不存在，则返回null
+     * Gets the world where the dominion is located. Returns null if the world does not exist.
      *
-     * @return 领地所在世界
+     * @return the world where the dominion is located
      */
     @Nullable World getWorld();
 
     /**
-     * 获取领地所在世界 UUID，该接口返回的 UUID 一定不为 null，但是不保证世界一定存在。
-     * 如果需要判断世界是否存在，请使用 {@link #getWorld()} 方法。
+     * Gets the UUID of the world where the dominion is located. This method guarantees a non-null UUID, but does not guarantee the existence of the world.
+     * To check if the world exists, use {@link #getWorld()}.
      *
-     * @return 领地所在世界 UUID
+     * @return the UUID of the world where the dominion is located
      */
     @NotNull UUID getWorldUid();
 
     /**
-     * 获取领地范围
-     * @return 领地范围
+     * Gets the cuboid of the dominion.
+     *
+     * @return the cuboid of the dominion
      */
     @NotNull CuboidDTO getCuboid();
 
     /**
-     * 设置领地范围，设置成功后返回领地对象，设置失败返回null
-     * @return 领地对象
+     * Sets the cuboid of the dominion. Returns the dominion object if successful, otherwise returns null.
+     *
+     * @param cuboid the cuboid of the dominion
+     * @return the dominion object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull DominionDTO setCuboid(@NotNull CuboidDTO cuboid) throws SQLException;
 
     /**
-     * 获取父领地 ID
+     * Gets the ID of the parent dominion.
      *
-     * @return 父领地 ID  如果没有父领地，则返回 -1
+     * @return the ID of the parent dominion, or -1 if there is no parent dominion
      */
     @NotNull Integer getParentDomId();
 
     /**
-     * 获取领地欢迎提示语
+     * Gets the welcome message of the dominion.
      *
-     * @return 领地欢迎提示语
+     * @return the welcome message of the dominion
      */
     @NotNull String getJoinMessage();
 
     /**
-     * 设置领地欢迎提示语，设置成功后返回领地对象，设置失败返回null
+     * Sets the welcome message of the dominion. Returns the dominion object if successful, otherwise returns null.
      *
-     * @param joinMessage 领地欢迎提示语
-     * @return 领地对象
+     * @param joinMessage the welcome message of the dominion
+     * @return the dominion object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull DominionDTO setJoinMessage(String joinMessage) throws SQLException;
 
     /**
-     * 获取领地离开提示语
+     * Gets the leave message of the dominion.
      *
-     * @return 领地离开提示语
+     * @return the leave message of the dominion
      */
     @NotNull String getLeaveMessage();
 
     /**
-     * 设置领地离开提示语，设置成功后返回领地对象，设置失败返回null
+     * Sets the leave message of the dominion. Returns the dominion object if successful, otherwise returns null.
      *
-     * @param leaveMessage 领地离开提示语
-     * @return 领地对象
+     * @param leaveMessage the leave message of the dominion
+     * @return the dominion object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull DominionDTO setLeaveMessage(String leaveMessage) throws SQLException;
 
     /**
-     * 获取领地所有环境配置
+     * Gets all environment flag values of the dominion.
      *
-     * @return 领地环境权限配置
+     * @return the environment flag values of the dominion
      */
     @NotNull Map<EnvFlag, Boolean> getEnvironmentFlagValue();
 
     /**
-     * 获取领地某个环境配置的值
+     * Gets the value of a specific environment flag of the dominion.
      *
-     * @param flag 权限
-     * @return 权限值
+     * @param flag the environment flag
+     * @return the value of the environment flag
      */
     boolean getEnvFlagValue(@NotNull EnvFlag flag);
 
     /**
-     * 获取领地访客所有权限配置
+     * Gets all guest privilege flag values of the dominion.
      *
-     * @return 领地访客权限配置
+     * @return the guest privilege flag values of the dominion
      */
     @NotNull Map<PriFlag, Boolean> getGuestPrivilegeFlagValue();
 
     /**
-     * 获取领地某个访客权限的值
+     * Gets the value of a specific guest privilege flag of the dominion.
      *
-     * @param flag 权限
-     * @return 权限值
+     * @param flag the guest privilege flag
+     * @return the value of the guest privilege flag
      */
     boolean getGuestFlagValue(@NotNull PriFlag flag);
 
     /**
-     * 设置领地某个环境配置或访客权限的值，设置成功后返回领地对象，设置失败返回null
+     * Sets the value of a specific environment or guest privilege flag of the dominion. Returns the dominion object if successful, otherwise returns null.
      *
-     * @param flag  权限
-     * @param value 权限值
-     * @return 领地对象
+     * @param flag  the flag
+     * @param value the value of the flag
+     * @return the dominion object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull DominionDTO setEnvFlagValue(@NotNull EnvFlag flag, @NotNull Boolean value) throws SQLException;
 
     /**
-     * 设置领地某个环境配置或访客权限的值，设置成功后返回领地对象，设置失败返回null
+     * Sets the value of a specific environment or guest privilege flag of the dominion. Returns the dominion object if successful, otherwise returns null.
      *
-     * @param flag  权限
-     * @param value 权限值
-     * @return 领地对象
+     * @param flag  the flag
+     * @param value the value of the flag
+     * @return the dominion object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull DominionDTO setGuestFlagValue(@NotNull PriFlag flag, @NotNull Boolean value) throws SQLException;
 
     /**
-     * 获取领地传送点坐标
+     * Gets the teleport location of the dominion. If no teleport location is set, returns the center location of the dominion.
      *
-     * @return 领地传送点坐标  如果没有设置传送点，则返回领地中心坐标
+     * @return the teleport location of the dominion
      */
     @NotNull Location getTpLocation();
 
     /**
-     * 设置领地传送点坐标，设置成功后返回领地对象，设置失败返回null
+     * Sets the teleport location of the dominion. Returns the dominion object if successful, otherwise returns null.
      *
-     * @param tpLocation 领地传送点坐标
-     * @return 领地对象
+     * @param tpLocation the teleport location of the dominion
+     * @return the dominion object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull DominionDTO setTpLocation(Location tpLocation) throws SQLException;
 
+    /**
+     * Gets the red component of the dominion's color.
+     *
+     * @return the red component of the dominion's color
+     */
     int getColorR();
 
+    /**
+     * Gets the green component of the dominion's color.
+     *
+     * @return the green component of the dominion's color
+     */
     int getColorG();
 
+    /**
+     * Gets the blue component of the dominion's color.
+     *
+     * @return the blue component of the dominion's color
+     */
     int getColorB();
 
+    /**
+     * Gets the color of the dominion as a string.
+     *
+     * @return the color of the dominion as a string
+     */
     @NotNull String getColor();
 
+    /**
+     * Gets the hexadecimal representation of the dominion's color.
+     *
+     * @return the hexadecimal representation of the dominion's color
+     */
     int getColorHex();
 
     /**
-     * 设置领地颜色，设置成功后返回领地对象，设置失败返回null
+     * Sets the color of the dominion. Returns the dominion object if successful, otherwise returns null.
      *
-     * @param color 颜色
-     * @return 领地对象
+     * @param color the color
+     * @return the dominion object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull DominionDTO setColor(@NotNull Color color) throws SQLException;
 
     /**
-     * 获取领地的所有权限组
+     * Gets all groups of the dominion.
      *
-     * @return 权限组列表
+     * @return the list of groups
      */
     List<GroupDTO> getGroups();
 
     /**
-     * 获取领地的所有成员
+     * Gets all members of the dominion.
      *
-     * @return 成员列表
+     * @return the list of members
      */
     List<MemberDTO> getMembers();
 
+    /**
+     * Gets the server ID associated with the dominion.
+     *
+     * @return the server ID associated with the dominion
+     */
     Integer getServerId();
 }

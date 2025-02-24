@@ -9,12 +9,14 @@ import cn.lunadeer.dominion.api.dtos.flag.PriFlag;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.UUID;
 
+@ApiStatus.Experimental
 public abstract class DominionAPI {
 
     private final static int[] requiredDominionVersion = new int[]{4, 0, 0};

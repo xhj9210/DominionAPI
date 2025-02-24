@@ -7,9 +7,9 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 权限组移除事件
+ * Event triggered when a group is deleted within a dominion.
  * <p>
- * 当权限组移除时触发
+ * This event is triggered when a group is removed.
  */
 public class GroupDeleteEvent extends ResultEvent {
 
@@ -17,11 +17,11 @@ public class GroupDeleteEvent extends ResultEvent {
     private GroupDTO group;
 
     /**
-     * 构造权限组移除事件
+     * Constructs a new GroupDeleteEvent.
      *
-     * @param operator 操作者
-     * @param dominion 领地
-     * @param group    权限组
+     * @param operator the command sender who initiated the event
+     * @param dominion the dominion to which the group belongs
+     * @param group    the group being deleted
      */
     public GroupDeleteEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull GroupDTO group) {
         super(operator);
@@ -30,36 +30,36 @@ public class GroupDeleteEvent extends ResultEvent {
     }
 
     /**
-     * 设置领地
+     * Sets the dominion to which the group belongs.
      *
-     * @param dominion 领地
+     * @param dominion the dominion to set
      */
     public void setDominion(@NotNull DominionDTO dominion) {
         this.dominion = dominion;
     }
 
     /**
-     * 获取领地
+     * Gets the dominion to which the group belongs.
      *
-     * @return 领地
+     * @return the dominion
      */
     public @NotNull DominionDTO getDominion() {
         return dominion;
     }
 
     /**
-     * 设置权限组
+     * Sets the group being deleted.
      *
-     * @param group 权限组
+     * @param group the group to set
      */
     public void setGroup(@NotNull GroupDTO group) {
         this.group = group;
     }
 
     /**
-     * 获取权限组
+     * Gets the group being deleted.
      *
-     * @return 权限组
+     * @return the group
      */
     public @NotNull GroupDTO getGroup() {
         return group;

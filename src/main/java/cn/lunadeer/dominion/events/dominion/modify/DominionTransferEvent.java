@@ -3,11 +3,13 @@ package cn.lunadeer.dominion.events.dominion.modify;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.PlayerDTO;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 领地转让事件
+ * Event triggered when a Dominion is transferred to a new owner in the Dominion system.
  */
+@ApiStatus.Experimental
 public class DominionTransferEvent extends DominionModifyEvent {
 
     private PlayerDTO newOwner;
@@ -15,11 +17,11 @@ public class DominionTransferEvent extends DominionModifyEvent {
     private boolean force;
 
     /**
-     * 领地转让事件
+     * Constructs a new DominionTransferEvent.
      *
-     * @param operator 操作者
-     * @param dominion 领地
-     * @param newOwner 新的领地所有者 UUID
+     * @param operator the command sender who initiated the event
+     * @param dominion the dominion being transferred
+     * @param newOwner the new owner of the dominion
      */
     public DominionTransferEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull PlayerDTO newOwner) {
         super(operator, dominion);
@@ -28,39 +30,49 @@ public class DominionTransferEvent extends DominionModifyEvent {
         this.force = true;
     }
 
+    /**
+     * Checks if the transfer is forced.
+     *
+     * @return true if the transfer is forced, false otherwise
+     */
     public boolean isForce() {
         return force;
     }
 
+    /**
+     * Sets whether the transfer is forced.
+     *
+     * @param force true to force the transfer, false otherwise
+     */
     public void setForce(boolean force) {
         this.force = force;
     }
 
     /**
-     * 获取新的领地所有者。
+     * Gets the new owner of the dominion.
      *
-     * @return UUID
+     * @return the new owner
      */
     public @NotNull PlayerDTO getNewOwner() {
         return newOwner;
     }
 
     /**
-     * 获取旧的领地所有者。
+     * Gets the old owner of the dominion.
      *
-     * @return UUID
+     * @return the old owner
      */
     public @NotNull PlayerDTO getOldOwner() {
         return oldOwner;
     }
 
     /**
-     * 设置新的领地所有者。
+     * Sets the new owner of the dominion.
      * <p>
-     * 在 {@link org.bukkit.event.EventPriority} 为 {@link org.bukkit.event.EventPriority#HIGH} 以及更高
-     * 的 {@link org.bukkit.event.EventHandler} 中修改时无法生效。（默认为 {@link org.bukkit.event.EventPriority#NORMAL}）
+     * Changes made in {@link org.bukkit.event.EventPriority} HIGH or higher {@link org.bukkit.event.EventHandler} will not take effect.
+     * (Default is {@link org.bukkit.event.EventPriority#NORMAL})
      *
-     * @param newOwner UUID
+     * @param newOwner the new owner to set
      */
     public void setNewOwner(PlayerDTO newOwner) {
         this.newOwner = newOwner;

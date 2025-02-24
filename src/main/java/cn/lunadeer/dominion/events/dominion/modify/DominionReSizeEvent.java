@@ -6,13 +6,22 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Event triggered when a Dominion's size is modified in the Dominion system.
+ */
 @ApiStatus.Experimental
 public class DominionReSizeEvent extends DominionModifyEvent {
 
+    /**
+     * Enum representing the type of size change.
+     */
     public enum TYPE {
         EXPAND, CONTRACT
     }
 
+    /**
+     * Enum representing the direction of size change.
+     */
     public enum DIRECTION {
         NORTH, EAST, SOUTH, WEST, UP, DOWN
     }
@@ -24,10 +33,13 @@ public class DominionReSizeEvent extends DominionModifyEvent {
     private int size;
 
     /**
-     * Constructs a new DominionSizeChangeEvent.
+     * Constructs a new DominionReSizeEvent.
      *
-     * @param operator the command sender who initiated the event
-     * @param dominion the dominion whose size is being changed
+     * @param operator  the command sender who initiated the event
+     * @param dominion  the dominion whose size is being changed
+     * @param type      the type of the size change
+     * @param direction the direction of the size change
+     * @param size      the size of the size change
      */
     public DominionReSizeEvent(@NotNull CommandSender operator,
                                @NotNull DominionDTO dominion,
@@ -114,6 +126,11 @@ public class DominionReSizeEvent extends DominionModifyEvent {
         this.size = size;
     }
 
+    /**
+     * Gets the new cuboid representing the dominion's size after the change.
+     *
+     * @return the new cuboid
+     */
     public CuboidDTO getNewCuboid() {
         CuboidDTO newCuboid = new CuboidDTO(getOldCuboid());
         int addSize = size * (type == TYPE.EXPAND ? 1 : -1);

@@ -11,84 +11,89 @@ import java.util.Map;
 
 public interface GroupDTO {
     /**
-     * 获取权限组 ID
+     * Gets the ID of the group.
      *
-     * @return 权限组 ID
+     * @return the ID of the group
      */
     @NotNull Integer getId();
 
     /**
-     * 获取权限组所属领地 ID
+     * Gets the ID of the dominion to which the group belongs.
      *
-     * @return 权限组所属领地 ID
+     * @return the ID of the dominion
      */
     @NotNull Integer getDomID();
 
     /**
-     * 设置权限组名称，可以包含颜色代码，设置成功后返回权限组对象，设置失败返回null
+     * Sets the name of the group, which can include color codes.
+     * Returns the group object if successful, otherwise returns null.
      *
-     * @param name 权限组名称
-     * @return 权限组对象
+     * @param name the name of the group
+     * @return the group object
+     * @throws SQLException if a database access error occurs
      */
     @NotNull GroupDTO setName(@NotNull String name) throws SQLException;
 
     /**
-     * 获取权限组名称（普通字符，不含颜色代码）
-     * 绝大多数情况下应该使用该方法获取权限组名称
+     * Gets the name of the group in plain text (without color codes).
+     * This method should be used in most cases to get the group name.
      *
-     * @return 权限组名称
+     * @return the plain text name of the group
      */
     @NotNull String getNamePlain();
 
     /**
-     * 获取权限组名称（原始字符，包含颜色代码）
+     * Gets the raw name of the group (with color codes).
      *
-     * @return 权限组名称
+     * @return the raw name of the group
      */
     @NotNull String getNameRaw();
 
     /**
-     * 获取权限组名称（带颜色） kyori.adventure.text.Component 类型
+     * Gets the name of the group with color codes as a `Component` type.
      *
-     * @return 权限组名称（带颜色）
+     * @return the name of the group with color codes
      */
     @NotNull Component getNameColoredComponent();
 
     /**
-     * 获取权限组名称（带颜色） Bukkit类型
+     * Gets the name of the group with color codes as a Bukkit type.
      *
-     * @return 权限组名称（带颜色）
+     * @return the name of the group with color codes
      */
     @NotNull String getNameColoredBukkit();
 
     /**
-     * 获取权限组某个权限配置
+     * Gets the value of a specific flag for the group.
      *
-     * @param flag 权限
-     * @return 权限配置值，如果权限不存在则返回默认值
+     * @param flag the flag
+     * @return the value of the flag, or the default value if the flag does not exist
      */
     @NotNull Boolean getFlagValue(@NotNull PriFlag flag);
 
     /**
-     * 获取权限组所有权限配置
+     * Gets all flag values for the group.
      *
-     * @return 权限配置
+     * @return a map of flag values
      */
     @NotNull Map<PriFlag, Boolean> getFlagsValue();
 
     /**
-     * 设置权限组某个权限配置，设置成功后返回权限组对象，设置失败返回null
+     * Sets the value of a specific flag for the group.
+     * Returns the group object if successful, otherwise returns null.
      *
-     * @param flag  权限
-     * @param value 权限值
-     * @return 权限组对象
+     * @param flag  the flag
+     * @param value the value of the flag
+     * @return the group object
+     * @throws SQLException if a database access error occurs
      */
     @Nullable GroupDTO setFlagValue(@NotNull PriFlag flag, @NotNull Boolean value) throws SQLException;
 
     /**
-     * 获取权限组所有成员
+     * Gets all members of the group.
      *
-     * @return 成员列表
+     * @return a list of members
+     * @throws SQLException if a database access error occurs
      */
     List<MemberDTO> getMembers() throws SQLException;
 }

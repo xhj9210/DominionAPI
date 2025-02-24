@@ -5,66 +5,86 @@ import cn.lunadeer.dominion.api.dtos.MemberDTO;
 import cn.lunadeer.dominion.api.dtos.PlayerDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 成员添加事件
+ * Event triggered when a member is added to a Dominion.
  * <p>
- * 当玩家添加成员时触发
- * 添加成功后可以通过 {@link #getMember()} 获取新添加的成员
- * 如果添加失败则 {@link #getMember()} 返回null
+ * This event is triggered when a player adds a member.
+ * After a successful addition, the new member can be retrieved using {@link #getMember()}.
+ * If the addition fails, {@link #getMember()} returns null.
  */
+@ApiStatus.Experimental
 public class MemberAddedEvent extends ResultEvent {
     private DominionDTO dominion;
     private PlayerDTO player;
     private MemberDTO member = null;
 
+    /**
+     * Constructs a new MemberAddedEvent.
+     *
+     * @param operator the command sender who initiated the event
+     * @param dominion the dominion to which the member is added
+     * @param player   the player who is adding the member
+     */
     public MemberAddedEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull PlayerDTO player) {
         super(operator);
         this.dominion = dominion;
         this.player = player;
     }
 
+    /**
+     * Sets the dominion.
+     *
+     * @param dominion the dominion to set
+     */
     public void setDominion(@NotNull DominionDTO dominion) {
         this.dominion = dominion;
     }
 
     /**
-     * 获取领地
+     * Gets the dominion.
      *
-     * @return 领地
+     * @return the dominion
      */
     public @NotNull DominionDTO getDominion() {
         return dominion;
     }
 
+    /**
+     * Sets the player.
+     *
+     * @param player the player to set
+     */
     public void setPlayer(@NotNull PlayerDTO player) {
         this.player = player;
     }
 
     /**
-     * 获取玩家
+     * Gets the player.
      *
-     * @return 玩家
+     * @return the player
      */
     public @NotNull PlayerDTO getPlayer() {
         return player;
     }
 
     /**
-     * 设置新添加的成员
+     * Sets the newly added member.
      *
-     * @param member 新添加的成员
+     * @param member the newly added member
      */
     public void setMember(@Nullable MemberDTO member) {
         this.member = member;
     }
 
     /**
-     * 获取新添加的成员，如果没有则返回null，只有添加成功后才会有值
+     * Gets the newly added member. If there is none, returns null.
+     * Only has a value if the addition was successful.
      *
-     * @return 新添加的成员
+     * @return the newly added member, or null if none
      */
     public @Nullable MemberDTO getMember() {
         return member;
