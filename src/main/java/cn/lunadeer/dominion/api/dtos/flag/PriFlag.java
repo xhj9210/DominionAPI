@@ -52,4 +52,9 @@ public class PriFlag extends Flag {
         return "privilege." + getFlagName() + ".enable";
     }
 
+    @Override
+    public String getConfigurationNameKey() {
+        return "privilege." + getFlagName();
+    }
+
 }

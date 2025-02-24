@@ -156,4 +156,11 @@ public abstract class Flag {
      */
     public abstract String getConfigurationEnableKey();
 
+    /**
+     * Returns the configuration key for the name of this flag.
+     *
+     * @return the configuration key for the name
+     */
+    public abstract String getConfigurationNameKey();
+
 }

@@ -52,4 +52,9 @@ public class EnvFlag extends Flag {
         return "environment." + getFlagName() + ".enable";
     }
 
+    @Override
+    public String getConfigurationNameKey() {
+        return "environment." + getFlagName();
+    }
+
 }
