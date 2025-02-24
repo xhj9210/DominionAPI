@@ -312,26 +312,56 @@ public class CuboidDTO {
         return getVolume() - cuboid.getVolume();
     }
 
+    /**
+     * Expands the cuboid upwards by the specified size.
+     *
+     * @param size the amount to expand the cuboid upwards
+     */
     public void addUp(int size) {
         pos2[1] += size;
     }
 
+    /**
+     * Expands the cuboid downwards by the specified size.
+     *
+     * @param size the amount to expand the cuboid downwards
+     */
     public void addDown(int size) {
         pos1[1] -= size;
     }
 
+    /**
+     * Expands the cuboid northwards by the specified size.
+     *
+     * @param size the amount to expand the cuboid northwards
+     */
     public void addNorth(int size) {
         pos1[2] -= size;
     }
 
+    /**
+     * Expands the cuboid southwards by the specified size.
+     *
+     * @param size the amount to expand the cuboid southwards
+     */
     public void addSouth(int size) {
         pos2[2] += size;
     }
 
+    /**
+     * Expands the cuboid eastwards by the specified size.
+     *
+     * @param size the amount to expand the cuboid eastwards
+     */
     public void addEast(int size) {
         pos2[0] += size;
     }
 
+    /**
+     * Expands the cuboid westwards by the specified size.
+     *
+     * @param size the amount to expand the cuboid westwards
+     */
     public void addWest(int size) {
         pos1[0] -= size;
     }

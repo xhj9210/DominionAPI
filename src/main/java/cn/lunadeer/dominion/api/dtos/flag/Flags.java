@@ -173,39 +173,40 @@ public class Flags {
         all_flags.sort((o1, o2) -> comparator.compare(o1.getDisplayName(), o2.getDisplayName()));
     }
 
+
     /**
-     * 获取所有 Flag 对象，包括 EnvFlag 和 PreFlag
+     * Returns a list of all flags.
      *
-     * @return Flag 对象列表
+     * @return a list of all flags
      */
     public static List<Flag> getAllFlags() {
         return all_flags;
     }
 
     /**
-     * 获取所有 EnvFlag 对象
+     * Returns a list of all environment flags.
      *
-     * @return EnvFlag 对象列表
+     * @return a list of all environment flags
      */
     public static List<EnvFlag> getAllEnvFlags() {
         return env_flags;
     }
 
     /**
-     * 获取所有 PreFlag 对象
+     * Returns a list of all privilege flags.
      *
-     * @return PreFlag 对象列表
+     * @return a list of all privilege flags
      */
     public static List<PriFlag> getAllPriFlags() {
         return pri_flags;
     }
 
     /**
-     * 获取所有启用的 Flag 对象
+     * Returns a list of enabled flags from the given list of flags.
      *
-     * @param flags Flag 对象列表
-     * @param <T>   Flag 类型
-     * @return 启用的 Flag 对象列表
+     * @param flags the list of flags to filter
+     * @param <T>   the type of the flags
+     * @return a list of enabled flags
      */
     private static <T extends Flag> List<T> getEnabledFlags(List<T> flags) {
         List<T> enabledFlags = new ArrayList<>();
@@ -218,39 +219,39 @@ public class Flags {
     }
 
     /**
-     * 获取所有启用的 EnvFlag 对象
+     * Returns a list of all enabled environment flags.
      *
-     * @return 启用的 EnvFlag 对象列表
+     * @return a list of all enabled environment flags
      */
     public static List<EnvFlag> getAllEnvFlagsEnable() {
         return getEnabledFlags(env_flags);
     }
 
     /**
-     * 获取所有启用的 PriFlag 对象
+     * Returns a list of all enabled privilege flags.
      *
-     * @return 启用的 PriFlag 对象列表
+     * @return a list of all enabled privilege flags
      */
     public static List<PriFlag> getAllPriFlagsEnable() {
         return getEnabledFlags(pri_flags);
     }
 
     /**
-     * 获取所有启用的 Flag 对象
+     * Returns a list of all enabled flags.
      *
-     * @return 启用的 Flag 对象列表
+     * @return a list of all enabled flags
      */
     public static List<Flag> getAllFlagsEnable() {
         return getEnabledFlags(all_flags);
     }
 
     /**
-     * 根据名称获取 Flag 对象
+     * Returns a flag by its name from the given list of flags.
      *
-     * @param flags Flag 对象列表
-     * @param name  Flag 名称
-     * @param <T>   Flag 类型
-     * @return Flag 对象
+     * @param flags the list of flags to search
+     * @param name  the name of the flag
+     * @param <T>   the type of the flags
+     * @return the flag with the given name, or null if not found
      */
     private static <T extends Flag> T getFlagByName(List<T> flags, String name) {
         for (T flag : flags) {
@@ -262,30 +263,30 @@ public class Flags {
     }
 
     /**
-     * 根据名称获取 Flag 对象
+     * Returns a flag by its name from all flags.
      *
-     * @param name Flag 名称
-     * @return Flag 对象
+     * @param name the name of the flag
+     * @return the flag with the given name, or null if not found
      */
     public static Flag getFlag(String name) {
         return getFlagByName(all_flags, name);
     }
 
     /**
-     * 根据名称获取 EnvFlag 对象
+     * Returns an environment flag by its name.
      *
-     * @param name Flag 名称
-     * @return EnvFlag 对象
+     * @param name the name of the environment flag
+     * @return the environment flag with the given name, or null if not found
      */
     public static EnvFlag getEnvFlag(String name) {
         return getFlagByName(env_flags, name);
     }
 
     /**
-     * 根据名称获取 PreFlag 对象
+     * Returns a privilege flag by its name.
      *
-     * @param name Flag 名称
-     * @return PreFlag 对象
+     * @param name the name of the privilege flag
+     * @return the privilege flag with the given name, or null if not found
      */
     public static PriFlag getPreFlag(String name) {
         return getFlagByName(pri_flags, name);

@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
  * Event triggered when a player moves out of a dominion.
  */
 public class PlayerMoveOutDominionEvent extends CallableEvent {
+
     private final Player player;
     private final DominionDTO dominion;
 
