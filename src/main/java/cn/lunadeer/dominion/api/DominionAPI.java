@@ -98,111 +98,198 @@ public abstract class DominionAPI {
     }
 
     /**
-     * Retrieves all dominions.
+     * Retrieves a PlayerDTO by the player's name.
      *
-     * @return a list of all dominions
+     * @param name the name of the player
+     * @return the PlayerDTO associated with the given name, or null if not found
      */
-    public abstract @NotNull List<DominionDTO> getAllDominions();
+    public abstract @Nullable PlayerDTO getPlayer(String name);
 
     /**
-     * Retrieves the current dominion of the specified player.
+     * Retrieves a PlayerDTO by the player's UUID.
      *
-     * @param player the player whose current dominion is to be retrieved
-     * @return the current dominion of the player, or null if the player has no current dominion
+     * @param player the UUID of the player
+     * @return the PlayerDTO associated with the given UUID, or null if not found
+     */
+    public abstract @Nullable PlayerDTO getPlayer(@NotNull UUID player);
+
+    /**
+     * Retrieves the name of a player by their UUID.
+     *
+     * @param uuid the UUID of the player
+     * @return the name of the player associated with the given UUID
+     */
+    public abstract @NotNull String getPlayerName(@NotNull UUID uuid);
+
+    /**
+     * Retrieves all DominionDTO objects.
+     * <p>
+     * This method retrieves all dominions from the cache of this server. If multi-servers mode is enabled,
+     * it also retrieves dominions from the caches of other servers.
+     *
+     * @return a list of all DominionDTO objects
+     */
+    public abstract List<DominionDTO> getAllDominions();
+
+    /**
+     * Retrieves the child dominions of a given parent dominion.
+     * <p>
+     * This method retrieves the child dominions of the specified parent dominion from the cache of this server.
+     * If multi-servers mode is enabled, it also retrieves child dominions from the caches of other servers.
+     *
+     * @param parent the parent DominionDTO whose children are to be retrieved
+     * @return a list of child DominionDTO objects
+     */
+    public abstract List<DominionDTO> getChildrenDominionOf(DominionDTO parent);
+
+    /**
+     * Retrieves a DominionDTO by its ID.
+     * <p>
+     * This method will first attempt to retrieve the DominionDTO from the cache of this server. If the DominionDTO
+     * is not found, it will then attempt to retrieve the DominionDTO from the caches of other servers.
+     *
+     * @param id the ID of the dominion to retrieve
+     * @return the DominionDTO associated with the given ID
+     */
+    public abstract @Nullable DominionDTO getDominion(Integer id);
+
+    /**
+     * Retrieves a DominionDTO by its name.
+     * <p>
+     * This method will first attempt to retrieve the DominionDTO from the cache of this server. If the DominionDTO
+     * is not found, it will then attempt to retrieve the DominionDTO from the caches of other servers.
+     *
+     * @param name the name of the dominion to retrieve
+     * @return the DominionDTO associated with the given name
+     */
+    public abstract @NotNull DominionDTO getDominion(String name);
+
+    /**
+     * Retrieves a DominionDTO by its location.
+     * <p>
+     * This method retrieves the DominionDTO associated with the given location from the cache of this server.
+     *
+     * @param location the location to retrieve the dominion for
+     * @return the DominionDTO associated with the given location, or null if not found
+     */
+    public abstract @Nullable DominionDTO getDominion(Location location);
+
+    /**
+     * Retrieves the dominions owned by a player.
+     * <p>
+     * This method retrieves the dominions owned by the player from the cache of this server. If multi-servers mode is enabled,
+     * it also retrieves the dominions owned by the player from the caches of other servers.
+     *
+     * @param player the UUID of the player
+     * @return a list of DominionDTO objects representing the dominions owned by the player
+     */
+    public abstract List<DominionDTO> getPlayerOwnDominionDTOs(UUID player);
+
+    /**
+     * Retrieves the dominions where a player is an admin.
+     * <p>
+     * This method retrieves the dominions where the player is an admin from the cache of this server. If multi-servers mode is enabled,
+     * it also retrieves the dominions where the player is an admin from the caches of other servers.
+     *
+     * @param player the UUID of the player
+     * @return a list of DominionDTO objects representing the dominions where the player is an admin
+     */
+    public abstract List<DominionDTO> getPlayerAdminDominionDTOs(UUID player);
+
+    /**
+     * Retrieves a MemberDTO by the player's UUID.
+     * <p>
+     * This method retrieves the MemberDTO associated with the given player from the specified dominion.
+     *
+     * @param dominion the DominionDTO to retrieve the member from
+     * @param player   the Player object representing the player
+     * @return the MemberDTO associated with the given player, or null if not found
+     */
+    public abstract @Nullable MemberDTO getMember(@Nullable DominionDTO dominion, @NotNull Player player);
+
+    /**
+     * Retrieves a MemberDTO by the player's UUID.
+     * <p>
+     * This method retrieves the MemberDTO associated with the given player from the specified dominion. If the member is not found
+     * in the cache of this server, it will attempt to retrieve the member from the caches of other servers if multi-servers mode is enabled.
+     *
+     * @param dominion the DominionDTO to retrieve the member from
+     * @param player   the UUID of the player
+     * @return the MemberDTO associated with the given player, or null if not found
+     */
+    public abstract @Nullable MemberDTO getMember(@Nullable DominionDTO dominion, @NotNull UUID player);
+
+    /**
+     * Retrieves a GroupDTO by the member's group ID.
+     * <p>
+     * This method retrieves the GroupDTO associated with the group ID of the given member.
+     *
+     * @param member the MemberDTO whose group ID is to be used for retrieval
+     * @return the GroupDTO associated with the given member's group ID, or null if not found
+     */
+    public abstract @Nullable GroupDTO getGroup(MemberDTO member);
+
+    /**
+     * Retrieves a GroupDTO by its ID.
+     * <p>
+     * This method retrieves the GroupDTO associated with the given ID from the cache of this server. If the GroupDTO
+     * is not found, it will then attempt to retrieve the GroupDTO from the caches of other servers if multi-servers mode is enabled.
+     *
+     * @param id the ID of the group to retrieve
+     * @return the GroupDTO associated with the given ID, or null if not found
+     */
+    public abstract @Nullable GroupDTO getGroup(Integer id);
+
+    /**
+     * Retrieves the current dominion of a player.
+     * <p>
+     * This method retrieves the current dominion of the player based on their location. It checks if the player is still
+     * in the same dominion and if the dominion has no children. If the player has moved to a different dominion, it triggers
+     * the appropriate events and updates the player's current dominion ID.
+     *
+     * @param player the Player object representing the player
+     * @return the DominionDTO associated with the player's current location, or null if not found
      */
     public abstract @Nullable DominionDTO getPlayerCurrentDominion(@NotNull Player player);
 
     /**
-     * Retrieves the dominion at the specified location.
-     *
-     * @param loc the location to check for a dominion
-     * @return the dominion at the specified location, or null if no dominion exists at that location
-     */
-    public abstract @Nullable DominionDTO getDominionByLoc(@NotNull Location loc);
-
-    /**
-     * Retrieves the group with the specified ID.
-     *
-     * @param id the ID of the group to retrieve
-     * @return the group with the specified ID, or null if no such group exists
-     */
-    public abstract @Nullable GroupDTO getGroup(@NotNull Integer id);
-
-    /**
-     * Retrieves the member information for the specified player and dominion.
-     *
-     * @param player   the player whose member information is to be retrieved
-     * @param dominion the dominion to check for the player's membership
-     * @return the member information for the player in the specified dominion, or null if the player is not a member
-     */
-    public abstract @Nullable MemberDTO getMember(@NotNull Player player, @NotNull DominionDTO dominion);
-
-    /**
-     * Retrieves the member information for the specified player UUID and dominion.
-     *
-     * @param player_uuid the UUID of the player whose member information is to be retrieved
-     * @param dominion    the dominion to check for the player's membership
-     * @return the member information for the player in the specified dominion, or null if the player is not a member
-     */
-    public abstract @Nullable MemberDTO getMember(@NotNull UUID player_uuid, @NotNull DominionDTO dominion);
-
-    /**
-     * Retrieves the dominion with the specified ID.
-     *
-     * @param id the ID of the dominion to retrieve
-     * @return the dominion with the specified ID, or null if no such dominion exists
-     */
-    public abstract @Nullable DominionDTO getDominion(@NotNull Integer id);
-
-    /**
-     * Retrieves the dominion with the specified name.
-     *
-     * @param name the name of the dominion to retrieve
-     * @return the dominion with the specified name, or null if no such dominion exists
-     */
-    public abstract @Nullable DominionDTO getDominion(@NotNull String name);
-
-    /**
-     * Retrieves the group title used by the player with the specified UUID.
-     *
-     * @param uuid the UUID of the player
-     * @return the group title used by the player, or null if the player is not using any group title
-     */
-    public abstract @Nullable GroupDTO getPlayerUsingGroupTitle(@NotNull UUID uuid);
-
-    /**
-     * Retrieves the player data transfer object (DTO) for the player with the specified UUID.
-     *
-     * @param uuid the UUID of the player
-     * @return the player DTO for the player, or null if no such player exists
-     */
-    public abstract @Nullable PlayerDTO getPlayerDTO(UUID uuid);
-
-    /**
-     * Retrieves the player data transfer object (DTO) for the player with the specified name.
-     *
-     * @param name the name of the player
-     * @return the player DTO for the player, or null if no such player exists
-     */
-    public abstract @Nullable PlayerDTO getPlayerDTO(String name);
-
-    /**
-     * Retrieves all dominions owned by the player with the specified UUID.
+     * Resets the current dominion ID for a player.
      * <p>
-     * Includes dominions on all servers.
+     * This method removes the current dominion ID associated with the player from the cache.
      *
-     * @param playerUid the UUID of the player
-     * @return a list of all dominions owned by the player
+     * @param player the Player object representing the player
      */
-    public abstract List<DominionDTO> getDominionsOf(@NotNull UUID playerUid);
+    public abstract void resetPlayerCurrentDominionId(@NotNull Player player);
 
     /**
-     * Retrieves all child dominions of the specified parent dominion.
+     * Retrieves the total count of dominions.
+     * <p>
+     * This method calculates the total number of dominions by summing the count of dominions on this server and, if
+     * multi-servers mode is enabled, the counts from other servers.
      *
-     * @param parent the parent dominion
-     * @return a list of all child dominions of the parent dominion
+     * @return the total count of dominions
      */
-    public abstract List<DominionDTO> getChildrenDominionsOf(@NotNull DominionDTO parent);
+    public abstract Integer dominionCount();
+
+    /**
+     * Retrieves the total count of groups.
+     * <p>
+     * This method calculates the total number of groups by summing the count of groups on this server and, if
+     * multi-servers mode is enabled, the counts from other servers.
+     *
+     * @return the total count of groups
+     */
+    public abstract Integer groupCount();
+
+    /**
+     * Retrieves the total count of members.
+     * <p>
+     * This method calculates the total number of members by summing the count of members on this server and, if
+     * multi-servers mode is enabled, the counts from other servers.
+     *
+     * @return the total count of members
+     */
+    public abstract Integer memberCount();
 
     /**
      * Checks if the specified player has the specified privilege flag in the given dominion.
