@@ -129,14 +129,6 @@ public abstract class DominionAPI {
     public abstract @Nullable GroupDTO getGroup(@NotNull Integer id);
 
     /**
-     * Retrieves all groups within the specified dominion.
-     *
-     * @param dominion the dominion to retrieve groups from
-     * @return a list of groups within the specified dominion, or null if no groups exist
-     */
-    public abstract @Nullable List<GroupDTO> getGroups(@NotNull DominionDTO dominion);
-
-    /**
      * Retrieves the member information for the specified player and dominion.
      *
      * @param player   the player whose member information is to be retrieved
@@ -153,14 +145,6 @@ public abstract class DominionAPI {
      * @return the member information for the player in the specified dominion, or null if the player is not a member
      */
     public abstract @Nullable MemberDTO getMember(@NotNull UUID player_uuid, @NotNull DominionDTO dominion);
-
-    /**
-     * Retrieves all members within the specified dominion.
-     *
-     * @param dominion the dominion to retrieve members from
-     * @return a list of members within the specified dominion, or null if no members exist
-     */
-    public abstract @Nullable List<MemberDTO> getMembers(@NotNull DominionDTO dominion);
 
     /**
      * Retrieves the dominion with the specified ID.
