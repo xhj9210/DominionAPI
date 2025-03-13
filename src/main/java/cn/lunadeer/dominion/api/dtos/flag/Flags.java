@@ -148,7 +148,7 @@ public class Flags {
     public static final PriFlag VILLAGER_KILLING =
             new PriFlag("villager_killing", "对村民造成伤害", "是否可以对村民造成伤害", false, true);
     public static final PriFlag PVP =
-            new PriFlag("PVP", "玩家伤害", "玩家之间是否可以造成伤害", false, true);
+            new PriFlag("pvp", "玩家伤害", "玩家之间是否可以造成伤害", false, true);
 
     private static final List<EnvFlag> env_flags = new ArrayList<>();
     private static final List<PriFlag> pri_flags = new ArrayList<>();
