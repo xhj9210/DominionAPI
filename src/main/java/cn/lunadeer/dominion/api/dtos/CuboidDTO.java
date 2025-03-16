@@ -38,8 +38,8 @@ public class CuboidDTO {
      * @param cuboid the cuboid to copy positions from
      */
     public CuboidDTO(CuboidDTO cuboid) {
-        this.pos1 = cuboid.getPos1();
-        this.pos2 = cuboid.getPos2();
+        this.pos1 = cuboid.getPos1().clone();
+        this.pos2 = cuboid.getPos2().clone();
     }
 
     /**
@@ -114,7 +114,7 @@ public class CuboidDTO {
      * @return the first position of the cuboid
      */
     public int[] getPos1() {
-        return pos1;
+        return pos1.clone();
     }
 
     /**
@@ -123,7 +123,7 @@ public class CuboidDTO {
      * @param pos1 the new first position of the cuboid
      */
     public void setPos1(int[] pos1) {
-        this.pos1 = pos1;
+        this.pos1 = pos1.clone();
     }
 
     /**
@@ -132,7 +132,7 @@ public class CuboidDTO {
      * @return the second position of the cuboid
      */
     public int[] getPos2() {
-        return pos2;
+        return pos2.clone();
     }
 
     /**
@@ -141,7 +141,7 @@ public class CuboidDTO {
      * @param pos2 the new second position of the cuboid
      */
     public void setPos2(int[] pos2) {
-        this.pos2 = pos2;
+        this.pos2 = pos2.clone();
     }
 
     /**
