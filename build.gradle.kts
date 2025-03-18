@@ -15,7 +15,7 @@ java {
 }
 
 group = "cn.lunadeer"
-version = "4.1"
+version = "4.2"
 
 // utf-8
 tasks.withType<JavaCompile> {
