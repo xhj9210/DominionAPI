@@ -293,13 +293,27 @@ public abstract class DominionAPI {
 
     /**
      * Checks if the specified player has the specified privilege flag in the given dominion.
+     * <p>
+     * If no-permission, it will send a message to the player.
      *
      * @param dom    the dominion to check
      * @param flag   the privilege flag to check
      * @param player the player to check
      * @return true if the player has the specified privilege flag, false otherwise
      */
-    public abstract boolean checkPrivilegeFlag(DominionDTO dom, PriFlag flag, Player player);
+    public abstract boolean checkPrivilegeFlag(@Nullable DominionDTO dom, @NotNull PriFlag flag, @NotNull Player player);
+
+    /**
+     * Checks if the specified player has the specified privilege flag in the given dominion.
+     * <p>
+     * If no-permission, it will not send a message to the player.
+     *
+     * @param dom    the dominion to check
+     * @param flag   the privilege flag to check
+     * @param player the player to check
+     * @return true if the player has the specified privilege flag, false otherwise
+     */
+    public abstract boolean checkPrivilegeFlagSilence(@Nullable DominionDTO dom, @NotNull PriFlag flag, @NotNull Player player);
 
     /**
      * Checks if the specified environment flag is set in the given dominion.
