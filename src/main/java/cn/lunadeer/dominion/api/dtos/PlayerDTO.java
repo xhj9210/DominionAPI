@@ -1,5 +1,6 @@
 package cn.lunadeer.dominion.api.dtos;
 
+import java.sql.SQLException;
 import java.util.UUID;
 
 /**
@@ -33,7 +34,7 @@ public interface PlayerDTO {
      * @param name the new last known name of the player
      * @return the updated player object
      */
-    PlayerDTO updateLastKnownName(String name);
+    PlayerDTO updateLastKnownName(String name) throws SQLException;
 
     /**
      * Gets the ID of the group title the player is using.
