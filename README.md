@@ -1,7 +1,7 @@
 # DominionAPI
 
-[![Javadoc](https://img.shields.io/badge/Javadoc-Link-70f3ff?logo=readthedocs)](https://coldezhang.github.io/DominionAPI/)
-[![DemoPlugin](https://img.shields.io/badge/DemoPlugin-GitHub-blue?logo=github)](https://github.com/ColdeZhang/DominionAddonExample)
+[![Javadoc](https://img.shields.io/badge/Javadoc-Link-70f3ff?logo=readthedocs)](https://lunadeermc.github.io/DominionAPI/)
+[![DemoPlugin](https://img.shields.io/badge/DemoPlugin-GitHub-blue?logo=github)](https://github.com/LunaDeerMC/DominionAddonExample)
 
 > Since Dominion-2.9.0-beta, DominionAPI is supported.
 
@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("cn.lunadeer:DominionAPI:3.5")
+    compileOnly("cn.lunadeer:DominionAPI:4.3")
 }
 ```
 

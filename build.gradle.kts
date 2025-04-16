@@ -15,7 +15,7 @@ java {
 }
 
 group = "cn.lunadeer"
-version = "4.2"
+version = "4.3"
 
 // utf-8
 tasks.withType<JavaCompile> {
@@ -45,7 +45,7 @@ publishing {
 
             pom {
                 name = project.name
-                description = "Dominion Plugin API"
+                description = "Minecraft Bukkit Server Dominion Plugin API"
                 url = "https://dominion.lunadeer.cn/"
                 licenses {
                     license {
@@ -61,9 +61,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = "https://github.com/ColdeZhang/Dominion.git"
-                    developerConnection = "scm:git@github.com:ColdeZhang/Dominion.git"
-                    url = "https://github.com/ColdeZhang/Dominion"
+                    connection = "https://github.com/LunaDeerMC/Dominion.git"
+                    developerConnection = "scm:git@github.com:LunaDeerMC/Dominion.git"
+                    url = "https://github.com/LunaDeerMC/Dominion"
                 }
                 dependencies {
 
