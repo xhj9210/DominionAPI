@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("cn.lunadeer:DominionAPI:4.3")
+    compileOnly("cn.lunadeer:DominionAPI:4.4")
 }
 ```
 
@@ -46,20 +46,24 @@ Then you can use the API, for example, to get the dominion information at a cert
 
 ```java
 
+DominionAPI dominionAPI;
+
 @Override
 public void onEnable() {
     // Plugin startup logic
-    try {
-        DominionAPI dominionAPI = DominionAPI.getInstance();
-        DominionDTO d = dominionAPI.getDominionByLoc(some_location);
-        if (d == null) {
-            this.getLogger().info("no dominion found");
-            return;
-        }
-        this.getLogger().info("name:" + d.getName());
-    } catch (Exception e) {
-        this.getLogger().info(e.getMessage());
+    if (Bukkit.getPluginManager().isPluginEnabled("Dominion")) {
+        dominionAPI = DominionAPI.getInstance();
+        this.getLogger().info("Got Dominion instance");
+    } else {
+        throw new IllegalStateException("Dominion plugin is not enabled. Please ensure it is installed and enabled.");
     }
+
+    DominionDTO d = dominionAPI.getDominionByLoc(some_location);
+    if (d == null) {
+        this.getLogger().info("no dominion found");
+        return;
+    }
+    this.getLogger().info("name:" + d.getName());
 }
 ```
 

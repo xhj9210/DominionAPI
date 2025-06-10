@@ -6,7 +6,6 @@ import cn.lunadeer.dominion.api.dtos.MemberDTO;
 import cn.lunadeer.dominion.api.dtos.PlayerDTO;
 import cn.lunadeer.dominion.api.dtos.flag.EnvFlag;
 import cn.lunadeer.dominion.api.dtos.flag.PriFlag;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
@@ -26,7 +25,7 @@ import java.util.UUID;
 @ApiStatus.Experimental
 public abstract class DominionAPI {
 
-    private final static int[] requiredDominionVersion = new int[]{4, 0, 0};
+    protected static DominionAPI instance;
 
     /**
      * Retrieves the singleton instance of the DominionAPI.
@@ -34,67 +33,9 @@ public abstract class DominionAPI {
      * If these checks pass, it retrieves the instance of the DominionAPI from the DominionInterface class.
      *
      * @return the singleton instance of the DominionAPI
-     * @throws ClassNotFoundException if the DominionInterface class cannot be found
-     * @throws NoSuchFieldException   if the instance field cannot be found in the DominionInterface class
-     * @throws IllegalAccessException if the instance field is not accessible
-     * @throws IllegalStateException  if the Dominion plugin is not installed or the version is not compatible
      */
-    public static DominionAPI getInstance() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
-        if (!isDominionEnabled()) {
-            throw new IllegalStateException("Dominion is not installed.");
-        }
-        if (!isVersionCompatible(requiredDominionVersion)) {
-            throw new IllegalStateException("DominionAPI is not compatible with the current version of Dominion."
-                    + " Required Dominion version: " + requiredDominionVersion[0] + "." + requiredDominionVersion[1] + "." + requiredDominionVersion[2]);
-        }
-        var instanceField = Class.forName("cn.lunadeer.dominion.DominionInterface").getDeclaredField("instance");
-        instanceField.setAccessible(true);
-        return (DominionAPI) instanceField.get(null);
-    }
-
-    /**
-     * Checks if the Dominion plugin is enabled.
-     *
-     * @return true if the Dominion plugin is enabled, false otherwise
-     */
-    public static boolean isDominionEnabled() {
-        return Bukkit.getPluginManager().isPluginEnabled("Dominion");
-    }
-
-    /**
-     * Retrieves the version of the Dominion plugin.
-     * If the plugin is not found, returns an array representing version 0.0.0.
-     *
-     * @return an array of integers representing the version of the Dominion plugin
-     */
-    private static int[] getDominionVersion() {
-        var plugin = Bukkit.getPluginManager().getPlugin("Dominion");
-        if (plugin == null) {
-            return new int[]{0, 0, 0};
-        }
-        var version = plugin.getDescription().getVersion().replaceAll("[^0-9.]", "");
-        var versionSplit = version.split("\\.");
-        var versionInt = new int[versionSplit.length];
-        for (int i = 0; i < versionSplit.length; i++) {
-            versionInt[i] = Integer.parseInt(versionSplit[i]);
-        }
-        return versionInt;
-    }
-
-    /**
-     * Checks if the current version of the Dominion plugin is compatible with the required version.
-     *
-     * @param requiredVersion an array of integers representing the required version
-     * @return true if the current version is compatible, false otherwise
-     */
-    private static boolean isVersionCompatible(int[] requiredVersion) {
-        var version = getDominionVersion();
-        for (int i = 0; i < requiredVersion.length; i++) {
-            if (version[i] < requiredVersion[i]) {
-                return false;
-            }
-        }
-        return true;
+    public static DominionAPI getInstance() {
+        return instance;
     }
 
     /**
