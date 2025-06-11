@@ -3,8 +3,6 @@
 [![Javadoc](https://img.shields.io/badge/Javadoc-Link-70f3ff?logo=readthedocs)](https://lunadeermc.github.io/DominionAPI/)
 [![DemoPlugin](https://img.shields.io/badge/DemoPlugin-GitHub-blue?logo=github)](https://github.com/LunaDeerMC/DominionAddonExample)
 
-> Since Dominion-2.9.0-beta, DominionAPI is supported.
-
 ## First: Import DominionAPI
 
 ### 1. Add Dependency
@@ -18,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("cn.lunadeer:DominionAPI:4.4")
+    compileOnly("cn.lunadeer:DominionAPI:4.5")
 }
 ```
 

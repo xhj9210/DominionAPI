@@ -25,6 +25,9 @@ import java.util.UUID;
 @ApiStatus.Experimental
 public abstract class DominionAPI {
 
+    public static String defaultPermission = "dominion.default";
+    public static String adminPermission = "dominion.admin";
+
     protected static DominionAPI instance;
 
     /**
