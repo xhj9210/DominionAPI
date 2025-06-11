@@ -27,16 +27,16 @@ public class Flags {
             = new EnvFlag("hopper_outside", "领地外漏斗对领地内箱子是否生效", "领地外的漏斗是否可以对领地内的箱子生效", false, true);
     public static final EnvFlag ITEM_FRAME_PROJ_DAMAGE
             = new EnvFlag("item_frame_proj_damage", "投掷物是否可以破坏展示框/画", "非玩家发出的投掷物是否可以破坏展示框/画等悬挂物", false, true);
-    public static final EnvFlag MOB_DROP_ITEM =
-            new EnvFlag("mob_drop_item", "生物战利品掉落", "生物死亡时是否产生掉落物", true, true);
+    public static final EnvFlag MOB_DROP_ITEM
+            = new EnvFlag("mob_drop_item", "生物战利品掉落", "生物死亡时是否产生掉落物", true, true);
     public static final EnvFlag MONSTER_SPAWN
             = new EnvFlag("monster_spawn", "怪物生成", "是否可以生成怪物", false, false);
     public static final EnvFlag MONSTER_MOVE
             = new EnvFlag("monster_move", "怪物移动", "是否可以在（向）领地内移动", true, false);
     public static final EnvFlag MONSTER_DAMAGE
             = new EnvFlag("monster_damage", "怪物对玩家造成伤害", "是否可以对玩家造成伤害", true, false);
-    public static final EnvFlag PISTON_OUTSIDE =
-            new EnvFlag("piston_outside", "活塞是否可以跨领地推动方块", "活塞是否可以往领地内推东西或推东西到领地外", false, true);
+    public static final EnvFlag PISTON_OUTSIDE
+            = new EnvFlag("piston_outside", "活塞是否可以跨领地推动方块", "活塞是否可以往领地内推东西或推东西到领地外", false, true);
     public static final EnvFlag SHOW_BORDER
             = new EnvFlag("show_border", "显示领地边界", "是否显示领地边界", true, true);
     public static final EnvFlag TNT_EXPLODE
@@ -55,14 +55,14 @@ public class Flags {
             = new EnvFlag("wither_spawn", "凋零生成", "凋零生成以及凋零生成时产生的爆炸", false, true);
 
     // ================================== PRE
-    public static final PriFlag ADMIN
-            = new PriFlag("admin", "管理员", "管理领地内的其他成员权限", false, true);
-    public static final PriFlag ANCHOR
-            = new PriFlag("anchor", "重生锚", "是否允许设置/使用重生锚", false, true);
-    public static final PriFlag ANIMAL_KILLING
-            = new PriFlag("animal_killing", "对动物造成伤害", "是否允许对动物造成伤害", false, true);
-    public static final PriFlag ANVIL
-            = new PriFlag("anvil", "使用铁砧", "是否允许使用铁砧", false, true);
+    public static final PriFlag ADMIN =
+            new PriFlag("admin", "管理员", "管理领地内的其他成员权限", false, true);
+    public static final PriFlag ANCHOR =
+            new PriFlag("anchor", "重生锚", "是否允许设置/使用重生锚", false, true);
+    public static final PriFlag ANIMAL_KILLING =
+            new PriFlag("animal_killing", "对动物造成伤害", "是否允许对动物造成伤害", false, true);
+    public static final PriFlag ANVIL =
+            new PriFlag("anvil", "使用铁砧", "是否允许使用铁砧", false, true);
     public static final PriFlag BEACON =
             new PriFlag("beacon", "信标交互", "是否允许与信标交互", false, true);
     public static final PriFlag BED =
