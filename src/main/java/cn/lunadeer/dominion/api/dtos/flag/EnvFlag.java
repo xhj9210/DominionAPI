@@ -22,16 +22,31 @@ public class EnvFlag extends Flag {
         super(flag_name, display_name, description, default_value, enable);
     }
 
+    /**
+     * Returns the configuration description key for this environment flag.
+     *
+     * @return the configuration description key
+     */
     @Override
     public String getConfigurationDescKey() {
         return "environment." + getFlagName() + ".description";
     }
 
+    /**
+     * Returns the configuration default key for this environment flag.
+     *
+     * @return the configuration default key
+     */
     @Override
     public String getConfigurationDefaultKey() {
         return "environment." + getFlagName() + ".default";
     }
 
+    /**
+     * Returns the configuration enable key for this environment flag.
+     *
+     * @return the configuration enable key
+     */
     @Override
     public String getConfigurationEnableKey() {
         return "environment." + getFlagName() + ".enable";
@@ -40,11 +55,6 @@ public class EnvFlag extends Flag {
     @Override
     public String getConfigurationNameKey() {
         return "environment." + getFlagName();
-    }
-
-    @Override
-    public String getPermissionNodeName() {
-        return "dominion.flag.environment." + getFlagName();
     }
 
 }

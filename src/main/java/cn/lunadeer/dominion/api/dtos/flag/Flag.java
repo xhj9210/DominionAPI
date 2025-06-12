@@ -2,10 +2,6 @@ package cn.lunadeer.dominion.api.dtos.flag;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
-
-import static cn.lunadeer.dominion.api.DominionAPI.defaultPermission;
-
 /**
  * Represents a flag in the Dominion system.
  * This abstract class provides the basic structure and methods
@@ -14,37 +10,11 @@ import static cn.lunadeer.dominion.api.DominionAPI.defaultPermission;
  */
 public abstract class Flag {
 
-    public enum ENABLE_STATUS {
-        TRUE,
-        FALSE,
-        DYNAMIC, // Dynamic means enabled but editability depends on permission
-        ;
-
-        public static ENABLE_STATUS fromString(String status) {
-            if (status == null) {
-                return ENABLE_STATUS.FALSE;
-            }
-            return switch (status.toLowerCase()) {
-                case "true" -> ENABLE_STATUS.TRUE;
-                case "false" -> ENABLE_STATUS.FALSE;
-                case "dynamic" -> ENABLE_STATUS.DYNAMIC;
-                default -> ENABLE_STATUS.FALSE; // Default to FALSE if unrecognized
-            };
-        }
-
-        public static ENABLE_STATUS fromBoolean(Boolean status) {
-            if (status == null) {
-                return ENABLE_STATUS.FALSE;
-            }
-            return status ? ENABLE_STATUS.TRUE : ENABLE_STATUS.FALSE;
-        }
-    }
-
     private final String flag_name;
     private String display_name;
     private String description;
     private Boolean default_value;
-    private ENABLE_STATUS enable;
+    private Boolean enable;
 
     /**
      * Constructs a new Flag with the specified parameters.
@@ -60,7 +30,7 @@ public abstract class Flag {
         this.display_name = display_name;
         this.description = description;
         this.default_value = default_value;
-        this.enable = ENABLE_STATUS.fromBoolean(enable);
+        this.enable = enable;
     }
 
     /**
@@ -108,11 +78,7 @@ public abstract class Flag {
      * @return the enable status of the flag
      */
     public @NotNull Boolean getEnable() {
-        return switch (enable) {
-            // Dynamic means enabled but editability depends on permission
-            case TRUE, DYNAMIC -> true;
-            case FALSE -> false;
-        };
+        return enable;
     }
 
     /**
@@ -147,8 +113,8 @@ public abstract class Flag {
      *
      * @param enable the new enable status of the flag
      */
-    public void setEnable(String enable) {
-        this.enable = ENABLE_STATUS.fromString(enable);
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
     }
 
     /**
@@ -196,37 +162,5 @@ public abstract class Flag {
      * @return the configuration key for the name
      */
     public abstract String getConfigurationNameKey();
-
-    /**
-     * Abstract method to retrieve the permission node name for this flag.
-     * This method should be implemented by subclasses to provide the specific
-     * permission node name associated with the flag.
-     *
-     * @return the permission node name as a String
-     */
-    public abstract String getPermissionNodeName();
-
-    /**
-     * Retrieves the permission node configuration for this flag.
-     * The configuration is represented as a map containing:
-     * - "description": the description of the flag
-     * - "default": the enable status of the flag as a String
-     *
-     * @return a Map containing the permission node configuration
-     */
-    public Map<String, Object> getPermissionNodeConfiguration() {
-        return Map.of(
-                "description", getDescription(),
-                "default", "op"
-        );
-    }
-
-    public Boolean isDynamic() {
-        return enable == ENABLE_STATUS.DYNAMIC;
-    }
-
-    public String needPermissionNode() {
-        return isDynamic() ? getPermissionNodeName() : defaultPermission;
-    }
 
 }
