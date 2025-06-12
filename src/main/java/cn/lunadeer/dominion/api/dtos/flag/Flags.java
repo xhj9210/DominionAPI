@@ -25,6 +25,10 @@ public class Flags {
             = new EnvFlag("gravity_block", "允许外部重力方块落入", "如果禁止则领地外重力方块进入领地会变为掉落物", false, true);
     public static final EnvFlag HOPPER_OUTSIDE
             = new EnvFlag("hopper_outside", "领地外漏斗对领地内箱子是否生效", "领地外的漏斗是否可以对领地内的箱子生效", false, true);
+    public static final EnvFlag ICE_MELT
+            = new EnvFlag("ice_melt", "冰融化", "是否允许冰融化", false, false);
+    public static final EnvFlag ICE_FORM
+            = new EnvFlag("ice_form", "冰生成", "是否允许冰生成（防止冰霜行者）", false, true);
     public static final EnvFlag ITEM_FRAME_PROJ_DAMAGE
             = new EnvFlag("item_frame_proj_damage", "投掷物是否可以破坏展示框/画", "非玩家发出的投掷物是否可以破坏展示框/画等悬挂物", false, true);
     public static final EnvFlag MOB_DROP_ITEM
@@ -39,6 +43,10 @@ public class Flags {
             = new EnvFlag("piston_outside", "活塞是否可以跨领地推动方块", "活塞是否可以往领地内推东西或推东西到领地外", false, true);
     public static final EnvFlag SHOW_BORDER
             = new EnvFlag("show_border", "显示领地边界", "是否显示领地边界", true, true);
+    public static final EnvFlag SNOW_ACCUMULATION
+            = new EnvFlag("snow_accumulation", "积雪", "是否允许生成积雪", false, false);
+    public static final EnvFlag SNOW_MELT
+            = new EnvFlag("snow_melt", "积雪融化", "是否允许积雪融化", false, false);
     public static final EnvFlag TNT_EXPLODE
             = new EnvFlag("tnt_explode", "TNT爆炸", "TNT是否可以爆炸", false, true);
     public static final EnvFlag TRAMPLE
