@@ -270,7 +270,9 @@ public class CuboidDTO {
      * @return true if the cuboids intersect, false otherwise
      */
     public boolean intersectWith(CuboidDTO cuboid) {
-        return x1() <= cuboid.x2() && x2() >= cuboid.x1() && y1() <= cuboid.y2() && y2() >= cuboid.y1() && z1() <= cuboid.z2() && z2() >= cuboid.z1();
+        return x1() < cuboid.x2() && x2() > cuboid.x1() &&
+               y1() < cuboid.y2() && y2() > cuboid.y1() &&
+               z1() < cuboid.z2() && z2() > cuboid.z1();
     }
 
     /**
