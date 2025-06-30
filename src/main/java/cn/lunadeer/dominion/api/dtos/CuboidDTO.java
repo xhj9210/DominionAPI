@@ -271,8 +271,8 @@ public class CuboidDTO {
      */
     public boolean intersectWith(CuboidDTO cuboid) {
         return x1() < cuboid.x2() && x2() > cuboid.x1() &&
-               y1() < cuboid.y2() && y2() > cuboid.y1() &&
-               z1() < cuboid.z2() && z2() > cuboid.z1();
+                y1() < cuboid.y2() && y2() > cuboid.y1() &&
+                z1() < cuboid.z2() && z2() > cuboid.z1();
     }
 
     /**
@@ -333,7 +333,11 @@ public class CuboidDTO {
      * @param size the amount to expand the cuboid upwards
      */
     public void addUp(int size) {
-        pos2[1] += size;
+        if (pos2[1] + size < pos1[1]) {
+            pos2[1] = pos1[1] + 1;
+        } else {
+            pos2[1] += size;
+        }
     }
 
     /**
@@ -342,7 +346,11 @@ public class CuboidDTO {
      * @param size the amount to expand the cuboid downwards
      */
     public void addDown(int size) {
-        pos1[1] -= size;
+        if (pos1[1] - size > pos2[1]) {
+            pos1[1] = pos2[1] - 1;
+        } else {
+            pos1[1] -= size;
+        }
     }
 
     /**
@@ -351,7 +359,11 @@ public class CuboidDTO {
      * @param size the amount to expand the cuboid northwards
      */
     public void addNorth(int size) {
-        pos1[2] -= size;
+        if (pos1[2] - size > pos2[2]) {
+            pos1[2] = pos2[2] - 1;
+        } else {
+            pos1[2] -= size;
+        }
     }
 
     /**
@@ -360,7 +372,11 @@ public class CuboidDTO {
      * @param size the amount to expand the cuboid southwards
      */
     public void addSouth(int size) {
-        pos2[2] += size;
+        if (pos2[2] + size < pos1[2]) {
+            pos2[2] = pos1[2] + 1;
+        } else {
+            pos2[2] += size;
+        }
     }
 
     /**
@@ -369,7 +385,11 @@ public class CuboidDTO {
      * @param size the amount to expand the cuboid eastwards
      */
     public void addEast(int size) {
-        pos2[0] += size;
+        if (pos2[0] + size < pos1[0]) {
+            pos2[0] = pos1[0] + 1;
+        } else {
+            pos2[0] += size;
+        }
     }
 
     /**
@@ -378,6 +398,10 @@ public class CuboidDTO {
      * @param size the amount to expand the cuboid westwards
      */
     public void addWest(int size) {
-        pos1[0] -= size;
+        if (pos1[0] - size > pos2[0]) {
+            pos1[0] = pos2[0] - 1;
+        } else {
+            pos1[0] -= size;
+        }
     }
 }
