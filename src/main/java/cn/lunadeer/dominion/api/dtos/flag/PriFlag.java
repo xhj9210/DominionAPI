@@ -1,5 +1,6 @@
 package cn.lunadeer.dominion.api.dtos.flag;
 
+import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -18,8 +19,8 @@ public class PriFlag extends Flag {
      * @param default_value the default value of the flag
      * @param enable        the enable status of the flag
      */
-    public PriFlag(@NotNull String flag_name, @NotNull String display_name, @NotNull String description, @NotNull Boolean default_value, @NotNull Boolean enable) {
-        super(flag_name, display_name, description, default_value, enable);
+    public PriFlag(@NotNull String flag_name, @NotNull String display_name, @NotNull String description, @NotNull Boolean default_value, @NotNull Boolean enable, @NotNull Material material) {
+        super(flag_name, display_name, description, default_value, enable, material);
     }
 
     /**
@@ -55,6 +56,11 @@ public class PriFlag extends Flag {
     @Override
     public String getConfigurationNameKey() {
         return "privilege." + getFlagName();
+    }
+
+    @Override
+    public String getConfigurationMaterialKey() {
+        return "privilege." + getFlagName() + ".material";
     }
 
 }

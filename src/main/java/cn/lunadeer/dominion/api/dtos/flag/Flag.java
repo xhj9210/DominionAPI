@@ -1,5 +1,6 @@
 package cn.lunadeer.dominion.api.dtos.flag;
 
+import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -15,6 +16,7 @@ public abstract class Flag {
     private String description;
     private Boolean default_value;
     private Boolean enable;
+    private Material material;
 
     /**
      * Constructs a new Flag with the specified parameters.
@@ -25,12 +27,13 @@ public abstract class Flag {
      * @param default_value the default value of the flag
      * @param enable        the enable status of the flag
      */
-    public Flag(@NotNull String flag_name, @NotNull String display_name, @NotNull String description, @NotNull Boolean default_value, @NotNull Boolean enable) {
+    public Flag(@NotNull String flag_name, @NotNull String display_name, @NotNull String description, @NotNull Boolean default_value, @NotNull Boolean enable, @NotNull Material material) {
         this.flag_name = flag_name;
         this.display_name = display_name;
         this.description = description;
         this.default_value = default_value;
         this.enable = enable;
+        this.material = material;
     }
 
     /**
@@ -81,6 +84,16 @@ public abstract class Flag {
         return enable;
     }
 
+
+    /**
+     * Returns the material used by this flag in chest user interfaces.
+     *
+     * @return the material used by this flag
+     */
+    public @NotNull Material getMaterial() {
+        return material;
+    }
+
     /**
      * Sets the display name of the flag.
      *
@@ -115,6 +128,17 @@ public abstract class Flag {
      */
     public void setEnable(Boolean enable) {
         this.enable = enable;
+    }
+
+    /**
+     * Sets the material used by this flag in chest user interfaces.
+     *
+     * @param material the new material used by this flag
+     */
+    public void setMaterial(String material) {
+        if (Material.matchMaterial(material) != null) {
+            this.material = Material.matchMaterial(material);
+        }
     }
 
     /**
@@ -162,5 +186,12 @@ public abstract class Flag {
      * @return the configuration key for the name
      */
     public abstract String getConfigurationNameKey();
+
+    /**
+     * Returns the configuration key for the material of this flag.
+     *
+     * @return the configuration key for the material
+     */
+    public abstract String getConfigurationMaterialKey();
 
 }
