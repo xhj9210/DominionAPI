@@ -20,7 +20,7 @@ public class Flags {
     public static final EnvFlag ENDER_MAN
             = new EnvFlag("ender_man", "末影人行为", "包含：末影人是否可以生成、瞬移", false, true, Material.ENDERMAN_SPAWN_EGG);
     public static final EnvFlag FIRE_SPREAD
-            = new EnvFlag("fire_spread", "火焰蔓延", "是否可以火焰蔓延", false, true, Material.FIRE);
+            = new EnvFlag("fire_spread", "火焰蔓延", "是否可以火焰蔓延", false, true, Material.CAMPFIRE);
     public static final EnvFlag FLOW_IN_PROTECTION
             = new EnvFlag("flow_in_protection", "外部流体是否可以进入", "包含：岩浆、水（不会阻止领地内部的流体蔓延）", false, true, Material.WATER_BUCKET);
     public static final EnvFlag GRAVITY_BLOCK
