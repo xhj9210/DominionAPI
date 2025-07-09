@@ -1,5 +1,9 @@
 package cn.lunadeer.dominion.api.dtos;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.UUID;
 
@@ -34,7 +38,7 @@ public interface PlayerDTO {
      * @param name the new last known name of the player
      * @return the updated player object
      */
-    PlayerDTO updateLastKnownName(String name) throws SQLException;
+    PlayerDTO updateLastKnownName(String name, URL skinUrl) throws SQLException;
 
     /**
      * Gets the ID of the group title the player is using.
@@ -42,4 +46,11 @@ public interface PlayerDTO {
      * @return the ID of the group title the player is using
      */
     Integer getUsingGroupTitleID();
+
+    /**
+     * Gets the URL of the player's skin.
+     *
+     * @return the URL of the player's skin
+     */
+    @NotNull URL getSkinUrl() throws MalformedURLException;
 }
