@@ -112,3 +112,7 @@ buildNumber.properties
 # Common working directory
 run/
 /docs/_book/
+
+# Gradle
+.gradle/
+build/
