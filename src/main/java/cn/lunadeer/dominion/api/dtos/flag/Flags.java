@@ -44,7 +44,7 @@ public class Flags {
     public static final EnvFlag PISTON_OUTSIDE
             = new EnvFlag("piston_outside", "活塞是否可以跨领地推动方块", "活塞是否可以往领地内推东西或推东西到领地外", false, true, Material.PISTON);
     public static final EnvFlag SHOW_BORDER
-            = new EnvFlag("show_border", "显示领地边界", "是否显示领地边界", true, true, Material.RED_STAINED_GLASS_PANE);
+            = new EnvFlag("show_border", "显示领地边界", "是否显示领地边界", true, true, Material.BRICK_WALL);
     public static final EnvFlag SNOW_ACCUMULATION
             = new EnvFlag("snow_accumulation", "积雪", "是否允许生成积雪", false, false, Material.SNOW);
     public static final EnvFlag SNOW_MELT
