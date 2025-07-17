@@ -125,6 +125,8 @@ public class Flags {
             new PriFlag("ignite", "点燃", "是否可以使用打火石点火", false, true, Material.FLINT_AND_STEEL);
     public static final PriFlag ITEM_FRAME_INTERACTIVE =
             new PriFlag("item_frame_interactive", "展示框交互", "是否可以与物品展示框交互（旋转展示框的东西）", false, true, Material.ITEM_FRAME);
+    public static final PriFlag LEAD =
+            new PriFlag("lead", "拴绳", "是否可以使用拴绳/牵引（包括：动物、盔甲架、船等）", false, true, Material.LEAD);
     public static final PriFlag LEVER =
             new PriFlag("lever", "使用拉杆", "是否可以使用拉杆", false, true, Material.LEVER);
     public static final PriFlag MONSTER_KILLING =
