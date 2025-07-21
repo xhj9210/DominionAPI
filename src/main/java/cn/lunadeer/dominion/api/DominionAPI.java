@@ -103,7 +103,7 @@ public abstract class DominionAPI {
      * @param name the name of the dominion to retrieve
      * @return the DominionDTO associated with the given name
      */
-    public abstract @NotNull DominionDTO getDominion(String name);
+    public abstract @Nullable DominionDTO getDominion(String name);
 
     /**
      * Retrieves a DominionDTO by its location.
