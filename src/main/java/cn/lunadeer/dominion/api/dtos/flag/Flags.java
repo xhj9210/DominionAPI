@@ -147,6 +147,8 @@ public class Flags {
             new PriFlag("shear", "剪羊毛", "是否可以剪羊毛", false, true, Material.SHEARS);
     public static final PriFlag SHOOT =
             new PriFlag("shoot", "投掷型武器", "包括：射箭/雪球/三叉戟/风弹", false, true, Material.BOW);
+    public static final PriFlag SOWING =
+            new PriFlag("sowing", "播种", "是否可以播种（放置种子）各种作物", false, true, Material.WHEAT_SEEDS);
     public static final PriFlag TELEPORT =
             new PriFlag("teleport", "领地传送", "是否开启领地传送", false, true, Material.ENDER_EYE);
     public static final PriFlag TRADE =
