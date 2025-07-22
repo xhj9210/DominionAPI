@@ -125,8 +125,8 @@ public class Flags {
             new PriFlag("ignite", "Ignite", "Whether can ignite fire.", false, true, Material.FLINT_AND_STEEL);
     public static final PriFlag ITEM_FRAME_INTERACTIVE =
             new PriFlag("item_frame_interactive", "Item Frame Interactive", "Whether can interact with item frame (rotate item).", false, true, Material.ITEM_FRAME);
-    public static final PriFlag LEAD =
-            new PriFlag("lead", "Leash", "Whether to allow leashing animals/mobs/entities.", false, true, Material.LEAD);
+    public static final PriFlag LEASH =
+            new PriFlag("leash", "Leash", "Whether to allow leashing animals/mobs/entities.", false, true, Material.LEAD);
     public static final PriFlag LEVER =
             new PriFlag("lever", "Lever", "Whether can switch lever.", false, true, Material.LEVER);
     public static final PriFlag MONSTER_KILLING =
