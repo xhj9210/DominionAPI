@@ -232,36 +232,44 @@ public abstract class DominionAPI {
      */
     public abstract Integer memberCount();
 
-    /**
-     * Checks if the specified player has the specified privilege flag in the given dominion.
-     * <p>
-     * If no-permission, it will send a message to the player.
-     *
-     * @param dom    the dominion to check
-     * @param flag   the privilege flag to check
-     * @param player the player to check
-     * @return true if the player has the specified privilege flag, false otherwise
-     */
-    public abstract boolean checkPrivilegeFlag(@Nullable DominionDTO dom, @NotNull PriFlag flag, @NotNull Player player);
 
     /**
-     * Checks if the specified player has the specified privilege flag in the given dominion.
+     * Checks if a player has a specific privilege flag at the given location.
      * <p>
-     * If no-permission, it will not send a message to the player.
+     * This method verifies whether the player has permission for the specified privilege flag
+     * at the given location, considering the dominion (if any) that covers the location.
+     * If the player lacks the required privilege, appropriate messages or events may be triggered.
      *
-     * @param dom    the dominion to check
-     * @param flag   the privilege flag to check
-     * @param player the player to check
-     * @return true if the player has the specified privilege flag, false otherwise
+     * @param location the location to check the privilege flag at
+     * @param flag     the privilege flag to check
+     * @param player   the player whose privileges are being checked
+     * @return true if the player has the privilege flag at the location, false otherwise
      */
-    public abstract boolean checkPrivilegeFlagSilence(@Nullable DominionDTO dom, @NotNull PriFlag flag, @NotNull Player player);
+    public abstract boolean checkPrivilegeFlag(@NotNull Location location, @NotNull PriFlag flag, @NotNull Player player);
 
     /**
-     * Checks if the specified environment flag is set in the given dominion.
+     * Checks if a player has a specific privilege flag at the given location without triggering messages or events.
+     * <p>
+     * This method performs the same privilege check as {@link #checkPrivilegeFlag(Location, PriFlag, Player)}
+     * but operates silently, without sending any messages to the player or triggering related events.
+     * This is useful for internal checks where user feedback is not desired.
      *
-     * @param dom  the dominion to check, or null to check the global environment
-     * @param flag the environment flag to check
-     * @return true if the environment flag is set, false otherwise
+     * @param location the location to check the privilege flag at
+     * @param flag     the privilege flag to check
+     * @param player   the player whose privileges are being checked
+     * @return true if the player has the privilege flag at the location, false otherwise
      */
-    public abstract boolean checkEnvironmentFlag(@Nullable DominionDTO dom, @NotNull EnvFlag flag);
+    public abstract boolean checkPrivilegeFlagSilence(@NotNull Location location, @NotNull PriFlag flag, @NotNull Player player);
+
+    /**
+     * Checks if the specified environment flag is set at the given location.
+     * <p>
+     * This method determines whether the provided environment flag is enabled at the specified location,
+     * considering the dominion (if any) that covers the location.
+     *
+     * @param location the location to check for the environment flag
+     * @param flag     the environment flag to check
+     * @return true if the environment flag is set at the location, false otherwise
+     */
+    public abstract boolean checkEnvironmentFlag(@NotNull Location location, @NotNull EnvFlag flag);
 }
