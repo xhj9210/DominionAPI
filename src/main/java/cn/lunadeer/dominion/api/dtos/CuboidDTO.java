@@ -223,7 +223,7 @@ public class CuboidDTO {
      *
      * @return the length of the cuboid along the x-axis
      */
-    public int xLength() {
+    public long xLength() {
         return pos2[0] - pos1[0];
     }
 
@@ -232,7 +232,7 @@ public class CuboidDTO {
      *
      * @return the length of the cuboid along the y-axis
      */
-    public int yLength() {
+    public long yLength() {
         return pos2[1] - pos1[1];
     }
 
@@ -241,7 +241,7 @@ public class CuboidDTO {
      *
      * @return the length of the cuboid along the z-axis
      */
-    public int zLength() {
+    public long zLength() {
         return pos2[2] - pos1[2];
     }
 
@@ -250,7 +250,7 @@ public class CuboidDTO {
      *
      * @return the square area of the cuboid's base
      */
-    public int getSquare() {
+    public long getSquare() {
         return xLength() * zLength();
     }
 
@@ -259,7 +259,7 @@ public class CuboidDTO {
      *
      * @return the volume of the cuboid
      */
-    public int getVolume() {
+    public long getVolume() {
         return xLength() * yLength() * zLength();
     }
 
@@ -313,7 +313,7 @@ public class CuboidDTO {
      * @param cuboid the other cuboid to compare with
      * @return the difference in square area
      */
-    public int minusSquareWith(CuboidDTO cuboid) {
+    public long minusSquareWith(CuboidDTO cuboid) {
         return getSquare() - cuboid.getSquare();
     }
 
@@ -323,7 +323,7 @@ public class CuboidDTO {
      * @param cuboid the other cuboid to compare with
      * @return the difference in volume
      */
-    public int minusVolumeWith(CuboidDTO cuboid) {
+    public long minusVolumeWith(CuboidDTO cuboid) {
         return getVolume() - cuboid.getVolume();
     }
 
