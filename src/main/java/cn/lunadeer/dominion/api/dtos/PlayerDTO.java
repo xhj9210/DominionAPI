@@ -17,7 +17,7 @@ public interface PlayerDTO {
      * CUI stands for Chest User Interface, and TUI stands for Text User Interface.
      */
     public enum UI_TYPE {
-        AUTO, // Automatically choose based on player's preference
+        BY_PLAYER, // Determined by player settings
         CUI, // Chest User Interface
         TUI, // Text User Interface
     }
@@ -70,7 +70,7 @@ public interface PlayerDTO {
      *
      * @return the preferred user interface type
      */
-    UI_TYPE getUiPreference();
+    @NotNull UI_TYPE getUiPreference();
 
     /**
      * Sets the player's preferred user interface type.
