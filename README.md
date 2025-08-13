@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("cn.lunadeer:DominionAPI:4.5")
+    compileOnly("cn.lunadeer:DominionAPI:4.5.0")
 }
 ```
 
