@@ -282,7 +282,22 @@ public class CuboidDTO {
      * @return true if this cuboid contains the other cuboid, false otherwise
      */
     public boolean contain(CuboidDTO cuboid) {
-        return x1() <= cuboid.x1() && x2() >= cuboid.x2() && y1() <= cuboid.y1() && y2() >= cuboid.y2() && z1() <= cuboid.z1() && z2() >= cuboid.z2();
+        return contain(cuboid, false);
+    }
+
+    /**
+     * Checks if this cuboid contains another cuboid, optionally ignoring the y-dimension.
+     *
+     * @param cuboid  the other cuboid to check for containment
+     * @param ignoreY if true, ignores the y-dimension in the containment check
+     * @return true if this cuboid contains the other cuboid, false otherwise
+     */
+    public boolean contain(CuboidDTO cuboid, boolean ignoreY) {
+        if (ignoreY) {
+            return x1() <= cuboid.x1() && x2() >= cuboid.x2() && z1() <= cuboid.z1() && z2() >= cuboid.z2();
+        } else {
+            return x1() <= cuboid.x1() && x2() >= cuboid.x2() && y1() <= cuboid.y1() && y2() >= cuboid.y2() && z1() <= cuboid.z1() && z2() >= cuboid.z2();
+        }
     }
 
     /**
