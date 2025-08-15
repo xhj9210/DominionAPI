@@ -232,7 +232,6 @@ public abstract class DominionAPI {
      */
     public abstract Integer memberCount();
 
-
     /**
      * Checks if a player has a specific privilege flag at the given location.
      * <p>
@@ -246,6 +245,26 @@ public abstract class DominionAPI {
      * @return true if the player has the privilege flag at the location, false otherwise
      */
     public abstract boolean checkPrivilegeFlag(@NotNull Location location, @NotNull PriFlag flag, @NotNull Player player);
+
+    /**
+     * Checks if a player has a specific privilege flag for the given dominion.
+     * <p>
+     * This method verifies whether the player has permission for the specified privilege flag
+     * within the provided dominion. If the dominion is null, the check may be performed in a global or default context.
+     * <p>
+     * Since 4.5.0 you should use {@link #checkPrivilegeFlag(Location, PriFlag, Player)} instead,
+     * as this method is deprecated. Because this method does not check the
+     * <a href="https://dominion.lunadeer.cn/notes/doc/owner/config-ref/world-wide/">world-wide privilege</a> flag,
+     * which is not recommended to use.
+     * <p>
+     *
+     * @param dom    the DominionDTO to check the privilege flag in, or null if not applicable
+     * @param flag   the privilege flag to check
+     * @param player the player whose privileges are being checked
+     * @return true if the player has the privilege flag in the dominion, false otherwise
+     */
+    @Deprecated(since = "4.5.0")
+    public abstract boolean checkPrivilegeFlag(@Nullable DominionDTO dom, @NotNull PriFlag flag, @NotNull Player player);
 
     /**
      * Checks if a player has a specific privilege flag at the given location without triggering messages or events.
@@ -262,6 +281,26 @@ public abstract class DominionAPI {
     public abstract boolean checkPrivilegeFlagSilence(@NotNull Location location, @NotNull PriFlag flag, @NotNull Player player);
 
     /**
+     * Checks if a player has a specific privilege flag for the given dominion without triggering messages or events.
+     * <p>
+     * This method performs a silent privilege check for the specified dominion, privilege flag, and player.
+     * No messages are sent and no events are triggered, making it suitable for internal permission checks.
+     * <p>
+     * Since 4.5.0 you should use {@link #checkPrivilegeFlagSilence(Location, PriFlag, Player)} instead,
+     * as this method is deprecated. Because this method does not check the
+     * <a href="https://dominion.lunadeer.cn/notes/doc/owner/config-ref/world-wide/">world-wide privilege</a> flag,
+     * which is not recommended to use.
+     * <p>
+     *
+     * @param dom    the DominionDTO to check the privilege flag in, or null if not applicable
+     * @param flag   the privilege flag to check
+     * @param player the player whose privileges are being checked
+     * @return true if the player has the privilege flag in the dominion, false otherwise
+     */
+    @Deprecated(since = "4.5.0")
+    public abstract boolean checkPrivilegeFlagSilence(@Nullable DominionDTO dom, @NotNull PriFlag flag, @NotNull Player player);
+
+    /**
      * Checks if the specified environment flag is set at the given location.
      * <p>
      * This method determines whether the provided environment flag is enabled at the specified location,
@@ -272,4 +311,22 @@ public abstract class DominionAPI {
      * @return true if the environment flag is set at the location, false otherwise
      */
     public abstract boolean checkEnvironmentFlag(@NotNull Location location, @NotNull EnvFlag flag);
+
+    /**
+     * Checks if the specified environment flag is set for the given dominion.
+     * <p>
+     * This method determines whether the provided environment flag is enabled for the specified dominion.
+     * <p>
+     * Since 4.5.0 you should use {@link #checkEnvironmentFlag(Location, EnvFlag)} instead,
+     * as this method is deprecated. Because this method does not check the
+     * <a href="https://dominion.lunadeer.cn/notes/doc/owner/config-ref/world-wide/">world-wide privilege</a> flag,
+     * which is not recommended to use.
+     * <p>
+     *
+     * @param dom  the DominionDTO to check for the environment flag, or null if not applicable
+     * @param flag the environment flag to check
+     * @return true if the environment flag is set for the dominion, false otherwise
+     */
+    @Deprecated(since = "4.5.0")
+    public abstract boolean checkEnvironmentFlag(@Nullable DominionDTO dom, @NotNull EnvFlag flag);
 }
