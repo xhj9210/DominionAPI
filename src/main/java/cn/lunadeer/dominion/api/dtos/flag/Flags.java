@@ -97,6 +97,8 @@ public class Flags {
             new PriFlag("door", "Door", "Whether can interact with door (including trapdoor, fence gate).", false, true, Material.OAK_DOOR);
     public static final PriFlag DRAGON_EGG =
             new PriFlag("dragon_egg", "Dragon Egg", "Whether can interact with dragon egg.", false, true, Material.DRAGON_EGG);
+    public static final PriFlag DROP_ITEM =
+            new PriFlag("drop_item", "Drop Item", "Whether player can drop item in dominion.", true, true, Material.IRON_INGOT);
     public static final PriFlag DYE =
             new PriFlag("dye", "Dye", "What can dye (sheep, dog collar, cat collar).", false, true, Material.LIGHT_BLUE_DYE);
     public static final PriFlag EDIT_SIGN =
@@ -139,6 +141,8 @@ public class Flags {
             new PriFlag("move", "Player Move", "Whether player can move in dominion.", true, true, Material.LEATHER_BOOTS);
     public static final PriFlag NOTE_BLOCK =
             new PriFlag("note_block", "Note Block", "Whether can interact with note block.", false, true, Material.NOTE_BLOCK);
+    public static final PriFlag PICK_UP =
+            new PriFlag("pick_up", "Pick Up Item", "Whether player can pick up items in dominion.", true, true, Material.DIAMOND_PICKAXE);
     public static final PriFlag PLACE =
             new PriFlag("place", "Place Block", "Whether can place blocks (normal blocks, item frame, lava, water).", false, true, Material.GRASS_BLOCK);
     public static final PriFlag PRESSURE =
