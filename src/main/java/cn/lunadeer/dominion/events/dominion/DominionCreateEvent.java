@@ -10,12 +10,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 /**
  * Event triggered when a Dominion is created in the Dominion system.
  * Setting setSkipEconomy(true) can skip the economic system processing.
- * To modify creation information, set your EventPriority to {@link org.bukkit.event.EventPriority#LOWEST}.
- * Changes made after this will not take effect.
  */
 @ApiStatus.Experimental
 public class DominionCreateEvent extends ResultEvent {
@@ -26,7 +26,7 @@ public class DominionCreateEvent extends ResultEvent {
     private CuboidDTO cuboid;
     private DominionDTO parent;
     private UUID owner;
-    private DominionDTO dominion = null;
+    private final CompletableFuture<DominionDTO> future = new CompletableFuture<>();
 
     /**
      * Constructs a new DominionCreateEvent.
@@ -53,9 +53,6 @@ public class DominionCreateEvent extends ResultEvent {
 
     /**
      * Sets whether to skip the economic system processing.
-     * <p>
-     * Changes made in {@link org.bukkit.event.EventPriority} HIGH or higher {@link org.bukkit.event.EventHandler} will not take effect.
-     * (Default is {@link org.bukkit.event.EventPriority#NORMAL})
      *
      * @param skipEconomy true to skip the economic system processing, false otherwise
      */
@@ -83,9 +80,6 @@ public class DominionCreateEvent extends ResultEvent {
 
     /**
      * Sets the name of the dominion.
-     * <p>
-     * Changes made in {@link org.bukkit.event.EventPriority} HIGH or higher {@link org.bukkit.event.EventHandler} will not take effect.
-     * (Default is {@link org.bukkit.event.EventPriority#NORMAL})
      *
      * @param name the name of the dominion
      */
@@ -140,9 +134,6 @@ public class DominionCreateEvent extends ResultEvent {
 
     /**
      * Sets the parent dominion.
-     * <p>
-     * Changes made in {@link org.bukkit.event.EventPriority} HIGH or higher {@link org.bukkit.event.EventHandler} will not take effect.
-     * (Default is {@link org.bukkit.event.EventPriority#NORMAL})
      *
      * @param parent the parent dominion
      */
@@ -161,9 +152,6 @@ public class DominionCreateEvent extends ResultEvent {
 
     /**
      * Sets the owner of the dominion.
-     * <p>
-     * Changes made in {@link org.bukkit.event.EventPriority} HIGH or higher {@link org.bukkit.event.EventHandler} will not take effect.
-     * (Default is {@link org.bukkit.event.EventPriority#NORMAL})
      *
      * @param owner the owner of the dominion
      */
@@ -172,23 +160,44 @@ public class DominionCreateEvent extends ResultEvent {
     }
 
     /**
-     * Gets the dominion.
+     * Gets the CompletableFuture that will be completed with the created DominionDTO.
      * <p>
-     * If retrieved in {@link org.bukkit.event.EventPriority} LOW, LOWEST, or NORMAL {@link org.bukkit.event.EventHandler}, it will be null,
-     * as the dominion has not been created yet.
+     * Under most circumstances, you should not need to use this method directly. If you
+     * need to perform actions after the dominion is created, you should use the
+     * {@link #afterCreated(Consumer)} method instead.
      *
-     * @return the dominion, or null if it has not been created yet
+     * @return the CompletableFuture to be completed
      */
-    public @Nullable DominionDTO getDominion() {
-        return dominion;
+    public CompletableFuture<DominionDTO> getFutureToComplete() {
+        return future;
     }
 
     /**
-     * Sets the dominion.
+     * Call back after the dominion is created.
+     * <p>
+     * Use this method to perform actions after the dominion has been created (may fail),
+     * if you need to do something with the created dominion.
      *
-     * @param dominion the dominion to set
+     * @param consumer the consumer to handle the created dominion
+     * @return a CompletableFuture that completes when the consumer has been executed
      */
+    public CompletableFuture<Void> afterCreated(Consumer<DominionDTO> consumer) {
+        return future.thenAccept(consumer);
+    }
+
+    /**
+     * @deprecated This method is deprecated and will be removed in future versions.
+     * To get the created dominion, use the {@link #afterCreated(Consumer)} method instead.
+     */
+    @Deprecated(since = "4.6.0", forRemoval = true)
+    public @Nullable DominionDTO getDominion() {
+        return null;
+    }
+
+    /**
+     * @deprecated This method is deprecated and will be removed in future versions.
+     */
+    @Deprecated(since = "4.6.0", forRemoval = true)
     public void setDominion(@NotNull DominionDTO dominion) {
-        this.dominion = dominion;
     }
 }

@@ -7,9 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Event triggered when a group is deleted within a dominion.
- * <p>
- * This event is triggered when a group is removed.
+ * Event triggered when a group of a dominion is deleted.
  */
 public class GroupDeleteEvent extends ResultEvent {
 
@@ -23,7 +21,9 @@ public class GroupDeleteEvent extends ResultEvent {
      * @param dominion the dominion to which the group belongs
      * @param group    the group being deleted
      */
-    public GroupDeleteEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull GroupDTO group) {
+    public GroupDeleteEvent(@NotNull CommandSender operator,
+                            @NotNull DominionDTO dominion,
+                            @NotNull GroupDTO group) {
         super(operator);
         this.dominion = dominion;
         this.group = group;

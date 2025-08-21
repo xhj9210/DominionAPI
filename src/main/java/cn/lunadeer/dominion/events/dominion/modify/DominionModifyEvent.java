@@ -6,6 +6,9 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
+
 /**
  * Event triggered when a Dominion is modified in the Dominion system.
  */
@@ -13,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 public class DominionModifyEvent extends ResultEvent {
 
     private DominionDTO dominion;
+    private final CompletableFuture<DominionDTO> future = new CompletableFuture<>();
 
     /**
      * Constructs a new DominionModifyEvent.
@@ -26,11 +30,36 @@ public class DominionModifyEvent extends ResultEvent {
     }
 
     /**
-     * Returns the dominion being modified.
+     * Gets the CompletableFuture that will be completed with the created DominionDTO.
      * <p>
-     * To get changed dominion your event listener need to be {@link org.bukkit.event.EventPriority} HIGH or higher {@link org.bukkit.event.EventHandler}.
-     * (Default is {@link org.bukkit.event.EventPriority#NORMAL})
-     * Or otherwise get the dominion before the changes are applied.
+     * Under most circumstances, you should not need to use this method directly. If you
+     * need to perform actions after the dominion is modified, you should use the
+     * {@link #afterModified(Consumer)} method instead.
+     *
+     * @return the CompletableFuture to be completed
+     */
+    public CompletableFuture<DominionDTO> getFutureToComplete() {
+        return future;
+    }
+
+    /**
+     * Call back after the dominion is modified.
+     * <p>
+     * Use this method to perform actions after the dominion has been modified.
+     *
+     * @param consumer the consumer to handle the created dominion
+     * @return a CompletableFuture that completes when the consumer has been executed
+     */
+    public CompletableFuture<Void> afterModified(Consumer<DominionDTO> consumer) {
+        return future.thenAccept(consumer);
+    }
+
+    /**
+     * Returns the dominion to be modified.
+     * <p>
+     * This method retrieves the dominion that is going to be modified by this event.
+     * To get the modified dominion after the event is processed, use the
+     * {@link #afterModified(Consumer)} method to register a callback.
      *
      * @return the dominion
      */
@@ -39,9 +68,11 @@ public class DominionModifyEvent extends ResultEvent {
     }
 
     /**
-     * Sets the dominion being modified.
+     * Sets the dominion to be modified.
+     * <p>
+     * This method can only change which dominion will be modified.
      *
-     * @param dominion the new dominion
+     * @param dominion the dominion to set
      */
     public void setDominion(@NotNull DominionDTO dominion) {
         this.dominion = dominion;

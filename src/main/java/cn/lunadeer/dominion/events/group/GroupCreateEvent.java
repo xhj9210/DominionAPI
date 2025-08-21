@@ -8,18 +8,17 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
+
 /**
- * Event triggered when a group is created within a dominion.
- * <p>
- * This event is triggered when a group is added.
- * After a successful addition, the new group can be obtained via {@link #getGroup()}.
- * If the addition fails, {@link #getGroup()} returns null.
+ * Event triggered when a group of a dominion is created.
  */
 public class GroupCreateEvent extends ResultEvent {
 
     private DominionDTO dominion;
     private String groupName;
-    private GroupDTO group = null;
+    private final CompletableFuture<GroupDTO> future = new CompletableFuture<>();
 
     /**
      * Constructs a new GroupCreateEvent.
@@ -28,7 +27,9 @@ public class GroupCreateEvent extends ResultEvent {
      * @param dominion  the dominion to which the group belongs
      * @param groupName the name of the group being created
      */
-    public GroupCreateEvent(@NotNull CommandSender operator, @NotNull DominionDTO dominion, @NotNull String groupName) {
+    public GroupCreateEvent(@NotNull CommandSender operator,
+                            @NotNull DominionDTO dominion,
+                            @NotNull String groupName) {
         super(operator);
         this.dominion = dominion;
         this.groupName = groupName;
@@ -80,20 +81,45 @@ public class GroupCreateEvent extends ResultEvent {
     }
 
     /**
-     * Sets the group being created.
+     * Gets the CompletableFuture that will be completed with the created GroupDTO.
+     * <p>
+     * Under most circumstances, you should not need to use this method directly. If you
+     * need to perform actions after the group is created, you should use the
+     * {@link #afterCreated(Consumer)} method instead.
      *
-     * @param group the group to set
+     * @return the CompletableFuture to be completed
      */
-    public void setGroup(@NotNull GroupDTO group) {
-        this.group = group;
+    public CompletableFuture<GroupDTO> getFutureToComplete() {
+        return future;
     }
 
     /**
-     * Gets the newly created group. If the addition fails, returns null.
+     * Call back after the group is created.
+     * <p>
+     * Use this method to perform actions after the group has been created (may fail),
+     * if you need to do something with the created group,
      *
-     * @return the newly created group, or null if the addition fails
+     * @param consumer the consumer to handle the created group
+     * @return a CompletableFuture that completes when the consumer has been executed
      */
+    public CompletableFuture<Void> afterCreated(Consumer<GroupDTO> consumer) {
+        return future.thenAccept(consumer);
+    }
+
+    /**
+     * @param group the group to set
+     * @deprecated This method is deprecated and will be removed in future versions.
+     */
+    @Deprecated(since = "4.6.0", forRemoval = true)
+    public void setGroup(@NotNull GroupDTO group) {
+    }
+
+    /**
+     * @deprecated This method is deprecated and will be removed in future versions.
+     * To get the created dominion, use the {@link #afterCreated(Consumer)} method instead.
+     */
+    @Deprecated(since = "4.6.0", forRemoval = true)
     public @Nullable GroupDTO getGroup() {
-        return group;
+        return null;
     }
 }

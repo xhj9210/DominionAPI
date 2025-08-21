@@ -3,7 +3,6 @@ package cn.lunadeer.dominion.api.dtos;
 import cn.lunadeer.dominion.api.dtos.flag.PriFlag;
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -90,7 +89,7 @@ public interface GroupDTO {
      * @return the group object
      * @throws SQLException if a database access error occurs
      */
-    @Nullable GroupDTO setFlagValue(@NotNull PriFlag flag, @NotNull Boolean value) throws SQLException;
+    @NotNull GroupDTO setFlagValue(@NotNull PriFlag flag, @NotNull Boolean value) throws SQLException;
 
     /**
      * Gets all members of the group.

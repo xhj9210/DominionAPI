@@ -6,6 +6,9 @@ import cn.lunadeer.dominion.api.dtos.MemberDTO;
 import cn.lunadeer.dominion.api.dtos.PlayerDTO;
 import cn.lunadeer.dominion.api.dtos.flag.EnvFlag;
 import cn.lunadeer.dominion.api.dtos.flag.PriFlag;
+import cn.lunadeer.dominion.providers.DominionProvider;
+import cn.lunadeer.dominion.providers.GroupProvider;
+import cn.lunadeer.dominion.providers.MemberProvider;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
@@ -329,4 +332,40 @@ public abstract class DominionAPI {
      */
     @Deprecated(since = "4.5.0")
     public abstract boolean checkEnvironmentFlag(@Nullable DominionDTO dom, @NotNull EnvFlag flag);
+
+    /**
+     * Retrieves the DominionProvider instance.
+     * <p>
+     * This method provides access to the DominionProvider, which handles dominion-related operations
+     * such as creating, updating, and deleting dominions.
+     *
+     * @return the singleton instance of DominionProvider
+     */
+    public static DominionProvider getDominionProvider() {
+        return DominionProvider.getInstance();
+    }
+
+    /**
+     * Retrieves the GroupProvider instance.
+     * <p>
+     * This method provides access to the GroupProvider, which handles group-related operations
+     * such as creating, updating, and deleting groups within dominions.
+     *
+     * @return the singleton instance of GroupProvider
+     */
+    public static GroupProvider getGroupProvider() {
+        return GroupProvider.getInstance();
+    }
+
+    /**
+     * Retrieves the MemberProvider instance.
+     * <p>
+     * This method provides access to the MemberProvider, which handles member-related operations
+     * such as adding, updating, and removing members from dominions and groups.
+     *
+     * @return the singleton instance of MemberProvider
+     */
+    public static MemberProvider getMemberProvider() {
+        return MemberProvider.getInstance();
+    }
 }
