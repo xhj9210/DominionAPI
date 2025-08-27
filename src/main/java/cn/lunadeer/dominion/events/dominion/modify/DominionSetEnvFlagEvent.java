@@ -3,13 +3,11 @@ package cn.lunadeer.dominion.events.dominion.modify;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.flag.EnvFlag;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Event triggered when an environmental flag is set for a Dominion in the Dominion system.
  */
-@ApiStatus.Experimental
 public class DominionSetEnvFlagEvent extends DominionModifyEvent {
 
     private final EnvFlag flag;

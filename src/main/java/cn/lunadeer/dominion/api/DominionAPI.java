@@ -11,7 +11,6 @@ import cn.lunadeer.dominion.providers.GroupProvider;
 import cn.lunadeer.dominion.providers.MemberProvider;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,7 +24,6 @@ import java.util.UUID;
  * <p>
  * Use the {@link #getInstance()} method to retrieve the singleton instance of the DominionAPI.
  */
-@ApiStatus.Experimental
 public abstract class DominionAPI {
 
     protected static DominionAPI instance;

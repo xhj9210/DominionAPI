@@ -3,13 +3,11 @@ package cn.lunadeer.dominion.events.dominion.modify;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Event triggered when a teleport location is set for a Dominion in the Dominion system.
  */
-@ApiStatus.Experimental
 public class DominionSetTpLocationEvent extends DominionModifyEvent {
 
     private final Location oldTpLocation;

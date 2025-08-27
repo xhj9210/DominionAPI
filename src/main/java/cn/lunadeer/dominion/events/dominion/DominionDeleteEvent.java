@@ -3,14 +3,12 @@ package cn.lunadeer.dominion.events.dominion;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Event triggered when a dominion is deleted.
  * This event is experimental and may change in future versions.
  */
-@ApiStatus.Experimental
 public class DominionDeleteEvent extends ResultEvent {
 
     private boolean skipEconomy;

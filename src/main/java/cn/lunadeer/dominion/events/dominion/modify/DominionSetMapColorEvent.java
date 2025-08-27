@@ -3,13 +3,11 @@ package cn.lunadeer.dominion.events.dominion.modify;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import org.bukkit.Color;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Event that handles setting the map color of a dominion.
  */
-@ApiStatus.Experimental
 public class DominionSetMapColorEvent extends DominionModifyEvent {
 
     private final Color oldColor;

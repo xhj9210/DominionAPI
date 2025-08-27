@@ -3,13 +3,11 @@ package cn.lunadeer.dominion.events.dominion.modify;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.flag.PriFlag;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Event triggered when a guest flag is set for a Dominion in the Dominion system.
  */
-@ApiStatus.Experimental
 public class DominionSetGuestFlagEvent extends DominionModifyEvent {
 
     private final PriFlag flag;

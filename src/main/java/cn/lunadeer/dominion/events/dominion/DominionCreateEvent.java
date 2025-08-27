@@ -5,7 +5,6 @@ import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.events.ResultEvent;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,7 +16,6 @@ import java.util.function.Consumer;
  * Event triggered when a Dominion is created in the Dominion system.
  * Setting setSkipEconomy(true) can skip the economic system processing.
  */
-@ApiStatus.Experimental
 public class DominionCreateEvent extends ResultEvent {
 
     private boolean skipEconomy;

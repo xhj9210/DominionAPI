@@ -3,13 +3,11 @@ package cn.lunadeer.dominion.events.dominion.modify;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.PlayerDTO;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Event triggered when a Dominion is transferred to a new owner in the Dominion system.
  */
-@ApiStatus.Experimental
 public class DominionTransferEvent extends DominionModifyEvent {
 
     private PlayerDTO newOwner;
